@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1699821679 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother\aaaaaaaaaaaaa\bigbrother\arvorebinaria.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreBinaria.h"
+
+1699806532 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother\aaaaaaaaaaaaa\bigbrother\arvorebinaria.h
+	"LDED.h"
+
+1699806532 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother\aaaaaaaaaaaaa\bigbrother\lded.h
+
+1699806532 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother\aaaaaaaaaaaaa\bigbrother\lded.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LDED.h"
+
+1699821696 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother\aaaaaaaaaaaaa\bigbrother\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreBinaria.h"
+
