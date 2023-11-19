@@ -69,8 +69,7 @@ int main()
             printf("S:0 NL:%d", pos);
         }
 
-        //Por algum motivo o Runcodes estava somando 1 no resultado
-        printf(" NA:%d\n", consulta_ArvBin(raiz, aux)-1);
+        printf(" NA:%d\n", consulta_ArvBin(raiz, aux));
 
         break;
     case 2:

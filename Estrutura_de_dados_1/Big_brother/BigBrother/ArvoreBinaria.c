@@ -40,14 +40,14 @@ void ins_nodo_arvbin_rec(struct NO* atual, struct NO* ant, struct NO* novo, Tipo
                 return;//elemento já existe
             }
 
-            if (strcmp(valor.TAG, atual->info.TAG) == 1)
+            if (strcmp(valor.TAG, atual->info.TAG) > 0)
                 ins_nodo_arvbin_rec(atual->dir, ant, novo, valor);
             else
                 ins_nodo_arvbin_rec(atual->esq, ant, novo, valor);
     }
     else
     {
-        if(strcmp(valor.TAG, ant->info.TAG) == 1)
+        if(strcmp(valor.TAG, ant->info.TAG) > 0)
             ant->dir = novo;
         else
             ant->esq = novo;
@@ -107,12 +107,12 @@ int insere_ArvBin(ArvBin* raiz, Tipo_Dado valor)
                 return 0;//elemento já existe
             }
 
-            if(strcmp(valor.TAG, atual->info.TAG) == 1)
+            if(strcmp(valor.TAG, atual->info.TAG) > 0)
                 atual = atual->dir;
             else
                 atual = atual->esq;
         }
-        if(strcmp(valor.TAG, ant->info.TAG) == 1)
+        if(strcmp(valor.TAG, ant->info.TAG) > 0)
             ant->dir = novo;
         else
             ant->esq = novo;
@@ -162,7 +162,7 @@ int remove_ArvBin(ArvBin *raiz, Tipo_Dado valor){
             return 1;
         }
         ant = atual;
-        if(strcmp(valor.TAG, atual->info.TAG) == 1)
+        if(strcmp(valor.TAG, atual->info.TAG) > 0)
             atual = atual->dir;
         else
             atual = atual->esq;
@@ -211,7 +211,7 @@ int consulta_ArvBin(ArvBin *raiz, Tipo_Dado valor){
             return buscas+1;
         }
         buscas++;
-        if(strcmp(valor.TAG, atual->info.TAG) == 1)
+        if(strcmp(valor.TAG, atual->info.TAG) > 0)
             atual = atual->dir;
         else
             atual = atual->esq;
@@ -225,8 +225,8 @@ void preOrdem_ArvBin(ArvBin *raiz)
         return;
     if(*raiz != NULL){
         printf("%s %d\n",(*raiz)->info.TAG, (*raiz)->info.status);
-        emOrdem_ArvBin(&((*raiz)->esq));
-        emOrdem_ArvBin(&((*raiz)->dir));
+        preOrdem_ArvBin(&((*raiz)->esq));
+        preOrdem_ArvBin(&((*raiz)->dir));
     }
 }
 

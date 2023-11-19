@@ -22,3 +22,26 @@
 	<string.h>
 	"ArvoreBinaria.h"
 
+1700413851 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_1\big_brother\bigbrother\lded.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LDED.h"
+
+1700413851 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_1\big_brother\bigbrother\lded.h
+
+1700414637 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_1\big_brother\bigbrother\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreBinaria.h"
+
+1700413851 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_1\big_brother\bigbrother\arvorebinaria.h
+	"LDED.h"
+
+1700414609 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_1\big_brother\bigbrother\arvorebinaria.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreBinaria.h"
+
