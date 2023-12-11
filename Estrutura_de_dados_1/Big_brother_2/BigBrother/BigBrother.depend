@@ -68,3 +68,26 @@
 	<string.h>
 	"ArvoreBinaria.h"
 
+1702327283 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother_2\bigbrother\arvorebinaria.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreBinaria.h"
+
+1702327078 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother_2\bigbrother\arvorebinaria.h
+
+1702327301 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother_2\bigbrother\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreAVL.h"
+
+1702326226 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother_2\bigbrother\arvoreavl.h
+	"ArvoreBinaria.h"
+
+1702327200 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_1\big_brother_2\bigbrother\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArvoreAVL.h"
+
