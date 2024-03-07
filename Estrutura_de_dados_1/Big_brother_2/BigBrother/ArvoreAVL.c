@@ -30,7 +30,7 @@ int altura_NO(struct NO* no){
     if(no == NULL)
         return -1;
     else
-    return no->altura;
+        return no->altura;
 }
 
 int fatorBalanceamento_NO(struct NO* no){

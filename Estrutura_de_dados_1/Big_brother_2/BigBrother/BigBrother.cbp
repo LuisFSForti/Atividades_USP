@@ -40,15 +40,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ArvoreAVL.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ArvoreAVL.h" />
 		<Unit filename="ArvoreBinaria.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ArvoreBinaria.h" />
 		<Unit filename="BigBrother.cbp" />
-		<Unit filename="LDED.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="LDED.h" />
 		<Unit filename="Makefile" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
