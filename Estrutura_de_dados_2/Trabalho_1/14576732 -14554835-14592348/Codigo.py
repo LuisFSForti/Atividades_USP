@@ -12,9 +12,6 @@ entrada = input()
 #Separa a sequência e salva
 valores = [int(valor) for valor in entrada.split() if valor.isdigit()]
 
-#Código para a análise empírica
-#tempo = time.time()
-
 #Para passar por todas as casas
 for i in range(0, len(valores)):
     #Para verificar todas as casas não-organizadas
@@ -29,9 +26,6 @@ for i in range(0, len(valores)):
             valores[j] = aux
             #Dessa forma, sempre que aparecer um valor menor que o valor em i,
             #ele irá trocar de lugar, organizando em forma crescente
-
-#Código para a análise empírica
-#print(time.time() - tempo)
 
 #Para imprimir os valores separados por espaço
 for valor in valores:
