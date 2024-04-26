@@ -1,7 +1,7 @@
 
-**** 04/22/24 15:03:19 *********** Evaluation PSpice (Nov 1999) **************
+**** 04/26/24 18:37:10 *********** Evaluation PSpice (Nov 1999) **************
 
- * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\Ex1.sch
+ * C:\Users\Luis\Documents\Escola\Atividades_USP\Circuitos\Ex1.sch
 
 
  ****     CIRCUIT DESCRIPTION
@@ -13,7 +13,7 @@
 
 
 * Schematics Version 9.1 - Web Update 1
-* Mon Apr 22 15:01:35 2024
+* Fri Apr 26 18:36:40 2024
 
 
 
@@ -31,16 +31,16 @@
 
 
 
-G_G1         0 $N_0003 $N_0001 $N_0002 1.5
-R_R6         $N_0005 $N_0004  1  
-V_V1         $N_0004 $N_0006 48V
-I_I1         $N_0001 $N_0004 DC 6A  
-H_H1         $N_0003 $N_0006 VH_H1 4
-VH_H1        0 $N_0005 0V
-R_R4         $N_0003 $N_0001  1  
-R_R3         $N_0001 $N_0002  5  
-R_R1         0 $N_0006  4  
-R_R5         0 $N_0002  2  
+G_G1         0 N4 N2 N5 1.5
+R_R2         0 N3  4  
+R_R1         N4 N2  1  
+H_H1         N4 N3 VH_H1 4
+VH_H1        0 N6 0V
+R_R5         N6 N1  1  
+R_R4         0 N5  2  
+R_R3         N2 N5  5  
+I_I1         N2 N1 DC 6A  
+V_V1         N1 N3 48V
 
 **** RESUMING Ex1.cir ****
 .INC "Ex1.als"
@@ -51,16 +51,22 @@ R_R5         0 $N_0002  2
 * Schematics Aliases *
 
 .ALIASES
-G_G1            G1(3=0 4=$N_0003 1=$N_0001 2=$N_0002 )
-R_R6            R6(1=$N_0005 2=$N_0004 )
-V_V1            V1(+=$N_0004 -=$N_0006 )
-I_I1            I1(+=$N_0001 -=$N_0004 )
-H_H1            H1(3=$N_0003 4=$N_0006 )
-VH_H1           H1(1=0 2=$N_0005 )
-R_R4            R4(1=$N_0003 2=$N_0001 )
-R_R3            R3(1=$N_0001 2=$N_0002 )
-R_R1            R1(1=0 2=$N_0006 )
-R_R5            R5(1=0 2=$N_0002 )
+G_G1            G1(3=0 4=N4 1=N2 2=N5 )
+R_R2            R2(1=0 2=N3 )
+R_R1            R1(1=N4 2=N2 )
+H_H1            H1(3=N4 4=N3 )
+VH_H1           H1(1=0 2=N6 )
+R_R5            R5(1=N6 2=N1 )
+R_R4            R4(1=0 2=N5 )
+R_R3            R3(1=N2 2=N5 )
+I_I1            I1(+=N2 -=N1 )
+V_V1            V1(+=N1 -=N3 )
+_    _(N2=N2)
+_    _(N5=N5)
+_    _(N4=N4)
+_    _(N3=N3)
+_    _(N6=N6)
+_    _(N1=N1)
 .ENDALIASES
 
 
@@ -70,9 +76,9 @@ R_R5            R5(1=0 2=$N_0002 )
 
 .END
 
-**** 04/22/24 15:03:19 *********** Evaluation PSpice (Nov 1999) **************
+**** 04/26/24 18:37:10 *********** Evaluation PSpice (Nov 1999) **************
 
- * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\Ex1.sch
+ * C:\Users\Luis\Documents\Escola\Atividades_USP\Circuitos\Ex1.sch
 
 
  ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
@@ -85,11 +91,9 @@ R_R5            R5(1=0 2=$N_0002 )
  NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
 
 
-($N_0001)  -24.5590                   ($N_0002)   -7.0169                       
+(   N1)   -8.6441  (   N2)  -24.5590  (   N3)  -56.6440  (   N4)  -22.0680      
 
-($N_0003)  -22.0680                   ($N_0004)   -8.6441                       
-
-($N_0005)    0.0000                   ($N_0006)  -56.6440                   
+(   N5)   -7.0169  (   N6)    0.0000  
 
 
 
@@ -97,15 +101,15 @@ R_R5            R5(1=0 2=$N_0002 )
     VOLTAGE SOURCE CURRENTS
     NAME         CURRENT
 
-    V_V1         1.464E+01
     VH_H1        8.644E+00
+    V_V1         1.464E+01
 
     TOTAL POWER DISSIPATION  -7.03E+02  WATTS
 
 
-**** 04/22/24 15:03:19 *********** Evaluation PSpice (Nov 1999) **************
+**** 04/26/24 18:37:10 *********** Evaluation PSpice (Nov 1999) **************
 
- * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\Ex1.sch
+ * C:\Users\Luis\Documents\Escola\Atividades_USP\Circuitos\Ex1.sch
 
 
  ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
