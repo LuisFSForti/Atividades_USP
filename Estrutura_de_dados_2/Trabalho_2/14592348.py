@@ -2,7 +2,7 @@ class Aluno:
     def __init__(self, dados):
         #Os dados de cada linha são passados como o vetor dados
         self._nota = float(dados[0])
-        self._reprovacoes = float(dados[1])
+        self._reprovacoes = int(dados[1])
         self._nome = dados[2]
 
     #Função para comparar dois alunos (self e outro)
@@ -36,7 +36,7 @@ class Aluno:
 
     #Função utilizada para debugar o código, não foi usada na entrega final
     def Print(self):
-        print(self._nome, "{:.2f}".format(self._nota), int(self._reprovacoes))
+        print(self._nome, "{:.2f}".format(self._nota), self._reprovacoes)
 
 #Ordenação por selection sort
 def SelectionSort(Alunos):
@@ -76,24 +76,8 @@ def MergeSort(Alunos, comeco, fim):
     #Casa atual de cada vetor
     i, j = 0,0
 
-    #Enquanto ambos os vetores não tiverem passado todos os seus valores
-    while i < len(aux1) or j < len(aux2):
-        #Se aux1 já passou todos os seus valores
-        if i == len(aux1):
-            #Salva a casa atual de aux2
-            aux3.append(aux2[j])
-            j += 1
-            #Volta pro começo do loop
-            continue
-
-        #Se aux2 já passou todos os seus valores
-        if j == len(aux2):
-            #Salva a casa atual de aux1
-            aux3.append(aux1[i])
-            i += 1
-            #Volta pro começo do loop
-            continue
-
+    #Enquanto um dos vetores não tiver passado todos os seus valores
+    while i < len(aux1) and j < len(aux2):
         #Se a casa atual de aux1 tem o melhor aluno
         if aux1[i].CompareTo(aux2[j]) >= 1:
             #Salva a casa atual de aux1
@@ -104,6 +88,11 @@ def MergeSort(Alunos, comeco, fim):
             #Salva a casa atual de aux2
             aux3.append(aux2[j])
             j += 1
+
+    #Adiciona os alunos que faltaram, como aux1 e aux2 já estão ordenados, basta adicionar à partir do último adicionado do vetor
+    #Não importa a ordem que eles estão sendo incluidos, pois um deles não adicionará nenhum aluno
+    aux3.extend(aux1[i:])
+    aux3.extend(aux2[j:])
 
     #Retorna o vetor organizado, o qual será manipulado recusrivamente
     return aux3
