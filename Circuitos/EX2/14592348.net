@@ -1,0 +1,35 @@
+* Schematics Netlist *
+
+
+
+V_V6         $N_0001 0 DC 0V AC 7V 0
+R_R1         $N_0001 $N_0002  8  
+L_L1         0 $N_0003  0.5  
+R_R4         $N_0004 $N_0003  5  
+R_R2         0 $N_0005  48  
+R_R3         0 $N_0006  24  
+C_C1         $N_0002 N1  40m  
+C_C2         N1 N2  20m  
+           
+.PRINT         AC 
++ VM([N1]) 
++ VP([N1])    
+V_PRINTI1         N1 $N_0005 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI1) 
++ IP(V_PRINTI1)    
+V_PRINTI2         N2 $N_0006 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI2) 
++ IP(V_PRINTI2)    
+V_PRINTI3         N2 $N_0004 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI3) 
++ IP(V_PRINTI3)    
+           
+.PRINT         AC 
++ VM([N2]) 
++ VP([N2])    

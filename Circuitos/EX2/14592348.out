@@ -1,0 +1,226 @@
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Thu May 23 12:18:40 2024
+
+
+
+** Analysis setup **
+.ac DEC 1 30.55 30.55
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "14592348.net"
+
+**** INCLUDING 14592348.net ****
+* Schematics Netlist *
+
+
+
+V_V6         $N_0001 0 DC 0V AC 7V 0
+R_R1         $N_0001 $N_0002  8  
+L_L1         0 $N_0003  0.5  
+R_R4         $N_0004 $N_0003  5  
+R_R2         0 $N_0005  48  
+R_R3         0 $N_0006  24  
+C_C1         $N_0002 N1  40m  
+C_C2         N1 N2  20m  
+           
+.PRINT         AC 
++ VM([N1]) 
++ VP([N1])    
+V_PRINTI1         N1 $N_0005 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI1) 
++ IP(V_PRINTI1)    
+V_PRINTI2         N2 $N_0006 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI2) 
++ IP(V_PRINTI2)    
+V_PRINTI3         N2 $N_0004 0V
+          
+.PRINT        AC 
++ IM(V_PRINTI3) 
++ IP(V_PRINTI3)    
+           
+.PRINT         AC 
++ VM([N2]) 
++ VP([N2])    
+
+**** RESUMING 14592348.cir ****
+.INC "14592348.als"
+
+
+
+**** INCLUDING 14592348.als ****
+* Schematics Aliases *
+
+.ALIASES
+V_V6            V6(+=$N_0001 -=0 )
+R_R1            R1(1=$N_0001 2=$N_0002 )
+L_L1            L1(1=0 2=$N_0003 )
+R_R4            R4(1=$N_0004 2=$N_0003 )
+R_R2            R2(1=0 2=$N_0005 )
+R_R3            R3(1=0 2=$N_0006 )
+C_C1            C1(1=$N_0002 2=N1 )
+C_C2            C2(1=N1 2=N2 )
+V_PRINTI1          PRINTI1(1=N1 2=$N_0005 )
+
+V_PRINTI2          PRINTI2(1=N2 2=$N_0006 )
+
+V_PRINTI3          PRINTI3(1=N2 2=$N_0004 )
+
+_    _(N1=N1)
+_    _(N2=N2)
+.ENDALIASES
+
+
+**** RESUMING 14592348.cir ****
+.probe
+
+
+.END
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   N1)    0.0000  (   N2)    0.0000  ($N_0001)    0.0000                       
+
+($N_0002)    0.0000                   ($N_0003)    0.0000                       
+
+($N_0004)    0.0000                   ($N_0005)    0.0000                       
+
+($N_0006)    0.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V6         0.000E+00
+    V_PRINTI1    0.000E+00
+    V_PRINTI2    0.000E+00
+    V_PRINTI3    0.000E+00
+
+    TOTAL POWER DISSIPATION   0.00E+00  WATTS
+
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     AC ANALYSIS                      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+  FREQ        VM(N1)      VP(N1)      
+
+
+   3.055E+01   4.644E+00   3.341E+00
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     AC ANALYSIS                      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+  FREQ        IM(V_PRINTI1)IP(V_PRINTI1)
+
+
+   3.055E+01   9.675E-02   3.341E+00
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     AC ANALYSIS                      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+  FREQ        IM(V_PRINTI2)IP(V_PRINTI2)
+
+
+   3.055E+01   1.940E-01   3.973E+00
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     AC ANALYSIS                      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+  FREQ        IM(V_PRINTI3)IP(V_PRINTI3)
+
+
+   3.055E+01   4.845E-02  -8.305E+01
+
+**** 05/23/24 12:18:40 *********** Evaluation PSpice (Nov 1999) **************
+
+ * C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+
+ ****     AC ANALYSIS                      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+  FREQ        VM(N2)      VP(N2)      
+
+
+   3.055E+01   4.656E+00   3.973E+00
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME            0.00
+

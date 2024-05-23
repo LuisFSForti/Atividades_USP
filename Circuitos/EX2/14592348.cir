@@ -1,0 +1,22 @@
+* C:\Users\luis\Documents\Facul\Atividades_USP\Circuitos\EX2\14592348.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Thu May 23 12:18:40 2024
+
+
+
+** Analysis setup **
+.ac DEC 1 30.55 30.55
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "14592348.net"
+.INC "14592348.als"
+
+
+.probe
+
+
+.END
