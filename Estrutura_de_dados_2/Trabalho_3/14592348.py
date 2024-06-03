@@ -1,14 +1,16 @@
-def Hash(palavra, S, i, c1, c2):
+def Hash(palavra, S):
     v = 0
     #Calcula o hash de "palavra" e salva em v
     for caracter in palavra:
         v += v*3 + ord(caracter)
         v = v % S
 
-    #Lida com as colisões
-    v = (v + c1 * i + c2 * i**2) % S
-
     return v
+
+def ReHash(v, S, i, c1, c2):
+    #Lida com as colisões
+    return (v + c1 * i + c2 * i**2) % S
+    
 
 #Para salvar os dados de cada palavra
 class Palavra:
@@ -36,10 +38,12 @@ class Dicionario:
         #onde achou o primeiro espaço vago
         disponivel = -1
 
+        V = Hash(palavra, self.S)
+
         #Loop infinito
         while True:
             #Calcula o hash da palavra, considerando colisões
-            hash = Hash(palavra, self.S, i, self.c1, self.c2)
+            hash = ReHash(V, self.S, i, self.c1, self.c2)
             #Se não há palavras no espaço
             if self.buckets[hash] == None:
                 #Se não encontrou algum local com "###"
