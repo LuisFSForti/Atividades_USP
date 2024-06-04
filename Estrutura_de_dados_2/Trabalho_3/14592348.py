@@ -1,3 +1,5 @@
+#Luís Filipe Silva Forti - 14592348
+
 def Hash(palavra, S):
     v = 0
     #Calcula o hash de "palavra" e salva em v
