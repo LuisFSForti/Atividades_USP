@@ -1,0 +1,4 @@
+`timescale 1 ns/100 ps
+
+module Comparador (output g, l, input a, b);
+	

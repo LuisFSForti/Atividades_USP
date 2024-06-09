@@ -1,0 +1,13 @@
+#
+#
+# 
+# 06/09/24 18:16:52
+load_library scl05u
+set_working_dir C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparador.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux2x1.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view

@@ -1,0 +1,4 @@
+`timescale 1 ns/100 ps
+
+module priority_encoder (output A1, A0, GS, E0, input, x3, x2, x1, x0);
+	

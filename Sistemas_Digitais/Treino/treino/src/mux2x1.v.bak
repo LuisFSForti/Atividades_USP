@@ -1,0 +1,5 @@
+`timescale 1 ns/100 ps
+
+module Mux2x1 (output r, input a1, a0, s):
+	assign r = s? a1 | a0;
+endmodule

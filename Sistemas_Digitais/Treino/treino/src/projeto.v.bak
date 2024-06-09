@@ -1,0 +1,3 @@
+`timescale 1 ns/100 ps
+
+module ProcurarMenor #(parameter SIZE = 8) (output max, min, input [SIZE-1:0] a, b);

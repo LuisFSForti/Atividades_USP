@@ -1,0 +1,7 @@
+
+
+module teste(output r2, r1, r0, input [2:0]i);
+	wire g2, g1, g0;
+	bin2gray t1 (g2, g1, g0, i[2], i[1], i[0]);
+	gray2bin t2 (r2, r1, r0, g2, g1, g0);
+endmodule

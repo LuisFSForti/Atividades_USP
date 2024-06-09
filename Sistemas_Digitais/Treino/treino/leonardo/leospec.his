@@ -1,0 +1,20 @@
+#
+#
+# 
+# 06/09/24 18:08:02
+load_library scl05u
+set_working_dir C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Treino/treino/leonardo
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Treino/treino/src/mux2x1.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Treino/treino/src/comparador.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Treino/treino/src/comparadoresEmSerie.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Treino/treino/src/projeto.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+optimize .work.ProcurarMenor.INTERFACE -target scl05u -macro -area -effort quick -hierarchy auto 
+optimize_timing .work.ProcurarMenor.INTERFACE 
+report_delay -num_paths 1 -show_schematic 1 -critical_paths
+view_schematic -view
+view_schematic -rtl -view
+view_schematic -rtl -view
