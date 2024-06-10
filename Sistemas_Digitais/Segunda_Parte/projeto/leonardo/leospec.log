@@ -1043,3 +1043,834 @@ Timing characterization done, time = 0 CPU secs.
 Using default wire table: SCL_CORE_4K
 AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
 -- Writing file BN_8.v
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 9: Error, syntax error near: linha1[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 11: Error, syntax error near: wire <-
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 14: Error, syntax error near: BN <-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y8 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y7 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y6 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y5 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y4 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 5: Warning, output y3 is never assigned a value.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x8 is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x7 is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x6 is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x5 is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x4 is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 6: Warning, input x3 is never used.
+-- Compiling root module 'ordenador'
+-- Boundary optimization.
+-- Boundary optimization.
+-- Start pre-optimization for design .work.juntarComparadores_8.INTERFACE_unfold_846
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.juntarComparadores_8.INTERFACE_unfold_846
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8 as black box
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1023
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE_unfold_1021
+-- Start pre-optimization for design .work.BN.INTERFACE_unfold_1326
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE
+-- Start pre-optimization for design .work.BN.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE
+-- Start pre-optimization for design .work.BN.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 40: Error, The symbol rowi was already defined
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 22: Error, cannot assign to a constant: pos1.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 23: Error, cannot assign to a constant: pos8.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 35: Error, cannot assign to a constant: pos1.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v",line 36: Error, cannot assign to a constant: pos8.
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 22: Error, syntax error near: pos1 = <-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 22: Error, syntax error near: pos1 = <-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 20: Warning, initial value not supported. Ignored
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 20: Warning, initial value not supported. Ignored
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v", line 33: Error, syntax error near: pos1 = <-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Compiling module BN_8 as black box
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+
+*******************************************************
+
+Cell: ordenador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+BN_8    work    25 x      1     25 BN_8
+
+ Number of ports :                     128
+ Number of nets :                      464
+ Number of instances :                  25
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box BN_8 :                       25
+ Number of accumulated instances :      25
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+row_4_rowp_bni4/min(0)             GENERIC_BLACK_BOX  0.00  0.00 up             0.04
+row_6_rowp_bni4/b(0)               GENERIC_BLACK_BOX  0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Final Design Rule Check..
+optimize_timing: Cannot find technology cells with timing in design.
+Either the design is empty or it has not been mapped yet.
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+row_4_rowp_bni4/min(0)             GENERIC_BLACK_BOX  0.00  0.00 up             0.04
+row_6_rowp_bni4/b(0)               GENERIC_BLACK_BOX  0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Compiling module BN_2 as black box
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Compiling module BN_1 as black box
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador2.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Info, replacing ordenador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+-- Start pre-optimization for design .work.ordenador.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting report_area_format_style to %6.2f
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v",line 6: Warning, g is never used.
+-- Reading file './ordenador.v'...
+-- Loading module 'ordenador'
+Warning, replacing ordenador in HDL library work.
+-- Compiling root module 'ordenador'
+-- Compiling module BN_2
+-- Compiling module juntarComparadores_2
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_2
+-- Info, replacing BN_2(INTERFACE)
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_2.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN_2.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 7: Comp (juntarComparadores_2)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_2)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_2)
+Info, Instances dissolved by autodissolve in View .work.ordenador.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.ordenador.INTERFACE
+No critical paths to optimize at this level
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_2.v
+-- Writing file BN_2.v
+-- Compiling root module 'ordenador'
+-- Compiling module BN_4
+-- Compiling module juntarComparadores_4
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_4
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_4.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN_4.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 7: Comp (juntarComparadores_4)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_4)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_4)
+Using default wire table: SCL_CORE_4K
+Info, Instances dissolved by autodissolve in View .work.ordenador.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:01 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.ordenador.INTERFACE
+No critical paths to optimize at this level
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_4.v
+-- Writing file BN_4.v
+-- Compiling root module 'ordenador'
+-- Compiling module BN_8
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Info, replacing juntarComparadores_8(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+-- Info, replacing BN_8(INTERFACE)
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_8)
+Info, Instances dissolved by autodissolve in View .work.ordenador.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+-- Compiling root module 'ordenador'
+-- Compiling module BN_16
+-- Compiling module juntarComparadores_16
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_16
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_16.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_8_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_9_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_10_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_11_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_12_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_13_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_14_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./comp.v", line 17: row_15_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN_16.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_16)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_16)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_16.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN_16.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_16.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_16.v
+-- Writing file BN_16.v
+-- Compiling root module 'ordenador'
+-- Compiling module BN_32
+-- Compiling module juntarComparadores_32
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_32
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_32.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Info, Instances dissolved by autodissolve in View .work.ordenador.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_32.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.Mux2x1_32.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+Re-checking DRC after adjustments
+Re-checking DRC after adjustments
+Re-checking DRC after adjustments
+Re-checking DRC after adjustments
+Re-checking DRC after adjustments
+Cap DRC violation can not be fixed on net .work.juntarComparadores_32.INTERFACE.nx498
+ constraint: 0.122 actual: 0.129 (net cap 0.069) driving cell: OAI3R1
+Re-checking DRC after adjustments
+WARNING: some DRC violation on net may remain
+-- Start timing optimization for design .work.juntarComparadores_32.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_32.v
+-- Writing file BN_32.v
+-- Compiling root module 'ordenador'
+-- Compiling module BN_64
+-- Compiling module juntarComparadores_64
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_64
+-- Info, replacing ordenador(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_64.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Info, Instances dissolved by autodissolve in View .work.ordenador.INTERFACE
+Info, Many instances (>16) were flattened in this view. Not printing all the instance names....
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_64.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.Mux2x1_64.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.ordenador.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_64.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 1 CPU secs.
+Timing characterization done, time = 1 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_64.v
+-- Writing file BN_64.v

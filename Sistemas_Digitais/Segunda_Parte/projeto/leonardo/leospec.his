@@ -1,0 +1,291 @@
+#
+#
+# 
+# 06/10/24 08:16:36
+load_library scl05u
+set_working_dir C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparador.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux2x1.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/BN.tcl
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.tcl
+report_delay -num_paths 1 -show_schematic 1 -critical_paths
+view_schematic -view
+view_schematic -view
+view_schematic -rtl -view
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_area -cell_usage -all_leafs 
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+report_area -cell_usage -all_leafs 
+report_area -cell_usage -all_leafs 
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+report_area -cell_usage -all_leafs 
+view_schematic -rtl -view
+report_area -cell_usage -all_leafs 
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.tcl
+view_schematic -rtl -view
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.tcl
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.tcl
+set_working_dir C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+### Previous Command Failed
+
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_area -cell_usage -all_leafs 
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+optimize .work.ordenador.INTERFACE -target scl05u -macro -area -effort quick -hierarchy auto 
+optimize_timing .work.ordenador.INTERFACE 
+view_schematic -view
+report_delay -num_paths 1 -show_schematic 1 -critical_paths
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/comp.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/mux21.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/BN.v }
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u" -dont_elaborate  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador2.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/src/ordenador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+dofile -verbose C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Segunda_Parte/projeto/leonardo/ordenador.tcl
