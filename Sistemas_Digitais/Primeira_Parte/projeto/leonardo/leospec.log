@@ -5,8 +5,8 @@ Portions copyright 1991-2020 Compuware Corporation
 Session history will be logged to file 'C:/MGC/LeoSpec/LS2020a_2/demo/leospec.his'
 --
 -- Welcome to LeonardoSpectrum Level 3
--- Run By Luis@DESKTOP-TCBBMVE
--- Run Started On Sun Jun 09 18:16:52 Hora oficial do Brasil 2024
+-- Run By luis@LENOVODOCARECA
+-- Run Started On Mon Jun 10 08:16:36 Hora oficial do Brasil 2024
 --
 Reading library file `C:\MGC\LeoSpec\LS2020a_2\\lib\scl05u.syn`...
 Library version = Sample
@@ -19,24 +19,1027 @@ Info: setting encoding to auto
 --
 -- ASIC MODGEN Architecture Generator Version 4.4
 --
-Info, Working Directory is now 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
 Info, History file moved to new working directory
 Info, Log file moved to new working directory
--- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparador.v'...
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparador.v'...
 -- Loading module 'Comparador'
 -- Compiling root module 'Comparador'
--- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v'...
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v'...
 -- Loading module 'juntarComparadores'
 -- Compiling root module 'juntarComparadores'
--- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux2x1.v'...
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux2x1.v'...
 -- Loading module 'Mux2x1'
 -- Compiling root module 'Mux2x1'
--- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v'...
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v'...
 -- Loading module 'ProcurarMenor'
-"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v",line 4: Warning, g is never used.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v",line 4: Warning, g is never used.
 -- Compiling root module 'ProcurarMenor'
 -- Compiling module juntarComparadores_8 as black box
 -- Compiling module Mux2x1_8 as black box
 -- Boundary optimization.
 -- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
 -- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+couldn't change working directory to "D:\MGC\SEL0628_2024": no such file or directory
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+Comp/l                             GENERIC_BLACK_BOX  0.00  0.00 up             0.07
+muxMax/s                           GENERIC_BLACK_BOX  0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+couldn't change working directory to "D:\MGC\SEL0628_2024": no such file or directory
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+couldn't change working directory to "C:UsersluisDocumentsFaculAtividades_USPSistemas_DigitaisPrimeira_Parteprojetooutput": no such file or directory
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/output'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+Error, Can't open file "./mux21.v".
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/comparadoresEmSerie.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/src/projeto.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'ProcurarMenor'
+-- Info, replacing ProcurarMenor(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+-- Start pre-optimization for design .work.ProcurarMenor.INTERFACE
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+Error, Can't open file "./mux21.v".
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'ProcurarMenor'
+Warning, replacing ProcurarMenor in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 4: Warning, g is never used.
+Error, 'BN' not found in HDL library 'work'
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Info, replacing juntarComparadores_8(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 6: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 7: muxMin (Mux2x1_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Info, replacing juntarComparadores_8(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+-- Info, replacing BN(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 6: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 7: muxMin (Mux2x1_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+Using default wire table: SCL_CORE_4K
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+b(7)/                                          0.00  0.00 up             0.38
+max(7)/                                        0.00  4.97 dn             0.00
+data arrival time                                    4.97
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    4.97
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+-- Start pre-optimization for design .work.Mux2x1.INTERFACE
+
+*******************************************************
+
+Cell: Mux2x1    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+MUX    PRIMITIVES     8 x      1      8 MUX
+
+ Number of ports :                      25
+ Number of nets :                       25
+ Number of instances :                   8
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box MUX :                         8
+ Number of accumulated instances :       8
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Comparador.INTERFACE
+-- Start pre-optimization for design .work.Comparador.INTERFACE
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Comparador.INTERFACE
+-- Start pre-optimization for design .work.Comparador.INTERFACE
+
+*******************************************************
+
+Cell: Comparador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AND2    PRIMITIVES     4 x      1      4 AND2
+INV     PRIMITIVES     4 x      1      4 INV
+OR2     PRIMITIVES     2 x      1      2 OR2
+
+ Number of ports :                       6
+ Number of nets :                       14
+ Number of instances :                  10
+ Number of references to this view :     8
+
+Total accumulated area : 
+ Black Box AND2 :                        4
+ Black Box INV :                         4
+ Black Box OR2 :                         2
+ Number of accumulated instances :      10
+
+*******************************************************
+
+Cell: Comparador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AND2    PRIMITIVES     4 x      1      4 AND2
+INV     PRIMITIVES     4 x      1      4 INV
+OR2     PRIMITIVES     2 x      1      2 OR2
+
+ Number of ports :                       6
+ Number of nets :                       14
+ Number of instances :                  10
+ Number of references to this view :     8
+
+Total accumulated area : 
+ Black Box AND2 :                        4
+ Black Box INV :                         4
+ Black Box OR2 :                         2
+ Number of accumulated instances :      10
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Compiling root module 'Mux2x1'
+-- Info, replacing Mux2x1(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Compiling root module 'Comparador'
+-- Info, replacing Comparador(INTERFACE)
+-- Reading file 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Info, replacing BN(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.juntarComparadores_8.INTERFACE_unfold_1709
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE
+-- Start pre-optimization for design .work.BN.INTERFACE
+-- Start pre-optimization for design .work.juntarComparadores_8.INTERFACE_unfold_1709
+-- Start pre-optimization for design .work.Mux2x1_8.INTERFACE
+-- Start pre-optimization for design .work.BN.INTERFACE
+
+*******************************************************
+
+Cell: BN    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell                   Library  References     Total Area
+
+Mux2x1_8                work     2 x      8     16 MUX
+juntarComparadores_8    work     1 x      1      1 FALSE
+                                        143    143 gates
+
+ Number of ports :                      32
+ Number of nets :                       33
+ Number of instances :                   3
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box FALSE :                       1
+ Black Box MUX :                        16
+ Number of gates :                     143
+ Number of accumulated instances :      42
+
+*******************************************************
+
+Cell: BN    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell                   Library  References     Total Area
+
+Mux2x1_8                work     2 x      8     16 MUX
+juntarComparadores_8    work     1 x      1      1 FALSE
+                                        143    143 gates
+
+ Number of ports :                      32
+ Number of nets :                       33
+ Number of instances :                   3
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box FALSE :                       1
+ Black Box MUX :                        16
+ Number of gates :                     143
+ Number of accumulated instances :      42
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 4: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+-- Info, replacing BN(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 6: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 7: muxMin (Mux2x1_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Info, replacing juntarComparadores_8(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+-- Info, replacing BN(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux2x1'
+Warning, replacing Mux2x1 in HDL library work.
+-- Reading file './comp.v'...
+-- Loading module 'juntarComparadores'
+Warning, replacing juntarComparadores in HDL library work.
+-- Loading module 'Comparador'
+Warning, replacing Comparador in HDL library work.
+-- Reading file './BN.v'...
+-- Loading module 'BN'
+Warning, replacing BN in HDL library work.
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v",line 6: Warning, g is never used.
+-- Compiling root module 'BN'
+-- Compiling module juntarComparadores_8
+-- Compiling module Comparador
+-- Info, replacing Comparador(INTERFACE)
+-- Info, replacing juntarComparadores_8(INTERFACE)
+-- Compiling module Mux2x1_8
+-- Info, replacing Mux2x1_8(INTERFACE)
+-- Info, replacing BN(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.juntarComparadores_8.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_0_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_1_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_2_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_3_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_4_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_5_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_6_ui (Comparador)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./comp.v", line 17: row_7_ui (Comparador)
+Info, Instances dissolved by autodissolve in View .work.BN.INTERFACE
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 8: muxMax (Mux2x1_8)
+"C:/Users/luis/Documents/Facul/Atividades_USP/Sistemas_Digitais/Primeira_Parte/projeto/leonardo/./BN.v", line 9: muxMin (Mux2x1_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.juntarComparadores_8.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Optimizing netlist .work.BN.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+Re-checking DRC after adjustments
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.juntarComparadores_8.INTERFACE
+Starting Timing Characterization...
+Starting Timing Analysis...
+Using default wire table: SCL_CORE_4K
+Timing analysis done, time = 0 CPU secs.
+Timing characterization done, time = 0 CPU secs.
+Using default wire table: SCL_CORE_4K
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v

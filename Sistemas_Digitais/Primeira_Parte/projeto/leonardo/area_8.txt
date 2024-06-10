@@ -1,0 +1,21 @@
+
+*******************************************************
+
+Cell: BN    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell                   Library  References     Total Area
+
+MX2T0                   scl05u    16 x      6    102 gates
+juntarComparadores_8    work       1 x    160    160 gates
+
+ Number of ports :                      32
+ Number of nets :                       33
+ Number of instances :                  17
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                     262
+ Number of accumulated instances :      45
