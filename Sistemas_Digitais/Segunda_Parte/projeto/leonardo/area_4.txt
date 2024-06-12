@@ -1,0 +1,40 @@
+
+*******************************************************
+
+Cell: ordenador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell     Library  References     Total Area
+
+AN2T0     scl05u    28 x   4.70 131.60 gates
+AO2A0     scl05u     3 x   7.80  23.40 gates
+AO2I0     scl05u    17 x   7.60 129.20 gates
+AO2L0     scl05u     7 x   7.60  53.20 gates
+IV1N0     scl05u   165 x   3.10 511.50 gates
+MX2L0     scl05u   168 x   6.20 1041.60 gates
+ND2N0     scl05u    23 x   4.50 103.50 gates
+ND3N0     scl05u    21 x   6.20 130.20 gates
+NR2R0     scl05u    29 x   4.50 130.50 gates
+NR3R0     scl05u     3 x   6.20  18.60 gates
+NR3R1     scl05u     1 x   6.40   6.40 gates
+OA1R0     scl05u     3 x   6.20  18.60 gates
+OA4R0     scl05u     3 x   7.80  23.40 gates
+OAI1A0    scl05u     4 x   6.20  24.80 gates
+OAI2N0    scl05u     1 x   7.60   7.60 gates
+OAI2N2    scl05u    11 x   8.20  90.20 gates
+OAI3N0    scl05u    45 x   7.60 342.00 gates
+OAOI0     scl05u     4 x   7.60  30.40 gates
+OAOI2     scl05u    17 x   8.20 139.40 gates
+OR2T0     scl05u     3 x   4.70  14.10 gates
+OR3T0     scl05u     1 x   6.20   6.20 gates
+
+ Number of ports :                      64
+ Number of nets :                      589
+ Number of instances :                 557
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                  2976.40
+ Number of accumulated instances :     557

@@ -1,0 +1,22 @@
+
+*******************************************************
+
+Cell: ordenador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell                    Library  References     Total Area
+
+AN1T0                    scl05u     1 x   3.10   3.10 gates
+Mux2x1_32                work      56 x 209.80 11748.80 gates
+juntarComparadores_32    work      28 x 601.10 16830.80 gates
+
+ Number of ports :                     512
+ Number of nets :                     2077
+ Number of instances :                  85
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                  28582.70
+ Number of accumulated instances :    4677
