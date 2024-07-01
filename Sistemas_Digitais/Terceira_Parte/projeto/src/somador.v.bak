@@ -1,0 +1,21 @@
+`timescale 1 ns/100 ps
+
+module add_1bit (output s, cout, input a, b, cin);
+
+   assign s = a ^ b ^ cin;
+   assign cout = (a & b) | (a & cin) | (b & cin);
+
+endmodule
+
+module add_nbit #(parameter SIZE=8)
+	       (output [SIZE-1:0] s, output co, input [SIZE-1:0] a, b, input ci);
+
+   wire [SIZE:0] c;
+
+   assign c[0] = ci;
+
+   add_1bit u[SIZE-1:0] (s[SIZE-1:0], c[SIZE:1], a[SIZE-1:0], b[SIZE-1:0], c[SIZE-1:0]);
+							//Verilog-2001
+   assign co = c[SIZE];
+
+endmodule
