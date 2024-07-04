@@ -1,8 +1,0 @@
-`timescale 1 ns/100 ps
-
-module Decodificador14 (output [3:0]r, input[1:0] a1);
-	assign r[0] = ~(a1 + a0);
-	assign r[1] = ~a1 * a0;
-	assign r[2] = a1 * ~a0;
-	assign r[3] = a1 * a0;	
-endmodule

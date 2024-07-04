@@ -1,0 +1,28 @@
+
+*******************************************************
+
+Cell: somador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AN2T0    scl05u     8 x      5     38 gates
+CONZ1    scl05u     1 x      1      1 CONZ1
+FA2A0    scl05u     8 x     15    120 gates
+IV1N0    scl05u     8 x      3     25 gates
+IV1N1    scl05u     1 x      3      3 gates
+MX2T0    scl05u     8 x      6     51 gates
+NR2R0    scl05u     1 x      5      5 gates
+XR2T0    scl05u     1 x      5      5 gates
+
+ Number of ports :                      27
+ Number of nets :                       70
+ Number of instances :                  36
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of CONZ1 :                       1
+ Number of gates :                     246
+ Number of accumulated instances :      36

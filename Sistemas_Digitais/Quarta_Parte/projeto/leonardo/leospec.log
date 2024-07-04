@@ -1,0 +1,800 @@
+LeonardoSpectrum Level 3 - 2020a.2 (Release Production Release, compiled Apr 27 2020 at 09:07:52)
+Copyright Siemens 1990-2020.  All rights reserved.
+Portions copyright 1991-2020 Compuware Corporation
+
+Session history will be logged to file 'C:/MGC/LeoSpec/LS2020a_2/demo/leospec.his'
+--
+-- Welcome to LeonardoSpectrum Level 3
+-- Run By Luis@DESKTOP-TCBBMVE
+-- Run Started On Wed Jul 03 14:46:36 Hora oficial do Brasil 2024
+--
+Info, Working Directory is now 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux21.v'...
+-- Loading module 'Mux21'
+-- Compiling root module 'Mux21'
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux21.INTERFACE
+-- Start pre-optimization for design .work.Mux21.INTERFACE
+
+*******************************************************
+
+Cell: Mux21    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+MUX    PRIMITIVES     8 x      1      8 MUX
+
+ Number of ports :                      25
+ Number of nets :                       25
+ Number of instances :                   8
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box MUX :                         8
+ Number of accumulated instances :       8
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+a1(0)/                                         0.00  0.00 up             0.00
+ix23/in1                           MUX         0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+a1(0)/                                         0.00  0.00 up             0.00
+ix23/in1                           MUX         0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux41.v'...
+-- Loading module 'Mux41'
+-- Compiling root module 'Mux41'
+-- Compiling module Mux21_8 as black box
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Mux41.INTERFACE
+-- Start pre-optimization for design .work.Mux41.INTERFACE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+s1/                                            0.00  0.00 up             0.00
+m3/s                               GENERIC_BLACK_BOX  0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+*******************************************************
+
+Cell: Mux41    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell      Library  References     Total Area
+
+Mux21_8    work     3 x      1      3 Mux21_8
+
+ Number of ports :                      42
+ Number of nets :                       58
+ Number of instances :                   3
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box Mux21_8 :                     3
+ Number of accumulated instances :       3
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0]r, input[<-
+Error(s) found in Verilog source.
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+s1/                                            0.00  0.00 up             0.00
+m3/s                               GENERIC_BLACK_BOX  0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0]r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output[3:0] r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+-- Loading module 'Decodificador24'
+-- Compiling root module 'Decodificador24'
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix21/out                           AND2        0.00  0.00 up             0.00
+ix23/in[1]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/decod24.v'...
+-- Loading module 'decod24'
+-- Compiling root module 'decod24'
+-- Boundary optimization.
+-- Start pre-optimization for design .work.decod24.INTERFACE
+-- Start pre-optimization for design .work.decod24.INTERFACE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix25/out                           AND2        0.00  0.00 up             0.00
+ix41/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix25/out                           AND2        0.00  0.00 up             0.00
+ix41/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #2, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix21/out                           AND2        0.00  0.00 up             0.00
+ix39/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #3, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix17/out                           AND2        0.00  0.00 up             0.00
+ix37/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #4, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+en/                                            0.00  0.00 up             0.00
+ix35/in[1]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #5, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix13/out                           AND2        0.00  0.00 up             0.00
+ix35/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #6, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+A(0)/                                          0.00  0.00 up             0.00
+ix17/in[1]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #7, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix9/out                            INV         0.00  0.00 up             0.00
+ix17/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #8, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix11/out                           INV         0.00  0.00 up             0.00
+ix13/in[1]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #9, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix9/out                            INV         0.00  0.00 up             0.00
+ix13/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+Critical path #10, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+A(0)/                                          0.00  0.00 up             0.00
+ix11/in                            INV         0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix25/out                           AND2        0.00  0.00 up             0.00
+ix41/in[0]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+-- Loading module 'Decodificador24'
+Warning, replacing Decodificador24 in HDL library work.
+-- Compiling root module 'Decodificador24'
+-- Info, replacing Decodificador24(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 4: Error, syntax error near: input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0] r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0] r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0] r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0]r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+-- Loading module 'Decodificador24'
+Warning, replacing Decodificador24 in HDL library work.
+-- Compiling root module 'Decodificador24'
+-- Info, replacing Decodificador24(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v", line 3: Error, syntax error near: module Decodificador24 (output [3:0]r, input[<-
+Error(s) found in Verilog source.
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v'...
+-- Loading module 'Decodificador24'
+Warning, replacing Decodificador24 in HDL library work.
+-- Compiling root module 'Decodificador24'
+-- Info, replacing Decodificador24(INTERFACE)
+-- Boundary optimization.
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+-- Start pre-optimization for design .work.Decodificador24.INTERFACE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+ix21/out                           AND2        0.00  0.00 up             0.00
+ix23/in[1]                         AND2        0.00  0.00 up             0.00
+data arrival time                                    0.00
+
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.00
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+
+
+*******************************************************
+
+Cell: Decodificador24    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AND2    PRIMITIVES     7 x      1      7 AND2
+INV     PRIMITIVES     3 x      1      3 INV
+OR2     PRIMITIVES     1 x      1      1 OR2
+
+ Number of ports :                       7
+ Number of nets :                       14
+ Number of instances :                  11
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box AND2 :                        7
+ Black Box INV :                         3
+ Black Box OR2 :                         1
+ Number of accumulated instances :      11
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Reading library file `C:\MGC\LeoSpec\LS2020a_2\\lib\scl05u.syn`...
+Library version = Sample
+Delays assume: Process=typical Temp= 25.0 C  Voltage=3.30 V  
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+couldn't change working directory to "C:\Users\luis\Documents\Facul\Atividades_USP\Sistemas_Digitais\Terceira_Parte\projeto\leonardo": no such file or directory
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux21'
+Warning, replacing Mux21 in HDL library work.
+-- Reading file './mux41.v'...
+-- Loading module 'Mux41'
+Warning, replacing Mux41 in HDL library work.
+-- Reading file './decodificador24.v'...
+-- Loading module 'Decodificador24'
+Warning, replacing Decodificador24 in HDL library work.
+-- Compiling root module 'Mux21'
+-- Info, replacing Mux21(INTERFACE)
+-- Compiling root module 'Mux41'
+-- Compiling module Mux21_8
+-- Info, replacing Mux21_8(INTERFACE)
+-- Info, replacing Mux41(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.Mux41.INTERFACE
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 6: m1 (Mux21_8)
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 7: m2 (Mux21_8)
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 8: m3 (Mux21_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.Mux21.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Final Design Rule Check..
+Info: setting encoding to Binary
+Info: setting resource_sharing to TRUE
+Info: setting report_delay_detail to short
+Info: setting exclude_gates to 
+Info, Library scl05u is already loaded. Setting it as target
+-- Reading module generator description from file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd
+-- Reading vhdl file C:/MGC/LeoSpec/LS2020a_2//data/modgen/scl05u.vhd into library OPERATORS
+-- Loading modgen ASIC architectures...
+-- Reading vhdl file C:\MGC\LeoSpec\LS2020a_2\\data\modgen\asic.vhd into library OPERATORS
+--
+-- ASIC MODGEN Architecture Generator Version 4.4
+--
+Info, Working Directory is now 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo'
+-- Reading file './mux21.v'...
+-- Loading module 'Mux21'
+Warning, replacing Mux21 in HDL library work.
+-- Reading file './mux41.v'...
+-- Loading module 'Mux41'
+Warning, replacing Mux41 in HDL library work.
+-- Reading file './decodificador24.v'...
+-- Loading module 'Decodificador24'
+Warning, replacing Decodificador24 in HDL library work.
+-- Compiling root module 'Mux21'
+-- Info, replacing Mux21(INTERFACE)
+-- Compiling root module 'Mux41'
+-- Compiling module Mux21_8
+-- Info, replacing Mux21_8(INTERFACE)
+-- Info, replacing Mux41(INTERFACE)
+Info, Instances dissolved by autodissolve in View .work.Mux41.INTERFACE
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 6: m1 (Mux21_8)
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 7: m2 (Mux21_8)
+"C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/./mux41.v", line 8: m3 (Mux21_8)
+Using default wire table: SCL_CORE_4K
+-- Optimizing netlist .work.Mux21.INTERFACE
+-- Matching combinational logic..
+-- Matching non-combinational logic..
+-- Covering..
+-- CPU Time used :   00:00 Mapping
+-- Final Design Rule Check..
+-- Start timing optimization for design .work.Mux21.INTERFACE
+No critical paths to optimize at this level
+AutoWrite args are : -format Verilog -downto PRIMITIVES BN_8.v
+-- Writing file BN_8.v
+Info, Working Directory is now 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo'
+Info, History file moved to new working directory
+Info, Log file moved to new working directory
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/decod24.v'...
+-- Loading module 'decod24'
+Warning, replacing decod24 in HDL library work.
+-- Compiling root module 'decod24'
+-- Info, replacing decod24(INTERFACE)
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/mux41.v'...
+-- Loading module 'mux41'
+-- Compiling root module 'mux41'
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/registrador.v'...
+-- Loading module 'registrador'
+-- Compiling root module 'registrador'
+-- Reading file 'C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/banco_de_registradores.v'...
+-- Loading module 'banco_de_registradores'
+-- Compiling root module 'banco_de_registradores'
+-- Compiling module registrador_8 as black box
+-- Compiling module mux41_8 as black box
+-- Boundary optimization.
+-- Start pre-optimization for design .work.decod24.INTERFACE
+-- Start pre-optimization for design .work.banco_de_registradores.INTERFACE
+-- Start pre-optimization for design .work.decod24.INTERFACE
+-- Start pre-optimization for design .work.banco_de_registradores.INTERFACE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                                   GATE              ARRIVAL              LOAD
+----------------------------------------------------------------------------------
+Decod/ix25/out                         AND2        0.00  0.00 up             0.04
+Decod/ix41/in[0]                       AND2        0.00  0.00 up             0.00
+data arrival time                                        0.00
+
+
+data required time                                    not specified
+----------------------------------------------------------------------------------
+data required time                                    not specified
+data arrival time                                        0.00
+                                                      ----------
+                                                   unconstrained path
+----------------------------------------------------------------------------------
+
+
+
+*******************************************************
+
+Cell: banco_de_registradores    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell            Library  References     Total Area
+
+decod24          work     1 x      8      8 AND2
+                                   2      2 INV
+mux41_8          work     2 x      1      2 mux41_8
+registrador_8    work     4 x      1      4 registrador_8
+
+ Number of ports :                      31
+ Number of nets :                       67
+ Number of instances :                   7
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Black Box AND2 :                        8
+ Black Box INV :                         2
+ Black Box mux41_8 :                     2
+ Black Box registrador_8 :               4
+ Number of accumulated instances :      16
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                                   GATE              ARRIVAL              LOAD
+----------------------------------------------------------------------------------
+Decod/ix25/out                         AND2        0.00  0.00 up             0.04
+Decod/ix41/in[0]                       AND2        0.00  0.00 up             0.00
+data arrival time                                        0.00
+
+
+data required time                                    not specified
+----------------------------------------------------------------------------------
+data required time                                    not specified
+data arrival time                                        0.00
+                                                      ----------
+                                                   unconstrained path
+----------------------------------------------------------------------------------
+
+
+Info: setting propagate_clock_delay to TRUE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                                   GATE              ARRIVAL              LOAD
+----------------------------------------------------------------------------------
+Decod/ix25/out                         AND2        0.00  0.00 up             0.04
+Decod/ix41/in[0]                       AND2        0.00  0.00 up             0.00
+data arrival time                                        0.00
+
+
+data required time                                    not specified
+----------------------------------------------------------------------------------
+data required time                                    not specified
+data arrival time                                        0.00
+                                                      ----------
+                                                   unconstrained path
+----------------------------------------------------------------------------------
+
+
+Info: setting propagate_clock_delay to FALSE
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                                   GATE              ARRIVAL              LOAD
+----------------------------------------------------------------------------------
+Decod/ix25/out                         AND2        0.00  0.00 up             0.04
+Decod/ix41/in[0]                       AND2        0.00  0.00 up             0.00
+data arrival time                                        0.00
+
+
+data required time                                    not specified
+----------------------------------------------------------------------------------
+data required time                                    not specified
+data arrival time                                        0.00
+                                                      ----------
+                                                   unconstrained path
+----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                                   GATE              ARRIVAL              LOAD
+----------------------------------------------------------------------------------
+Decod/ix25/out                         AND2        0.00  0.00 up             0.04
+Decod/ix41/in[0]                       AND2        0.00  0.00 up             0.00
+data arrival time                                        0.00
+
+
+data required time                                    not specified
+----------------------------------------------------------------------------------
+data required time                                    not specified
+data arrival time                                        0.00
+                                                      ----------
+                                                   unconstrained path
+----------------------------------------------------------------------------------
+
+

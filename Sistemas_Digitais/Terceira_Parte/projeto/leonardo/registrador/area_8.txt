@@ -1,0 +1,21 @@
+
+*******************************************************
+
+Cell: registrador    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+FD1I0    scl05u     8 x     11     85 gates
+IV1N0    scl05u     1 x      3      3 gates
+
+ Number of ports :                      19
+ Number of nets :                       20
+ Number of instances :                   9
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                      88
+ Number of accumulated instances :       9

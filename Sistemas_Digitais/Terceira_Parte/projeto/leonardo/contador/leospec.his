@@ -1,0 +1,31 @@
+#
+#
+# 
+# 07/04/24 17:24:31
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/parte_3.tcl
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/somador/somador.tcl
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/somador/somador.tcl
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/registrador/registrador.tcl
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux41/mux41.tcl
+### Previous Command Failed
+
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux41/mux41.tcl
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux21/mux21.tcl
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24/decodificador.tcl
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/contador/contador.tcl
+view_schematic -rtl -view
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux21.v }
+### Previous Command Failed
+
+set_working_dir C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/contador
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/contador/contador.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/contador/contador.tcl
+view_schematic -rtl -view

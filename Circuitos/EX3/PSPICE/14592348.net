@@ -1,0 +1,64 @@
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  2  
+C_C1         0 $N_0003  0.5  
+C_C4         0 BN  0.5  
+L_L14         $N_0004 BN  0.5  
+R_R10         $N_0005 $N_0004  2  
+R_R2         $N_0003 $N_0006  1  
+V_PRINT6         BN AN 0V
+        
+.PRINT        TRAN I(V_PRINT6)  
+.PRINT        AC 
++ IM(V_PRINT6) 
++ IP(V_PRINT6)    
+V_V1         $N_0002 0  AC 48
++SIN 0 48 0.318 0 0 90
+V_V2         $N_0005 0  AC 48
++SIN 0 48 0.318 0 0 90
+L_L4         0 $N_0007  1  
+I_I5         AN 0  AC 3
++SIN 0 3 0.318 0 0 42
+L_L15         0 $N_0008  1  
+R_R11         $N_0008 AN  1  
+R_R7         $N_0010 $N_0009  2  
+C_C3         0 BT  0.5  
+V_V3         $N_0010 0  AC 48
++SIN 0 48 0.318 0 0 90
+L_L9         $N_0011 AT  0.5  
+R_R9         BT $N_0011  1  
+L_L10         $N_0009 BT  0.5  
+I_I4         AT 0  AC 3
++SIN 0 3 0.318 0 0 42
+L_L12         0 $N_0012  1  
+R_R8         $N_0012 AT  1  
+R_R15         $N_0014 $N_0013  0.6098  
+L_L20         $N_0013 $N_0015  0.2561  
+V_V4         $N_0014 0  AC 11.7429
++SIN 0 11.7429 0.318 0 0 -7.736
+R_R16         $N_0017 $N_0016  0.6098  
+L_L23         $N_0016 $N_0018  0.2561  
+V_V5         $N_0017 0  AC 8.075
++SIN 0 8.075 0.318 0 0 15.89
+           
+.PRINT         AC 
++ VM([BT],[AT]) 
++ VP([BT],[AT])    
+R_R12         BN $N_0019  1  
+L_L13         $N_0019 AN  0.5  
+L_L3         $N_0006 $N_0020  0.5  
+I_I2         $N_0021 0  AC 3
++SIN 0 3 0.318 0 0 42
+L_L22         $N_0018 0  0.5  
+L_L21         $N_0015 0  0.5  
+R_R3         $N_0007 $N_0020  1  
+L_L1         $N_0001 $N_0003  0.5  
+L_L         $N_0003 $N_0020  0.5  
+V_PRINT18         $N_0021 $N_0020 0V
+        
+.PRINT        TRAN I(V_PRINT18)  
+.PRINT        AC 
++ IM(V_PRINT18) 
++ IP(V_PRINT18)    

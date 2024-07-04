@@ -1,0 +1,8 @@
+`timescale 1 ns/100 ps
+
+module banco_de_registradores #(parameter Size=8)
+	(output [Size-1:0] rd1, rd2, input clk, clr_n, we, input [Size-1:0] wd, inpute [1:0] a1, a2);
+
+	
+
+endmodule

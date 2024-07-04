@@ -1,0 +1,97 @@
+#
+#
+# 
+# 07/03/24 14:46:36
+set_working_dir C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux21.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+report_area -cell_usage -all_leafs 
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+view_schematic -rtl -view
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/mux41.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+report_area -cell_usage -all_leafs 
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+view_schematic -rtl -view
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/decod24.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+report_delay  -num_paths 10 -critical_paths -clock_frequency
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+view_schematic -rtl -view
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+### Previous Command Failed
+
+read  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/decodificador24.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+view_schematic -rtl -view
+report_area -cell_usage -all_leafs 
+view_schematic -rtl -view
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/BN.tcl
+### Previous Command Failed
+
+dofile -verbose C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Terceira_Parte/projeto/leonardo/BN.tcl
+set_working_dir C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/decod24.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/mux41.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/registrador.v }
+read -technology "scl05u"  { C:/Users/Luis/Documents/Escola/Atividades_USP/Sistemas_Digitais/Quarta_Parte/projeto/leonardo/banco_de_registradores.v }
+pre_optimize -common_logic -unused_logic -boundary -xor_comparator_optimize 
+pre_optimize -extract 
+view_schematic -rtl -view
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+report_area -cell_usage -all_leafs 
+report_delay  -num_paths 1 -longest_path -clock_frequency
+set propagate_clock_delay TRUE
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+set propagate_clock_delay FALSE
+report_delay  -num_paths 1 -critical_paths -clock_frequency
+report_delay  -num_paths 1 -show_schematic 1 -critical_paths -clock_frequency
+view_schematic -rtl -view

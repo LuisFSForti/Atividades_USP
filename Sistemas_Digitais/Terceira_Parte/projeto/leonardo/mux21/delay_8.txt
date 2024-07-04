@@ -1,0 +1,23 @@
+
+
+
+
+
+                        Critical Path Report
+
+Critical path #1, (unconstrained path)
+NAME                               GATE              ARRIVAL              LOAD
+------------------------------------------------------------------------------
+s/                                             0.00  0.00 up             0.64
+r(6)/                                          0.00  0.24 dn             0.00
+data arrival time                                    0.24
+
+data required time                                not specified
+------------------------------------------------------------------------------
+data required time                                not specified
+data arrival time                                    0.24
+                                                  ----------
+                                               unconstrained path
+------------------------------------------------------------------------------
+
+

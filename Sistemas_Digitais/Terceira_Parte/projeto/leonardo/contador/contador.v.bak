@@ -1,0 +1,38 @@
+`timescale 1 ns/100 ps
+
+module tff(output reg q, output qb, input clk, en, clr_n, t);
+
+	always @ (negedge clk or negedge clr_n)
+		if (~clr_n)
+			q = 1'b0;
+		else begin
+			if (en)
+				q = t ^ q;
+		end
+
+	assign qb = ~q;
+
+endmodule
+
+
+module contador (output [5:0] Q, input clk, en, clr_n);
+
+	wire w0, w1, w2, w3, w4;
+	wire Id;
+
+	assign Id = 1'b1;
+
+	tff t0 (.q(w0), .clk(clk), .en(en), .clr_n(clr_n), .t(Id));
+	tff t1 (.q(w1), .clk(w0), .en(en), .clr_n(clr_n), .t(Id));
+	tff t2 (.q(w2), .clk(w1), .en(en), .clr_n(clr_n), .t(Id));
+	tff t3 (.q(w3), .clk(w2), .en(en), .clr_n(clr_n), .t(Id));
+	tff t4 (.q(w4), .clk(w3), .en(en), .clr_n(clr_n), .t(Id));
+	tff t5 (.q(Q[5]), .clk(w4), .en(en), .clr_n(clr_n), .t(Id));
+
+	assign Q[0] = w0;
+	assign Q[1] = w1;
+	assign Q[2] = w2;
+	assign Q[3] = w3;
+	assign Q[4] = w4;
+
+endmodule

@@ -1,0 +1,23 @@
+
+*******************************************************
+
+Cell: Mux41    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AN2T0    scl05u     1 x      5      5 gates
+AO8L0    scl05u     8 x     14    114 gates
+IV1N0    scl05u    10 x      3     31 gates
+NR2R1    scl05u     3 x      5     14 gates
+
+ Number of ports :                      42
+ Number of nets :                       56
+ Number of instances :                  22
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                     163
+ Number of accumulated instances :      22

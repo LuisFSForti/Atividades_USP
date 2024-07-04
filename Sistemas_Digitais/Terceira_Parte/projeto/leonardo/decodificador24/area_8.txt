@@ -1,0 +1,22 @@
+
+*******************************************************
+
+Cell: Decodificador24    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell    Library  References     Total Area
+
+AN3T0    scl05u     3 x      6     19 gates
+IV1N0    scl05u     3 x      3      9 gates
+NR3R0    scl05u     1 x      6      6 gates
+
+ Number of ports :                       7
+ Number of nets :                       10
+ Number of instances :                   7
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                      34
+ Number of accumulated instances :       7
