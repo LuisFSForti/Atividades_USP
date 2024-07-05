@@ -1,0 +1,30 @@
+
+*******************************************************
+
+Cell: banco_de_registradores    View: INTERFACE    Library: work
+
+*******************************************************
+
+
+ Cell     Library  References     Total Area
+
+AN2T1     scl05u     1 x   4.70   4.70 gates
+FD1I0     scl05u    32 x  10.60 339.20 gates
+IV1N0     scl05u     6 x   3.10  18.60 gates
+IV1NP     scl05u     1 x   4.00   4.00 gates
+ND2N0     scl05u     3 x   4.50  13.50 gates
+ND2N1     scl05u     3 x   4.70  14.10 gates
+NR2R0     scl05u     1 x   4.50   4.50 gates
+NR2R2     scl05u     3 x   5.10  15.30 gates
+OAI8N0    scl05u    16 x  14.20 227.20 gates
+OR2T0     scl05u     1 x   4.70   4.70 gates
+
+ Number of ports :                      31
+ Number of nets :                       82
+ Number of instances :                  67
+ Number of references to this view :     0
+
+Total accumulated area : 
+ Number of gates :                  645.80
+ Number of accumulated instances :      67
+
