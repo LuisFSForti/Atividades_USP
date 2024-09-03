@@ -1,0 +1,40 @@
+1 saida1.bin
+4
+42145
+Great White Shark
+Carcharodon carcharias
+1200
+SAUDAVEL
+0
+0
+1
+67892
+Blue Whale
+Balaenoptera musculus
+0
+CRITICA
+0
+90.65
+0
+84736
+Clownfish
+Amphiprioninae
+354
+NULO
+112.5
+-45.32
+2
+92847
+Humpback Whale
+Megaptera novaeangliae
+0
+AMEACADA
+0
+0
+0
+
+4 saida1.bin
+84736
+1
+STATUS
+morto
