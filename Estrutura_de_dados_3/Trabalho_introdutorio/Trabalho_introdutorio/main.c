@@ -1,20 +1,15 @@
-#include <stdio.h>
+Ôªø#include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
 #include "funcoesFornecidas.h"
 #include "controlador.h"
 
 int main()
 {
-    //setlocale(LC_ALL,"italian");
-
     int comando;
-    char* endereco = malloc(100 * sizeof(*endereco));
+    char* endereco = calloc(100, sizeof(*endereco));
     scanf("%d ", &comando);
     readline(endereco);
-
-    //printf("%d %s", comando, endereco);
 
     switch(comando)
     {
@@ -25,6 +20,7 @@ int main()
 
                 //Para confirmar que o SPECIES_ID seja unico
                 int nros[qtd];
+                //int* nros = calloc(qtd, sizeof(*nros));
                 int inseridos = 0;
                 int continuar;
 
@@ -93,7 +89,10 @@ int main()
 
                 especie = CriarDoArquivo(arquivo);
                 if(especie.SPECIES_ID == -1)
+                {
+                    printf("Esp√©cie n√£o encontrada\n");
                     break;
+                }
 
                 ImprimirDados(especie);
                 fclose(arquivo);
@@ -126,7 +125,7 @@ int main()
                 if(feof(arquivo))
                 {
                     fclose(arquivo);
-                    printf("EspÈcie n„o encontrada");
+                    printf("Esp√©cie n√£o encontrada\n");
                     binarioNaTela(endereco);
                     break;
                 }
@@ -148,7 +147,8 @@ int main()
                     {
                         if(strcmp(especie.STATUS, "NULO") != 0)
                         {
-                            printf("InformaÁ„o j· inserida no arquivo");
+                            printf("Informa√ß√£o j√° inserida no arquivo\n");
+                            readline(aux); //Joga no lixo
                         }
                         else
                         {
@@ -159,7 +159,8 @@ int main()
                     {
                         if(especie.HUMAN_IMPACT != 0)
                         {
-                            printf("InformaÁ„o j· inserida no arquivo\n");
+                            printf("Informa√ß√£o j√° inserida no arquivo\n");
+                            readline(aux);
                         }
                         else
                         {
@@ -170,7 +171,8 @@ int main()
                     {
                         if(especie.POPULATION != 0)
                         {
-                            printf("InformaÁ„o j· inserida no arquivo");
+                            printf("Informa√ß√£o j√° inserida no arquivo\n");
+                            readline(aux);
                         }
                         else
                         {
@@ -179,7 +181,7 @@ int main()
                     }
                 }
 
-                fopen(endereco, "rb+");
+                 arquivo = fopen(endereco, "rb+");
 
                 fseek(arquivo, RRN * tamEspecie, SEEK_SET);
                 GravarDados(especie, arquivo);

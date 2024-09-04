@@ -1,5 +1,5 @@
 all:
-	gcc *.c -o TrabalhoIntrodutorio.exe -lm
+	gcc -o TrabalhoIntrodutorio.exe *.c
 
 run:
 	./TrabalhoIntrodutorio.exe

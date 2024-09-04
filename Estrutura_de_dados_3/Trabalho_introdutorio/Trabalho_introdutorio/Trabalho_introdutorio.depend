@@ -22,26 +22,24 @@
 	"funcoesFornecidas.h"
 	"controlador.h"
 
-1725392922 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.c
-	"controlador.h"
-	"funcoesFornecidas.h"
+1725466784 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.c
+	"./controlador.h"
+	"./funcoesFornecidas.h"
 
-1725388820 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.h
+1725412620 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1725334575 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\funcoesfornecidas.h
+1725412617 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\funcoesfornecidas.h
 	<stdio.h>
 	<stdlib.h>
 
-1725338264 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\funcoesfornecidas.c
-	"funcoesFornecidas.h"
+1725427137 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\funcoesfornecidas.c
+	"./funcoesFornecidas.h"
 
-1725399247 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\main.c
-	<stdio.h>
+1725466800 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\main.c
 	<stdlib.h>
-	<locale.h>
 	"funcoesFornecidas.h"
 	"controlador.h"
 

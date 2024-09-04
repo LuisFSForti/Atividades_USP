@@ -1,5 +1,5 @@
-#include "controlador.h"
-#include "funcoesFornecidas.h"
+#include "./controlador.h"
+#include "./funcoesFornecidas.h"
 
 SPECIE CriaEspecie()
 {
@@ -69,15 +69,15 @@ void ImprimirDados(SPECIE especie)
 {
     printf("ID: %d\n", especie.SPECIES_ID);
     printf("Nome: %s\n", especie.NAME);
-    printf("Nome Científico: %s\n", especie.SCIENTIFIC_NAME);
+    printf("Nome CientÃ­fico: %s\n", especie.SCIENTIFIC_NAME);
 
     if(especie.POPULATION == 0)
-        printf("População: NULO\n");
+        printf("PopulaÃ§Ã£o: NULO\n");
     else
-        printf("População: %d\n", especie.POPULATION);
+        printf("PopulaÃ§Ã£o: %d\n", especie.POPULATION);
 
     printf("Status: %s\n", especie.STATUS);
-    printf("Localização: (%.2f,%.2f)\n", especie.LOCATION[0], especie.LOCATION[1]);
+    printf("LocalizaÃ§Ã£o: (%.2f, %.2f)\n", especie.LOCATION[0], especie.LOCATION[1]);
 
     if(especie.HUMAN_IMPACT == 0)
         printf("Impacto Humano: NULO\n\n");
