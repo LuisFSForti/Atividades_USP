@@ -22,11 +22,11 @@
 	"funcoesFornecidas.h"
 	"controlador.h"
 
-1725466784 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.c
+1725476146 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.c
 	"./controlador.h"
 	"./funcoesFornecidas.h"
 
-1725412620 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.h
+1725476146 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\controlador.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -38,7 +38,7 @@
 1725427137 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\funcoesfornecidas.c
 	"./funcoesFornecidas.h"
 
-1725467643 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\main.c
+1725476376 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_introdutorio\trabalho_introdutorio\main.c
 	<stdlib.h>
 	"funcoesFornecidas.h"
 	"controlador.h"

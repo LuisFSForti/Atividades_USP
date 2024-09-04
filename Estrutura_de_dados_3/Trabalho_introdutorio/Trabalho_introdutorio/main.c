@@ -65,8 +65,6 @@ int main()
 
                 binarioNaTela(endereco);
 
-                free(arquivo);
-
                 break;
             }
         case 2:
@@ -91,11 +89,11 @@ int main()
                         break;
 
                     ImprimirDados(especie);
+                    LiberarEspecie(especie);
                 }
 
                 fclose(arquivo);
 
-                free(arquivo);
                 LiberarEspecie(especie);
 
                 break;
@@ -125,13 +123,12 @@ int main()
                 if(especie.SPECIES_ID == -1)
                 {
                     printf("Espécie não encontrada\n");
-                    break;
+                    return 0;
                 }
 
                 ImprimirDados(especie);
                 fclose(arquivo);
 
-                free(arquivo);
                 LiberarEspecie(especie);
 
                 break;
@@ -174,12 +171,14 @@ int main()
                     fclose(arquivo);
                     printf("Espécie não encontrada\n");
                     binarioNaTela(endereco);
-                    break;
+                    LiberarEspecie(especie);
+                    return 0;
                 }
 
                 //Se encontrou, coloca o cursor de leitura no inicio do registro
                 fseek(arquivo, RRN * tamEspecie, SEEK_SET);
 
+                LiberarEspecie(especie);
                 especie = CriarDoArquivo(arquivo);
                 fclose(arquivo);
 
@@ -247,7 +246,6 @@ int main()
                 binarioNaTela(endereco);
 
                 free(aux);
-                free(arquivo);
                 LiberarEspecie(especie);
 
                 break;
