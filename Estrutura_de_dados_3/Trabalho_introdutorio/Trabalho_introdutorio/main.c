@@ -29,6 +29,9 @@ int main()
                 if (endereco == NULL || !(arquivo = fopen(endereco, "wb")))
                 {
                     printf("Falha no processamento do arquivo");
+
+                    free(endereco);
+
                     return 0;
                 }
 
@@ -55,11 +58,14 @@ int main()
 
                         GravarDados(especie, arquivo);
                     }
+                    LiberarEspecie(especie);
                 }
 
                 fclose(arquivo);
 
                 binarioNaTela(endereco);
+
+                free(arquivo);
 
                 break;
             }
@@ -70,6 +76,9 @@ int main()
                 if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
                 {
                     printf("Falha no processamento do arquivo");
+
+                    free(endereco);
+
                     return 0;
                 }
 
@@ -85,6 +94,10 @@ int main()
                 }
 
                 fclose(arquivo);
+
+                free(arquivo);
+                LiberarEspecie(especie);
+
                 break;
             }
         case 3:
@@ -98,6 +111,9 @@ int main()
                 if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
                 {
                     printf("Falha no processamento do arquivo");
+
+                    free(endereco);
+
                     return 0;
                 }
 
@@ -114,6 +130,10 @@ int main()
 
                 ImprimirDados(especie);
                 fclose(arquivo);
+
+                free(arquivo);
+                LiberarEspecie(especie);
+
                 break;
             }
         case 4:
@@ -128,6 +148,9 @@ int main()
                 if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
                 {
                     printf("Falha no processamento do arquivo");
+
+                    free(endereco);
+
                     return 0;
                 }
 
@@ -208,6 +231,11 @@ int main()
                 if (endereco == NULL || !(arquivo = fopen(endereco, "rb+")))
                 {
                     printf("Falha no processamento do arquivo");
+
+                    free(endereco);
+                    free(aux);
+                    LiberarEspecie(especie);
+
                     return 0;
                 }
 
@@ -218,12 +246,17 @@ int main()
 
                 binarioNaTela(endereco);
 
+                free(aux);
+                free(arquivo);
+                LiberarEspecie(especie);
+
                 break;
             }
         default:
             break;
     }
 
+    free(endereco);
 
     return 0;
 }

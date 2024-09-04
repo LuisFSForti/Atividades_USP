@@ -44,6 +44,13 @@ SPECIE CriarDoConsole()
     return especie;
 }
 
+void LiberarEspecie(SPECIE especie)
+{
+    free(especie.NAME);
+    free(especie.SCIENTIFIC_NAME);
+    free(especie.STATUS);
+}
+
 SPECIE CriarDoArquivo(FILE* arq)
 {
     SPECIE especie = CriaEspecie();

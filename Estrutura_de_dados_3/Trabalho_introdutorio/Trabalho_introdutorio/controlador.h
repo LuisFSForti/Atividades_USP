@@ -18,5 +18,6 @@ typedef struct specie
 SPECIE CriaEspecie();
 SPECIE CriarDoConsole();
 SPECIE CriarDoArquivo(FILE* arq);
+void LiberarEspecie(SPECIE especie);
 void ImprimirDados(SPECIE especie);
 void GravarDados(SPECIE especie, FILE* arq);
