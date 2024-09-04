@@ -24,7 +24,13 @@ int main()
                 int inseridos = 0;
                 int continuar;
 
-                FILE* arquivo = fopen(endereco, "wb");
+                FILE* arquivo;
+
+                if (endereco == NULL || !(arquivo = fopen(endereco, "wb")))
+                {
+                    printf("Falha no processamento do arquivo");
+                    return 0;
+                }
 
                 for(int i = 0; i < qtd; i++)
                 {
@@ -59,7 +65,13 @@ int main()
             }
         case 2:
             {
-                FILE* arquivo = fopen(endereco, "rb");
+                FILE* arquivo;
+
+                if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
+                {
+                    printf("Falha no processamento do arquivo");
+                    return 0;
+                }
 
                 SPECIE especie;
 
@@ -81,7 +93,13 @@ int main()
                 int tamEspecie = 4 + 41 + 61 + 4 + 9 + 2*4 + 4;
                 scanf("%d", &RRN);
 
-                FILE* arquivo = fopen(endereco, "rb");
+                FILE* arquivo;
+
+                if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
+                {
+                    printf("Falha no processamento do arquivo");
+                    return 0;
+                }
 
                 fseek(arquivo, RRN * tamEspecie, SEEK_SET);
 
@@ -106,7 +124,13 @@ int main()
                 int RRN = 0;
                 int tamEspecie = 4 + 41 + 61 + 4 + 9 + 2*4 + 4;
 
-                FILE* arquivo = fopen(endereco, "rb");
+                FILE* arquivo;
+                if (endereco == NULL || !(arquivo = fopen(endereco, "rb")))
+                {
+                    printf("Falha no processamento do arquivo");
+                    return 0;
+                }
+
 
                 SPECIE especie = CriaEspecie();
 
@@ -181,7 +205,11 @@ int main()
                     }
                 }
 
-                 arquivo = fopen(endereco, "rb+");
+                if (endereco == NULL || !(arquivo = fopen(endereco, "rb+")))
+                {
+                    printf("Falha no processamento do arquivo");
+                    return 0;
+                }
 
                 fseek(arquivo, RRN * tamEspecie, SEEK_SET);
                 GravarDados(especie, arquivo);
