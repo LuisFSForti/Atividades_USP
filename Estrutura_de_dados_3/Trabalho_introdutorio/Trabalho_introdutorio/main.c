@@ -9,7 +9,7 @@ int main()
     int comando;
     char* endereco = calloc(100, sizeof(*endereco));
     scanf("%d ", &comando);
-    readline(endereco);
+    scanf("%s", endereco);
 
     switch(comando)
     {
