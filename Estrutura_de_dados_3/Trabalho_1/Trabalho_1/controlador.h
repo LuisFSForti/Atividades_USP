@@ -4,25 +4,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
-typedef struct dinossauro
+#include "funcoes_fornecidas.h"
+#include "dinossauro.h"
+
+typedef struct cabecalho
 {
-    char removido;
-    int encadeamento;
-    int populacao;
-    float tamanho;
-    char unidadeMedida;
-    int velocidade;
-    char* nome;
-    char* especie;
-    char* habitat;
-    char* tipo;
-    char* dieta;
-    char* alimento;
-} Dinossauro;
+    char status;
+    int topo;
+    int proxRRN;
+    int nroRegRem;
+    int nroPagDisco;
+    int qttCompacta;
+} Cabecalho;
 
-//Cria um dinossauro com valores nulos
-Dinossauro CriaDinossauro();
+FILE* CriarArquivo(char* endereco);
+void FecharArquivo(FILE* arq, char* endereco);
+void EscreverCabecalho(FILE *arq, char naoEstaNoComeco);
+void SalvarRegistro(Dinossauro dino, FILE* arq);
+int SalvarStringRegistro(char* str, FILE* arq);
 
 //Cria a tabela usando o endereço de entrada e saída
 void CreateTable(char* enderecoE, char* enderecoS);

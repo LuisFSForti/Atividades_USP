@@ -1,88 +1,117 @@
-#include "funcoes_fornecidas.h"
 #include "controlador.h"
 
-//Cria um dinossauro com valores nulos
-Dinossauro CriaDinossauro()
-{
-    Dinossauro dino;
-    dino.removido = 0;
-    dino.encadeamento = -1;
-    dino.populacao = -1;
-    dino.tamanho = -1;
-    dino.unidadeMedida = '$';
-    dino.velocidade = -1;
-    dino.nome = calloc(160, sizeof(char)); //Valor inválido, deve ser corrigido posteriormente
-    dino.especie = calloc(160, sizeof(char)); //Valor inválido, deve ser corrigido posteriormente
-    dino.habitat = calloc(160, sizeof(char));
-    dino.tipo = calloc(160, sizeof(char));
-    dino.dieta = calloc(160, sizeof(char)); //Valor inválido, deve ser corrigido posteriormente
-    dino.alimento = calloc(160, sizeof(char));
+Cabecalho cab;
 
-    return dino;
+FILE* CriarArquivo(char* endereco)
+{
+    FILE* arq = fopen(endereco, "wb");
+
+    cab.status = '0';
+    cab.topo = -1;
+    cab.proxRRN = 0;
+    cab.nroRegRem = 0;
+    cab.nroPagDisco = 1;
+    cab.qttCompacta = 0;
+
+    EscreverCabecalho(arq, 0);
+    for(int i = 0; i < 1579; i++)
+        fwrite("$", sizeof(char), 1, arq);
+
+    return arq;
 }
 
-void LiberaDinossauro(Dinossauro dino)
+/*void AbrirArquivo(FILE* arq, char* endereco)
 {
-    if(dino.nome)
-        free(dino.nome);
 
-    if(dino.especie)
-        free(dino.especie);
+}*/
 
-    if(dino.habitat)
-        free(dino.habitat);
+void FecharArquivo(FILE* arq, char* endereco)
+{
+    cab.status = '1';
+    fclose(arq);
 
-    if(dino.tipo)
-        free(dino.tipo);
-
-    if(dino.dieta)
-        free(dino.dieta);
-
-    if(dino.alimento)
-        free(dino.alimento);
+    arq = fopen(endereco, "rb+");
+    EscreverCabecalho(arq, 1);
+    fclose(arq);
 }
 
-void ImprimeDinossauro(Dinossauro dino)
+void EscreverCabecalho(FILE *arq, char naoEstaNoComeco)
 {
-    printf("Nome: %s\n", dino.nome);
-    printf("Especie: %s\n", dino.especie);
+    if(naoEstaNoComeco)
+        fseek(arq, 0, SEEK_SET);
 
-    if(dino.tipo)
-        printf("Tipo: %s\n", dino.tipo);
+    fwrite(&cab.status, sizeof(char), 1, arq);
+    fwrite(&cab.topo, sizeof(int), 1, arq);
+    fwrite(&cab.proxRRN, sizeof(int), 1, arq);
+    fwrite(&cab.nroRegRem, sizeof(int), 1, arq);
+    fwrite(&cab.nroPagDisco, sizeof(int), 1, arq);
+    fwrite(&cab.qttCompacta, sizeof(int), 1, arq);
+}
 
-    printf("Dieta: %s\n", dino.dieta);
+void SalvarRegistro(Dinossauro dino, FILE* arq)
+{
+    fwrite("0", sizeof(char), 1, arq);
 
-    if(dino.habitat)
-        printf("Lugar que habitava: %s\n", dino.habitat);
+    int temporario = -1;
+    fwrite(&temporario, sizeof(int), 1, arq);
 
-    if(dino.tamanho != -1)
-        printf("Nome: %.1f m\n", dino.tamanho);
+    fwrite(&dino.populacao, sizeof(int), 1, arq);
+    fwrite(&dino.tamanho, sizeof(int), 1, arq);
+    fwrite(&dino.unidadeMedida, sizeof(char), 1, arq);
+    fwrite(&dino.velocidade, sizeof(int), 1, arq);
 
-    if(dino.velocidade != -1 && dino.unidadeMedida != '$')
-        printf("Nome: %d %cm/h\n", dino.velocidade, dino.unidadeMedida);
+    int bytesOcupados = sizeof(char) * 2 + sizeof(int) * 4;
 
-    printf("\n");
+    bytesOcupados += SalvarStringRegistro(dino.nome, arq);
+    bytesOcupados += SalvarStringRegistro(dino.especie, arq);
+    bytesOcupados += SalvarStringRegistro(dino.habitat, arq);
+    bytesOcupados += SalvarStringRegistro(dino.tipo, arq);
+    bytesOcupados += SalvarStringRegistro(dino.dieta, arq);
+    bytesOcupados += SalvarStringRegistro(dino.alimento, arq);
+
+    for(int i = bytesOcupados; i < 160; i++)
+        fwrite("$", sizeof(char), 1, arq);
+}
+
+int SalvarStringRegistro(char* str, FILE* arq)
+{
+    char* aux = calloc(160, sizeof(char));
+    strcpy(aux, str);
+
+    aux[strcspn(aux, "\r")] = 0;
+    aux[strcspn(aux, "\n")] = 0;
+    int tam = strlen(aux);
+
+    aux[tam] = '#';
+    fwrite(aux, sizeof(char), tam+1, arq);
+
+    free(aux);
+
+    return tam+1;
 }
 
 //Cria a tabela usando o endereço de entrada e saída
 void CreateTable(char* enderecoE, char* enderecoS)
 {
     FILE* entrada = fopen(enderecoE, "rb");
+    FILE* saida = CriarArquivo(enderecoS);
 
-    if(entrada == NULL)
+    if(entrada == NULL || saida == NULL)
     {
         fclose(entrada);
         printf("Falha no processamento do arquivo.");
+        return;
     }
 
     char* linha = calloc(160, sizeof(char));
     Dinossauro dino = CriaDinossauro();
+    int qtdRegistros = 0;
 
     fgets(linha, 160, entrada);
 
     while(fgets(linha, 160, entrada))
     {
-        strcpy(dino.nome, strtok(linha, ","));
+        strcpy(dino.nome, strsep(linha, ","));
         strcpy(dino.dieta, strtok(NULL, ","));
         strcpy(dino.habitat, strtok(NULL, ","));
 
@@ -92,12 +121,17 @@ void CreateTable(char* enderecoE, char* enderecoS)
 
         dino.velocidade = atoi(strtok(NULL, ","));
         dino.unidadeMedida = strtok(NULL, ",")[0];
-        dino.tamanho = atoi(strtok(NULL, ","));
+        dino.tamanho = atof(strtok(NULL, ","));
 
-        strcpy(dino.especie, strtok(NULL, ","));
-        strcpy(dino.alimento, strtok(NULL, ","));
+        char* aux = strtok(NULL, ",");
+        if(aux)
+            printf("a");
+        //strcpy(dino.especie, strtok(NULL, ","));
+        strcpy(dino.alimento, strtok(NULL, "\r"));
 
-        ImprimeDinossauro(dino);
+        //ImprimeDinossauro(dino);
+        SalvarRegistro(dino, saida);
+        qtdRegistros++;
 
         LiberaDinossauro(dino);
         free(linha);
@@ -105,36 +139,11 @@ void CreateTable(char* enderecoE, char* enderecoS)
         dino = CriaDinossauro();
         linha = calloc(160, sizeof(char));
     }
+    cab.proxRRN = qtdRegistros;
+    cab.nroPagDisco += ceil((float)qtdRegistros / 10.0);
 
-
-    printf("%d", sizeof(dino.nome));
     fclose(entrada);
-}
+    FecharArquivo(saida, enderecoS);
 
-void EscreverCabecalho(FILE *arq)
-{
-
-}
-
-void AbrirArquivo(FILE* arq, char* endereco)
-{
-    arq = fopen(endereco, "rb+");
-    fseek(arq, 0, SEEK_SET);
-    fwrite("0", sizeof(char), 1, arq);
-}
-
-void FecharArquivo(FILE* arq)
-{
-    fseek(arq, 0, SEEK_SET);
-    fwrite("1", sizeof(char), 1, arq);
-    fclose(arq);
-}
-
-void SalvarRegistro(Dinossauro dino, FILE* arq)
-{
-    fwrite("0", sizeof(char), 1, arq);
-    fwrite(-1, sizeof(int), 1, arq);
-
-    char* aux = calloc(160, sizeof(char));
-
+    binarioNaTela(enderecoS);
 }

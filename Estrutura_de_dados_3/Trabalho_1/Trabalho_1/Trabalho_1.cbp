@@ -36,6 +36,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="controlador.h" />
+		<Unit filename="dinossauro.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dinossauro.h" />
 		<Unit filename="funcoes_fornecidas.c">
 			<Option compilerVar="CC" />
 		</Unit>
