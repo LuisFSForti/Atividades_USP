@@ -32,14 +32,13 @@
 	<string.h>
 	<ctype.h>
 
-1726578997 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
+1726604040 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
 	"controlador.h"
 
-1726575768 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
+1726601427 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	<math.h>
 	"funcoes_fornecidas.h"
 	"dinossauro.h"
 
@@ -48,14 +47,14 @@
 	<stdlib.h>
 	<string.h>
 
-1726575777 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
+1726598455 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcoes_fornecidas.h"
 	"controlador.h"
 	"dinossauro.h"
 
-1726572227 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
+1726590775 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
 	"funcoes_fornecidas.h"
 	"controlador.h"
 	"dinossauro.h"

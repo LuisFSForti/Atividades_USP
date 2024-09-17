@@ -48,19 +48,19 @@ void ImprimeDinossauro(Dinossauro dino)
     printf("Nome: %s\n", dino.nome);
     printf("Especie: %s\n", dino.especie);
 
-    if(dino.tipo)
+    if(strcmp(dino.tipo, "") != 0)
         printf("Tipo: %s\n", dino.tipo);
 
     printf("Dieta: %s\n", dino.dieta);
 
-    if(dino.habitat)
+    if(strcmp(dino.habitat, "") != 0)
         printf("Lugar que habitava: %s\n", dino.habitat);
 
     if(dino.tamanho != -1)
-        printf("Nome: %.1f m\n", dino.tamanho);
+        printf("Tamanho: %.1f m\n", dino.tamanho);
 
     if(dino.velocidade != -1 && dino.unidadeMedida != '$')
-        printf("Nome: %d %cm/h\n", dino.velocidade, dino.unidadeMedida);
+        printf("Velocidade: %d %cm/h\n", dino.velocidade, dino.unidadeMedida);
 
     printf("\n");
 }
