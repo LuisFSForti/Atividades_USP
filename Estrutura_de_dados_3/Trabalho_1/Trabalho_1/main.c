@@ -29,6 +29,12 @@ int main()
         scanf(" %d ", &qtd);
         RemoverRegistros(aux1, qtd);
         break;
+    case 5:
+        scanf("%s", aux1);
+        qtd = 0;
+        scanf(" %d ", &qtd);
+        InsertInto(aux1, qtd);
+        break;
     default:
         break;
     }

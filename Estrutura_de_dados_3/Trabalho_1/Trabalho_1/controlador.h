@@ -20,17 +20,23 @@ typedef struct cabecalho
 
 void LerCabecalho(FILE *arq);
 void EscreverCabecalho(FILE *arq, char naoEstaNoComeco);
+
 FILE* CriarArquivo(char* endereco);
 FILE* AbrirArquivo(char* endereco);
 void FecharArquivo(FILE* arq, char* endereco);
-void SalvarRegistro(Dinossauro dino, FILE* arq);
+
+void SepararDado(char* entrada, char* saida, int nroDado, char sep);
+
 int SalvarStringRegistro(char* str, FILE* arq);
-void SelectTable(char* enderecoE);
+void SalvarRegistro(Dinossauro dino, FILE* arq);
+
 int TipoRemocao(char* comando);
 int EncontrarRRN(FILE* arq, int RRNinicial, int idBusca, char* valS);
-void RemoverRegistros(char* enderecoE, int qtd);
 
 //Cria a tabela usando o endereço de entrada e saída
 void CreateTable(char* enderecoE, char* enderecoS);
+void SelectTable(char* enderecoE);
+void RemoverRegistros(char* enderecoE, int qtd);
+void InsertInto(char* enderecoS, int qtd);
 
 #endif // CONTROLADOR_H_INCLUDED

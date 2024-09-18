@@ -6,7 +6,7 @@
 Dinossauro CriaDinossauro()
 {
     Dinossauro dino;
-    dino.removido = 0;
+    dino.removido = '0';
     dino.encadeamento = -1;
     dino.populacao = -1;
     dino.tamanho = -1;
