@@ -71,3 +71,12 @@
 	<stdlib.h>
 	<string.h>
 
+1726618798 source:/home/user/Documents/Atividades_USP/Estrutura_de_dados_3/Trabalho_1/Trabalho_1/funcoes_fornecidas.c
+	"funcoes_fornecidas.h"
+
+1726618798 /home/user/Documents/Atividades_USP/Estrutura_de_dados_3/Trabalho_1/Trabalho_1/funcoes_fornecidas.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
