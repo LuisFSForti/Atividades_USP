@@ -123,13 +123,9 @@ void SepararDado(char* entrada, char* saida, int nroDado, char sep)
     }
 
     //Enquanto não chegar no próximo intervalo ou encontrar um caractere indesejado
-    while(entrada[pos] == sep || entrada[pos] == '\r' ||
-           entrada[pos] == '\n' || entrada[pos] == '\0')
+    while(entrada[pos] != sep && entrada[pos] != '\r' &&
+           entrada[pos] != '\n' && entrada[pos] != '\0')
     {
-        //if(entrada[pos] == sep || entrada[pos] == '\r' ||
-        //   entrada[pos] == '\n' || entrada[pos] == '\0')
-        //    break;
-
         //Salva o caractere atual
         saida[aux] = entrada[pos];
 

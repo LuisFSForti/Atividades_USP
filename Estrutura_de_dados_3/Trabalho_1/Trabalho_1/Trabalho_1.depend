@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1726616962 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
+1726629598 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcoes_fornecidas.h"
 	"controlador.h"
 	"dinossauro.h"
 
-1726618083 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
+1726629825 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
 	"controlador.h"
 
 1726531735 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.h
@@ -15,7 +15,7 @@
 	<string.h>
 	<ctype.h>
 
-1726618179 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
+1726629598 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -61,12 +61,12 @@
 	"controlador.h"
 	"dinossauro.h"
 
-1726614826 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
+1726629598 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
 	"funcoes_fornecidas.h"
 	"controlador.h"
 	"dinossauro.h"
 
-1726613358 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.h
+1726629598 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
