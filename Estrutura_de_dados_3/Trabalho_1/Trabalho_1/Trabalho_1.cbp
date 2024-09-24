@@ -40,6 +40,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="dinossauro.h" />
+		<Unit filename="funcoes_auxiliares.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes_auxiliares.h" />
 		<Unit filename="funcoes_fornecidas.c">
 			<Option compilerVar="CC" />
 		</Unit>

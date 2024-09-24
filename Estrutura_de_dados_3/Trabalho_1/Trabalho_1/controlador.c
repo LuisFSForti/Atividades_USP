@@ -49,8 +49,7 @@ FILE* CriarArquivo(char* endereco)
     //Se deu erro
     if(arq == NULL)
     {
-        //Fecha o arquivo, alerta e sai
-        fclose(arq);
+        //Alerta e sai
         printf("Falha no processamento do arquivo.");
         return NULL;
     }
@@ -73,14 +72,21 @@ FILE* AbrirArquivo(char* endereco)
     //Se deu erro
     if(arq == NULL)
     {
-        //Fecha o arquivo, alerta e sai
-        fclose(arq);
+        //Alerta e sai
         printf("Falha no processamento do arquivo.");
         return NULL;
     }
 
     //Lê o cabeçalho
     LerCabecalho(arq);
+
+    if(cab.status == 0)
+    {
+        //Fecha o arquivo, alerta e sai
+        fclose(arq);
+        printf("Falha no processamento do arquivo.");
+        return NULL;
+    }
 
     //Avança para o fim da página do cabeçalho
     fseek(arq, 1600, SEEK_SET);
@@ -93,48 +99,12 @@ void FecharArquivo(FILE* arq, char* endereco)
 {
     //Define que o arquivo será fechado com êxito
     cab.status = '1';
-    fclose(arq);
 
-    //Abre o arquivo na forma de leitura e escrita em binário
-    arq = fopen(endereco, "rb+");
     //Atualiza o cabeçalho
     EscreverCabecalho(arq, 1);
+
     //Fecha o arquivo
     fclose(arq);
-}
-
-//Separa os dados de entrada no intervalo nroDado entre dois sep, salvando em saida
-void SepararDado(char* entrada, char* saida, int nroDado, char sep)
-{
-    //Quantidade de caracteres na string
-    int tam = strlen(entrada);
-    //Valores auxiliares
-    int pos = 0, qtdSep = 0, aux = 0;
-
-    //Enquanto não chegar no fim e não encontra o intervalo desejado
-    for(int i = 0; i < tam && qtdSep < nroDado; i++)
-    {
-        //Se encontrou um dos separadores
-        if(entrada[i] == sep)
-            //Avança em 1 intervalo
-            qtdSep++;
-        //Avança a posição
-        pos++;
-    }
-
-    //Enquanto não chegar no próximo intervalo ou encontrar um caractere indesejado
-    while(entrada[pos] != sep && entrada[pos] != '\r' &&
-           entrada[pos] != '\n' && entrada[pos] != '\0')
-    {
-        //Salva o caractere atual
-        saida[aux] = entrada[pos];
-
-        //Avança as posições
-        pos++;
-        aux++;
-    }
-    //Adiciona o \0 final
-    saida[aux] = '\0';
 }
 
 //Modifica a string passada para salvar de acordo com as definições do projeto
@@ -149,9 +119,9 @@ int SalvarStringRegistro(char* str, FILE* arq)
     //Troca o primeiro \r e \n por \0
     aux[strcspn(aux, "\r")] = 0;
     aux[strcspn(aux, "\n")] = 0;
+
     //Pega o tamanho da string
     int tam = strlen(aux);
-
     //Coloca um # no final
     aux[tam] = '#';
     //Escreve a string, incluindo o #, não incluindo o \0
@@ -191,10 +161,10 @@ void SalvarRegistro(Dinossauro dino, FILE* arq)
         fwrite("$", sizeof(char), 1, arq);
 }
 
-//Define qual o tipo de remoção (qual atributo de Dinossauro)
-int TipoRemocao(char* comando)
+//Define qual o tipo de equivalente a string recebida (qual atributo de Dinossauro)
+int TipoAchado(char* comando)
 {
-    //De 0 até 2, são inteiros ou caractereS
+    //De 0 até 2, são inteiros ou caractere
     if(strcmp(comando, "populacao") == 0)
     {
         return 0;
@@ -251,12 +221,17 @@ int EncontrarRRN(FILE* arq, int RRNinicial, int idBusca, char* valS)
         //Avisa que não encontrou
         return -1;
 
+    //Se foi dado um valor inválido
+    if(valS == NULL || strcmp(valS, "") == 0)
+        //Avisa que não encontrou
+        return -1;
+
     //Para os valores constantes
     int valI = 0;
     float valF = 0;
 
     //Se for inteiro ou caractere
-    if(idBusca < 3)
+    if(idBusca < 3 || idBusca == 10)
     {
         valI = atoi(valS);
     }
@@ -278,9 +253,8 @@ int EncontrarRRN(FILE* arq, int RRNinicial, int idBusca, char* valS)
         fseek(arq, 1600 + RRN * 160, SEEK_SET);
 
         //Para ler se foi removido
-        char temp;
-        fread(&temp, sizeof(char), 1, arq);
-        if(temp == '1')
+        fread(&dino.removido, sizeof(char), 1, arq);
+        if(dino.removido == '1')
         {
             //Se foi removido, aumenta RRN e avança para o próximo registro
             RRN++;
@@ -391,6 +365,16 @@ int EncontrarRRN(FILE* arq, int RRNinicial, int idBusca, char* valS)
                 return RRN;
             }
             break;
+
+        //Para o caso de querer registros não apagados
+        case 10:
+            //Libera o espaço alocado para dino
+            LiberaDinossauro(dino);
+            //Retorna onde encontrou
+            return RRN;
+            break;
+
+
         //Se não for um atributo válido (não deve chegar aqui)
         default:
             //Libera o espaço alocado para dino
@@ -419,8 +403,7 @@ void CreateTable(char* enderecoE, char* enderecoS)
     //Se deu erro
     if(entrada == NULL)
     {
-        //Fecha o arquivo, alerta o erro e sai
-        fclose(entrada);
+        //Alerta o erro e sai
         printf("Falha no processamento do arquivo.");
         return;
     }
@@ -445,10 +428,8 @@ void CreateTable(char* enderecoE, char* enderecoS)
 
     //Linha lida
     char* linha = calloc(200, sizeof(char));
-    //Auxiliar para separar os dados
-    char* aux = calloc(200, sizeof(char));
     //Dinossauro do registro atual
-    Dinossauro dino = CriaDinossauro();
+    Dinossauro dino;
 
     //Joga fora a primeira linha da entrada
     fgets(linha, 200, entrada);
@@ -456,56 +437,25 @@ void CreateTable(char* enderecoE, char* enderecoS)
     //Enquanto conseguir ler valores da entrada
     while(fgets(linha, 200, entrada))
     {
-        //Separa os dados pedidos da linha
-        //Quando necessário, confere se realmente foi passado um valor
-
-        SepararDado(linha, dino.nome, 0, ',');
-        SepararDado(linha, dino.dieta, 1, ',');
-        SepararDado(linha, dino.habitat, 2, ',');
-
-        SepararDado(linha, aux, 3, ',');
-        if(strcmp(aux, "") != 0)
-            dino.populacao = atoi(aux);
-
-        SepararDado(linha, dino.tipo, 4, ',');
-
-        SepararDado(linha, aux, 5, ',');
-        if(strcmp(aux, "") != 0)
-            dino.velocidade = atoi(aux);
-
-        SepararDado(linha, aux, 6, ',');
-        if(strcmp(aux, "") != 0)
-            dino.unidadeMedida = aux[0];
-
-        SepararDado(linha, aux, 7, ',');
-        if(strcmp(aux, "") != 0)
-            dino.tamanho = atof(aux);
-
-        SepararDado(linha, dino.especie, 8, ',');
-        SepararDado(linha, dino.alimento, 9, ',');
+        //Cria um dinossauro com os dados passados
+        dino = CriaDinossauroCSV(linha);
 
         //Salva o registro no arquivo de saída
         SalvarRegistro(dino, saida);
+
+        //Se estiver inserindo o registro em uma página nova
+        if(cab.proxRRN % 10 == 0)
+            //Aumenta a quantidade de páginas no cabeçalho
+            cab.nroPagDisco++;
+
         //Define que o último registro tem um RRN maior
         cab.proxRRN++;
 
         //Libera o espaço do dino
         LiberaDinossauro(dino);
-
-        //Cria um novo Dinossauro com valores nulos
-        dino = CriaDinossauro();
     }
     //Libera os espaços alocados
     free(linha);
-    free(aux);
-    LiberaDinossauro(dino);
-
-    //Define quantas páginas completas foram adicionadas
-    cab.nroPagDisco += cab.proxRRN / 10;
-    //Se tiver uma página incompleta
-    if(cab.proxRRN % 10 != 0)
-        //Aumenta a quantidade de páginas em 1
-        cab.nroPagDisco++;
 
     //Fecha o arquivo de entrada
     fclose(entrada);
@@ -538,56 +488,178 @@ void SelectTable(char* enderecoE)
         return;
     }
 
-    //string auxiliar
-    char* linha = calloc(160, sizeof(char));
-    //Dinossauro para armazenar os dados
-    Dinossauro dino = CriaDinossauro();
+    //Cria um Dinossauro com o primeiro registro
+    Dinossauro dino;
+    //Para verificar se achou pelo menos um registro
+    int existe = 0;
 
-    //Enquanto conseguir ler o arquivo
-    //Lê o primeiro byte do registro
-    while(fread(&dino.removido, sizeof(char), 1, entrada))
+    //Loop infinito
+    while(1)
     {
+        //Lê o registro atual
+        dino = CriaDinossauroBin(entrada);
+
+        //Se não conseguiu ler
+        if(dino.removido == 'E')
+        {
+            //Libera o espaço alocado
+            LiberaDinossauro(dino);
+            //Sai do loop
+            break;
+        }
+
         //Se o registro foi removido logicamente
         if(dino.removido == '1')
         {
             //Avança para o próximo registro
             fseek(entrada, 159, SEEK_CUR);
+            //Libera o dino
+            LiberaDinossauro(dino);
             continue;
         }
 
-        //Lê os dados do registro
-        fread(&dino.encadeamento, sizeof(int), 1, entrada);
-        fread(&dino.populacao, sizeof(int), 1, entrada);
-        fread(&dino.tamanho, sizeof(int), 1, entrada);
-        fread(&dino.unidadeMedida, sizeof(char), 1, entrada);
-        fread(&dino.velocidade, sizeof(int), 1, entrada);
-
-        fgets(linha, 161 - sizeof(int) * 4 - sizeof(char)*2, entrada);
-
-        SepararDado(linha, dino.nome, 0, '#');
-        SepararDado(linha, dino.especie, 1, '#');
-        SepararDado(linha, dino.habitat, 2, '#');
-        SepararDado(linha, dino.tipo, 3, '#');
-        SepararDado(linha, dino.dieta, 4, '#');
-        SepararDado(linha, dino.alimento, 5, '#');
+        //Guarda que achou um registro
+        existe = 1;
 
         //Imprime o registro
         ImprimeDinossauro(dino);
 
-        //Libera o espaço alocado e cria um novo dino nulo
+        //Libera o espaço alocado pro Dinossauro
         LiberaDinossauro(dino);
-        dino = CriaDinossauro();
     }
-    //Libera a string auxiliar
-    free(linha);
-    //Libera o espaço alocado pro dinossauro
-    LiberaDinossauro(dino);
+    //Se não achou nenhum registro
+    if(!existe)
+    {
+        //Fecha o arquivo atualizando o cabeçalho
+        FecharArquivo(entrada, enderecoE);
+        //Avisa o erro e sai
+        printf("Registro inexistente.");
+        return;
+    }
 
     //Imprime o número de páginas ocupadas
     printf("Numero de paginas de disco: %d\n\n", cab.nroPagDisco);
 
     //Fecha o arquivo, atualizando o cabeçalho
     FecharArquivo(entrada, enderecoE);
+}
+
+//Procura e imprime registros de acordo com valor especificado
+void AcharRegistros(char* enderecoE, int qtd)
+{
+    //Abre o arquivo lendo o cabeçalho
+    FILE* arq = AbrirArquivo(enderecoE);
+
+    //Se deu erro
+    if(arq == NULL)
+    {
+        //Sai pois o erro foi avisado em AbrirArquivo
+        return;
+    }
+
+    //strings auxiliares
+    char* comando = calloc(11, sizeof(char));
+    char* valS = calloc(160, sizeof(char));
+
+    //campo de busca
+    int id = 0;
+
+    //Para cada comando pedido
+    for(int i = 0; i < qtd; i++)
+    {
+        //Pega o comando
+        scanf("%s ", comando);
+        //Define o tipo de busca
+        id = TipoAchado(comando);
+
+        //Se for uma string
+        if(id > 3)
+        {
+            //Lê entre aspas
+            scan_quote_string(valS);
+            scanf("%*c");
+        }
+        //Senão
+        else
+        {
+            //Lê sem aspas
+            scanf("%s%*c", valS);
+        }
+
+        printf("Busca %d\n", i+1);
+
+        //Se for um atributo inválido ou escrito incorretamente
+        if(id == -1)
+        {
+            //Avisa o erro e avança pro próximo comando
+            printf("Nome do campo invalido!");
+            continue;
+        }
+
+        //Encontra o RRN do primeiro registro com o valor procurado
+        int RRN = EncontrarRRN(arq, 0, id, valS);
+
+        //Conta se houve algum dinossauro mostrado
+        int counter = 0;
+
+        //Se encontrou um registro
+        while(RRN != -1)
+        {
+            //Avança para o começo do registro
+            fseek(arq, 1600 + RRN * 160, SEEK_SET);
+
+            //Cria um dinossauro com o registro
+            Dinossauro dino = CriaDinossauroBin(arq);
+
+            //Imprime o dino
+            ImprimeDinossauro(dino);
+
+            //Libera o espaço alocado
+            LiberaDinossauro(dino);
+
+            counter = 1;  // Diz que um dino foi achado
+
+            //Se for nome, campo de nome único, então para
+            if (id == 4){
+                break;
+            }
+
+            //Procura o próximo registro com o valor procurado
+            //Adiciona mais um para ir para o proximo, ao invés
+            //de começar procura no atual e pegar o mesmo RRN
+            RRN = EncontrarRRN(arq, RRN+1, id, valS);
+        }
+
+        if (!counter){ //Se nenhum dinossauro foi encontrado
+            printf("Registro inexistente.\n\n");
+        }
+
+        //Quantas páginas foram lidas = quantidade de páginas salvas
+        int nroPagDisco = cab.nroPagDisco;
+        //Se estava procurando o nome e ele foi encontrado
+        if(id == 4 && counter)
+            //Qual página estava o registro
+            nroPagDisco = 1 + RRN/10;
+
+        //Imprime quantas páginas foram lidas
+        printf("Numero de paginas de disco: %d\n\n", nroPagDisco);
+
+        //Libera as strings auxiliares
+        free(comando);
+        free(valS);
+
+        //Aloca novos espaços e reinicia as variáveis auxiliares
+        comando = calloc(11, sizeof(char));
+        valS = calloc(160, sizeof(char));
+        id = 0;
+        RRN = 0;
+    }
+    //Libera as string auxiliares
+    free(comando);
+    free(valS);
+
+    //Fecha o arquivo, atualizando o cabeçalho
+    FecharArquivo(arq, enderecoE);
 }
 
 //Remove logicamente um número de registros em enderecoE igual à qtd
@@ -615,7 +687,7 @@ void RemoverRegistros(char* enderecoE, int qtd)
         //Pega o comando
         scanf("%s ", comando);
         //Define o tipo de busca
-        id = TipoRemocao(comando);
+        id = TipoAchado(comando);
 
         //Se for uma string
         if(id > 3)
@@ -772,13 +844,14 @@ void InsertInto(char* enderecoS, int qtd)
         {
             //Pega o começo do registro a ser inserido no fim
             fseek(arq, 1600 + 160 * cab.proxRRN, SEEK_SET);
-            //Define que o último registro tem um RRN maior
-            cab.proxRRN++;
 
-            //Se concluiu uma página
-            if(cab.proxRRN % 10 == 1)
+            //Se começará uma nova página
+            if(cab.proxRRN % 10 == 0)
                 //Define que há uma nova página
                 cab.nroPagDisco++;
+
+            //Define que o último registro tem um RRN maior
+            cab.proxRRN++;
         }
 
         //Salva o novo registro no local definido
@@ -794,6 +867,79 @@ void InsertInto(char* enderecoS, int qtd)
 
     //Fecha o arquivo, atualizando o cabeçário
     FecharArquivo(arq, enderecoS);
+    //Função de verificação do projeto
+    binarioNaTela(enderecoS);
+}
+
+void Compactar(char* enderecoS){
+
+    //Abre o arquivo lendo o cabeçalho
+    FILE* arq = AbrirArquivo(enderecoS);
+
+    //Define novo cabeçalho
+    cab.status = '0';
+    cab.topo = -1;
+    //cab.proxRRN = 0;
+    cab.nroRegRem = 0;
+    cab.nroPagDisco = 1;
+    cab.qttCompacta++;
+
+    //cria um arquivo temporário para manipulação
+    FILE* novo = CriarArquivo("t1.bin");
+
+    //Se deu erro
+    if(arq == NULL || novo == NULL)
+    {
+        //Sai pois o erro foi avisado em AbrirArquivo ou CriarArquivo
+        return;
+    }
+
+    //RRN do arquivo de leitura
+    int RRN = 0;
+    //Encontra o primeiro registro não removido
+    RRN = EncontrarRRN(arq, 0, 10, " ");
+
+    //RRN do arquivo de registro
+    int RRNnovo = 0;
+
+    //---Copia e exclusão---//
+
+    //Se encontrou um registro
+    while(RRN != -1)
+    {
+        //Avança para o começo
+        fseek(arq, 1600 + RRN * 160, SEEK_SET);
+
+        Dinossauro dino = CriaDinossauroBin(arq);
+
+        SalvarRegistro(dino, novo);
+
+        //Se começará uma nova página
+        if(RRNnovo % 10 == 0)
+            //Aumenta o número de páginas no cabeçalho
+            cab.nroPagDisco++;
+
+        //Diz que um dino foi adicionado
+        RRNnovo++;
+
+        LiberaDinossauro(dino);
+
+        //Procura o próximo registro não removido
+        RRN = EncontrarRRN(arq, RRN+1, 10, " ");
+    }
+    //------//
+    //Fecha o arquivo com o cabeçalho incorreto e o deleta
+    FecharArquivo(arq, enderecoS);
+    remove(enderecoS);
+
+    //Salva a nova quantidade de registros
+    cab.proxRRN = RRNnovo;
+
+    //Fecha o arquivo, atualizando o cabeçalho
+    FecharArquivo(novo, "t1.bin");
+    //Substitui o antigo pelo novo compactado
+    rename("t1.bin", enderecoS);
+
     //Função de verificação do projeto
     binarioNaTela(enderecoS);
 }

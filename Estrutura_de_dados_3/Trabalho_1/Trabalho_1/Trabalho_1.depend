@@ -1,82 +1,82 @@
 # depslib dependency file v1.0
-1726629598 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
+1727136475 source:c:\users\lucien\downloads\trabalho_1\controlador.c
+	"controlador.h"
+
+1727123421 c:\users\lucien\downloads\trabalho_1\controlador.h
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"funcoes_fornecidas.h"
-	"controlador.h"
 	"dinossauro.h"
 
-1726629825 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
-	"controlador.h"
-
-1726531735 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.h
+1726531735 c:\users\lucien\downloads\trabalho_1\funcoes_fornecidas.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1726629598 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
+1726629598 c:\users\lucien\downloads\trabalho_1\dinossauro.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+
+1727122077 source:c:\users\lucien\downloads\trabalho_1\dinossauro.c
 	"funcoes_fornecidas.h"
+	"controlador.h"
 	"dinossauro.h"
 
-1726526129 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.c
+1726526129 source:c:\users\lucien\downloads\trabalho_1\funcoes_fornecidas.c
 	"funcoes_fornecidas.h"
 
-1726571748 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.c
+1727113837 source:c:\users\lucien\downloads\trabalho_1\main.c
+	<stdio.h>
+	<stdlib.h>
 	"funcoes_fornecidas.h"
+	"controlador.h"
+	"dinossauro.h"
 
-1726571748 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.h
+1727179199 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
+	"dinossauro.h"
+
+1727176640 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1726604040 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
-	"controlador.h"
-
-1726601427 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
+1727177991 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"funcoes_fornecidas.h"
+	"funcoes_auxiliares.h"
 	"dinossauro.h"
 
-1726572233 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.h
+1727178817 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"funcoes_fornecidas.h"
+	"funcoes_auxiliares.h"
 
-1726598455 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
+1727176640 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_fornecidas.c
+	"funcoes_fornecidas.h"
+
+1727176640 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcoes_fornecidas.h"
 	"controlador.h"
 	"dinossauro.h"
 
-1726590775 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
-	"funcoes_fornecidas.h"
-	"controlador.h"
-	"dinossauro.h"
-
-1726629598 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.c
-	"funcoes_fornecidas.h"
-	"controlador.h"
-	"dinossauro.h"
-
-1726629598 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\dinossauro.h
+1727178027 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_auxiliares.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1726618798 source:/home/user/Documents/Atividades_USP/Estrutura_de_dados_3/Trabalho_1/Trabalho_1/funcoes_fornecidas.c
-	"funcoes_fornecidas.h"
+1727178009 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
 
-1726618798 /home/user/Documents/Atividades_USP/Estrutura_de_dados_3/Trabalho_1/Trabalho_1/funcoes_fornecidas.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<ctype.h>
+1727183006 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_1\trabalho_1\controlador.c
+	"controlador.h"
 

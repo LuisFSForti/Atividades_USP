@@ -16,6 +16,7 @@ int main()
     int comando;
     char* aux1 = calloc(100, sizeof(char));
     char* aux2 = calloc(100, sizeof(char));
+    int qtd = 0;
 
     //Define o comando
     scanf("%d ", &comando);
@@ -36,12 +37,20 @@ int main()
         //Imprime os dados da tabela
         SelectTable(aux1);
         break;
+
+
+    //Se for a função de achar por categoria
+    case 3:
+        //Pega o endereço do arquivo onde procurar e quantidade de pedidos
+        scanf("%s %d", aux1, &qtd);
+        AcharRegistros(aux1, qtd);
+        break;
+
     //Se for a função de Remover
     case 4:
         //Pega o endereço do arquivo à ser modificado
         scanf("%s", aux1);
         //Pega a quantidade de pedidos
-        int qtd = 0;
         scanf(" %d ", &qtd);
         //Remove os registros que serão pedidos
         RemoverRegistros(aux1, qtd);
@@ -56,6 +65,13 @@ int main()
         //Insere os registros que serão pedidos
         InsertInto(aux1, qtd);
         break;
+
+    //Para compactar o arquivo
+    case 6:
+        //Dá o endereço a função e compacta em arquivo novo
+        scanf("%s", aux1);
+        Compactar(aux1);
+
     default:
         break;
     }

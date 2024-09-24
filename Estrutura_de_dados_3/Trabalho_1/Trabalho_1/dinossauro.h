@@ -10,6 +10,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "funcoes_fornecidas.h"
+#include "funcoes_auxiliares.h"
+
 //Struct para armazenamento dos registros
 typedef struct dinossauro
 {
@@ -29,6 +32,10 @@ typedef struct dinossauro
 
 //Cria um dinossauro com valores nulos
 Dinossauro CriaDinossauro();
+//Cria um dinossauro com uma entrada de um CSV
+Dinossauro CriaDinossauroCSV(char* linha);
+//Cria um dinossauro à partir da posição do cursor no arquivo entrada
+Dinossauro CriaDinossauroBin(FILE* entrada);
 //Libera o espaço alocado para dino
 void LiberaDinossauro(Dinossauro dino);
 //Imprime dino na tela
