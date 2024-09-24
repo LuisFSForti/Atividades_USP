@@ -426,19 +426,26 @@ void CreateTable(char* enderecoE, char* enderecoS)
         return;
     }
 
-    //Linha lida
-    char* linha = calloc(200, sizeof(char));
     //Dinossauro do registro atual
     Dinossauro dino;
 
     //Joga fora a primeira linha da entrada
-    fgets(linha, 200, entrada);
+    dino = CriaDinossauroCSV(entrada);
 
-    //Enquanto conseguir ler valores da entrada
-    while(fgets(linha, 200, entrada))
+    //Loop infinito
+    while(1)
     {
-        //Cria um dinossauro com os dados passados
-        dino = CriaDinossauroCSV(linha);
+        //Cria um dinossauro com os dados do CSV
+        dino = CriaDinossauroCSV(entrada);
+
+        //Se chegou no fim do arquivo
+        if(dino.removido == 'E')
+        {
+            //Libera o espaço alocado pro dino
+            LiberaDinossauro(dino);
+            //Encerra o loop
+            break;
+        }
 
         //Salva o registro no arquivo de saída
         SalvarRegistro(dino, saida);
@@ -454,8 +461,6 @@ void CreateTable(char* enderecoE, char* enderecoS)
         //Libera o espaço do dino
         LiberaDinossauro(dino);
     }
-    //Libera os espaços alocados
-    free(linha);
 
     //Fecha o arquivo de entrada
     fclose(entrada);

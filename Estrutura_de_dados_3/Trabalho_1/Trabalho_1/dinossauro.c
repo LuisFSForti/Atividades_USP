@@ -26,12 +26,26 @@ Dinossauro CriaDinossauro()
 }
 
 //Cria um dinossauro com uma entrada de um CSV
-Dinossauro CriaDinossauroCSV(char* linha)
+Dinossauro CriaDinossauroCSV(FILE* arq)
 {
     //Cria um dinossauro nulo
     Dinossauro dino = CriaDinossauro();
+    //String para armazenar a entrada dos dados
+    char* linha = calloc(200, sizeof(char));
     //Auxiliar para separar os dados
     char* aux = calloc(200, sizeof(char));
+
+    //Se não conseguiu ler
+    if(!fgets(linha, 200, arq))
+    {
+        //Define que acabou o arquivo
+        dino.removido = 'E';
+        //Libera os espaços alocados
+        free(linha);
+        free(aux);
+        //Retorna o dino
+        return dino;
+    }
 
     //Separa os dados pedidos da linha
     //Quando necessário, confere se realmente foi passado um valor
@@ -61,6 +75,7 @@ Dinossauro CriaDinossauroCSV(char* linha)
     SepararDado(linha, dino.especie, 8, ',');
     SepararDado(linha, dino.alimento, 9, ',');
 
+    free(linha);
     free(aux);
 
     return dino;

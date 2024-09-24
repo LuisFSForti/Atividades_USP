@@ -33,7 +33,7 @@ typedef struct dinossauro
 //Cria um dinossauro com valores nulos
 Dinossauro CriaDinossauro();
 //Cria um dinossauro com uma entrada de um CSV
-Dinossauro CriaDinossauroCSV(char* linha);
+Dinossauro CriaDinossauroCSV(FILE* arq);
 //Cria um dinossauro à partir da posição do cursor no arquivo entrada
 Dinossauro CriaDinossauroBin(FILE* entrada);
 //Libera o espaço alocado para dino

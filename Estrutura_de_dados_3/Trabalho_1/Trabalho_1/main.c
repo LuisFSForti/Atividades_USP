@@ -1,5 +1,7 @@
 //Luis Filipe Silva Forti - 14592348
+//  -   100%
 //Lucien Rodrigues Franzen - 14554835
+//  -   100%
 
 //Trabalho 1 de ED3
 
