@@ -48,6 +48,9 @@ FILE* CriarArquivoArvore(char* endereco)
         return NULL;
     }
 
+    //Garante que o arquivo estará escrito como inconsistente
+    cabA.status = 0;
+
     //Escreve o cabeçalho salvo em cabA
     EscreverCabecalhoArvore(arq, 0);
     //Preenche o restante da página com o caracter de lixo
@@ -74,6 +77,7 @@ FILE* AbrirArquivoArvore(char* endereco)
     //Lê o cabeçalho
     LerCabecalhoArvore(arq);
 
+    //Se o arquivo está inconsistente
     if(cabA.status == 0)
     {
         //Fecha o arquivo, alerta e sai
@@ -81,6 +85,10 @@ FILE* AbrirArquivoArvore(char* endereco)
         printf("Falha no processamento do arquivo.");
         return NULL;
     }
+
+    //Atualiza que o arquivo está inconsistente
+    cabA.status = 0;
+    EscreverCabecalhoArvore(arq, 1);
 
     //Avança para o fim da página do cabeçalho
     fseek(arq, tamPagA, SEEK_SET);
@@ -116,13 +124,14 @@ long EncontrarRegistro(FILE* arq, long chave)
         fseek(arq, (rrnAtual + 1) * tamPagA + 1, SEEK_SET);
         fread(&nroNos, sizeof(int), 1, arq);
 
-        //Pula o primeiro ponteiro
-        fseek(arq, sizeof(int), SEEK_CUR);
+        //Pula o primeiro ponteiro e o RRN do registro
+        fseek(arq, sizeof(int)*2, SEEK_CUR);
 
-        for(int i = 0; i < nroNos; i++)
+        int i;
+        for(i = 0; i < nroNos; i++)
         {
             fread(&chaveAtual, sizeof(long), 1, arq);
-            printf("%d %lu\n", rrnAtual, chaveAtual);
+
             if(chave == chaveAtual)
             {
                 fread(&res, sizeof(long), 1, arq);
@@ -131,15 +140,21 @@ long EncontrarRegistro(FILE* arq, long chave)
             if(chave < chaveAtual)
             {
                 fseek(arq, -12, SEEK_CUR);
-                fread(&rrnAtual, sizeof(long), 1, arq);
+                fread(&rrnAtual, sizeof(int), 1, arq);
                 break;
             }
             else
             {
+                if(i == nroNos-1)
+                {
+                    fseek(arq, sizeof(long), SEEK_CUR);
+                    fread(&rrnAtual, sizeof(int), 1, arq);
+                    break;
+                }
+
                 fseek(arq, 12, SEEK_CUR);
             }
         }
-
     }
 }
 
@@ -156,12 +171,27 @@ void SelectArvore(char* enderecoDados, char* enderecoArvore, char* nomeDino)
 
     long pos = EncontrarRegistro(arqArvore, converteNome(nomeDino));
 
+    FecharArquivoArvore(arqArvore);
+
     if(pos == -1)
     {
         printf("Registro inexistente.");
+        return;
     }
 
-    printf("%lu", pos);
+    FILE* arqDino = AbrirArquivo(enderecoDados);
 
-    FecharArquivoArvore(arqArvore);
+    //Se deu erro
+    if(arqDino == NULL)
+    {
+        //Sai pois o erro foi avisado em AbrirArquivo
+        return;
+    }
+
+    fseek(arqDino, pos, SEEK_SET);
+    Dinossauro dino = CriaDinossauroBin(arqDino);
+    ImprimeDinossauro(dino);
+    LiberaDinossauro(dino);
+
+    FecharArquivo(arqDino);
 }

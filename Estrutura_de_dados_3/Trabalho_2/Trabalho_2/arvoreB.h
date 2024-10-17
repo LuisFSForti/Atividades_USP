@@ -13,6 +13,7 @@
 #include "funcoes_fornecidas.h"
 #include "funcoes_auxiliares.h"
 #include "dinossauro.h"
+#include "controlador.h"
 
 #define tamPagA 93
 
