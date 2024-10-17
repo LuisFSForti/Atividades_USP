@@ -1,6 +1,6 @@
 all:
-	gcc -o Trabalho1.exe *.c
+	gcc -o Trabalho2.exe *.c
 
 run:
-	./Trabalho1.exe
+	./Trabalho2.exe
 

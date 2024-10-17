@@ -101,7 +101,7 @@ void FecharArquivoArvore(FILE* arq)
     fclose(arq);
 }
 
-long int EncontrarRegistro(FILE* arq, long chave)
+long EncontrarRegistro(FILE* arq, long chave)
 {
     int rrnAtual = cabA.noRaiz;
     int nroNos = 0;
@@ -113,7 +113,7 @@ long int EncontrarRegistro(FILE* arq, long chave)
         if(rrnAtual == -1)
             return res;
 
-        fseek(arq, rrnAtual * tamPagA + 1, SEEK_SET);
+        fseek(arq, (rrnAtual + 1) * tamPagA + 1, SEEK_SET);
         fread(&nroNos, sizeof(int), 1, arq);
 
         //Pula o primeiro ponteiro
@@ -122,6 +122,7 @@ long int EncontrarRegistro(FILE* arq, long chave)
         for(int i = 0; i < nroNos; i++)
         {
             fread(&chaveAtual, sizeof(long), 1, arq);
+            printf("%d %lu\n", rrnAtual, chaveAtual);
             if(chave == chaveAtual)
             {
                 fread(&res, sizeof(long), 1, arq);
@@ -160,7 +161,7 @@ void SelectArvore(char* enderecoDados, char* enderecoArvore, char* nomeDino)
         printf("Registro inexistente.");
     }
 
-    printf("%Lf", pos);
+    printf("%lu", pos);
 
     FecharArquivoArvore(arqArvore);
 }
