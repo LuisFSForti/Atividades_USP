@@ -122,3 +122,62 @@
 	"controlador.h"
 	"dinossauro.h"
 
+1729117941 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\controlador.c
+	"controlador.h"
+
+1729117857 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\controlador.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funcoes_fornecidas.h"
+	"funcoes_auxiliares.h"
+	"dinossauro.h"
+
+1729124182 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_fornecidas.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1729114861 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_auxiliares.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729114861 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\dinossauro.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funcoes_fornecidas.h"
+	"funcoes_auxiliares.h"
+
+1729114861 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\dinossauro.c
+	"dinossauro.h"
+
+1729114861 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+
+1729123023 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_fornecidas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1729124179 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoes_fornecidas.h"
+	"controlador.h"
+	"arvoreB.h"
+
+1729124244 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\arvoreb.c
+	"arvoreB.h"
+
+1729124213 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\arvoreb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funcoes_fornecidas.h"
+	"funcoes_auxiliares.h"
+	"dinossauro.h"
+

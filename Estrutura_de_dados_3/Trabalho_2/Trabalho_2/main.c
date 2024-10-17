@@ -10,7 +10,7 @@
 
 #include "funcoes_fornecidas.h"
 #include "controlador.h"
-#include "dinossauro.h"
+#include "arvoreB.h"
 
 int main()
 {
@@ -73,6 +73,15 @@ int main()
         //Dá o endereço a função e compacta em arquivo novo
         scanf("%s", aux1);
         Compactar(aux1);
+
+    case 8:
+        scanf("%s %s %*s", aux1, aux2);
+
+        char* nomeDino = calloc(160, sizeof(char));
+        scan_quote_string(nomeDino);
+
+        SelectArvore(aux1, aux2, nomeDino);
+        free(nomeDino);
 
     default:
         break;

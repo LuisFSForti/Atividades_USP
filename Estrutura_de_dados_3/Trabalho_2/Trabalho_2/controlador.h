@@ -35,7 +35,7 @@ FILE* CriarArquivo(char* endereco);
 //Cria um arquivo no endereço passado e lê o cabeçalho
 FILE* AbrirArquivo(char* endereco);
 //Fecha o arquivo no endereço passado e atualiza o cabeçalho
-void FecharArquivo(FILE* arq, char* endereco);
+void FecharArquivo(FILE* arq);
 
 //Modifica a string passada para salvar de acordo com as definições do projeto
 int SalvarStringRegistro(char* str, FILE* arq);

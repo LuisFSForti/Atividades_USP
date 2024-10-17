@@ -95,7 +95,7 @@ FILE* AbrirArquivo(char* endereco)
 }
 
 //Fecha o arquivo no endereço passado e atualiza o cabeçalho
-void FecharArquivo(FILE* arq, char* endereco)
+void FecharArquivo(FILE* arq)
 {
     //Define que o arquivo será fechado com êxito
     cab.status = '1';
@@ -465,7 +465,7 @@ void CreateTable(char* enderecoE, char* enderecoS)
     //Fecha o arquivo de entrada
     fclose(entrada);
     //Fecha o arquivo de saída, atualizando o cabeçalho
-    FecharArquivo(saida, enderecoS);
+    FecharArquivo(saida);
 
     //Função de verificação do projeto
     binarioNaTela(enderecoS);
@@ -487,7 +487,7 @@ void SelectTable(char* enderecoE)
     if(cab.proxRRN == 0)
     {
         //Fecha o arquivo atualizando o cabeçalho
-        FecharArquivo(entrada, enderecoE);
+        FecharArquivo(entrada);
         //Avisa o erro e sai
         printf("Registro inexistente.");
         return;
@@ -536,7 +536,7 @@ void SelectTable(char* enderecoE)
     if(!existe)
     {
         //Fecha o arquivo atualizando o cabeçalho
-        FecharArquivo(entrada, enderecoE);
+        FecharArquivo(entrada);
         //Avisa o erro e sai
         printf("Registro inexistente.");
         return;
@@ -546,7 +546,7 @@ void SelectTable(char* enderecoE)
     printf("Numero de paginas de disco: %d\n\n", cab.nroPagDisco);
 
     //Fecha o arquivo, atualizando o cabeçalho
-    FecharArquivo(entrada, enderecoE);
+    FecharArquivo(entrada);
 }
 
 //Procura e imprime registros de acordo com valor especificado
@@ -664,7 +664,7 @@ void AcharRegistros(char* enderecoE, int qtd)
     free(valS);
 
     //Fecha o arquivo, atualizando o cabeçalho
-    FecharArquivo(arq, enderecoE);
+    FecharArquivo(arq);
 }
 
 //Remove logicamente um número de registros em enderecoE igual à qtd
@@ -760,7 +760,7 @@ void RemoverRegistros(char* enderecoE, int qtd)
     free(valS);
 
     //Fecha o arquivo, atualizando o cabeçalho
-    FecharArquivo(arq, enderecoE);
+    FecharArquivo(arq);
     //Função de verificação do projeto
     binarioNaTela(enderecoE);
 }
@@ -871,7 +871,7 @@ void InsertInto(char* enderecoS, int qtd)
     LiberaDinossauro(dino);
 
     //Fecha o arquivo, atualizando o cabeçário
-    FecharArquivo(arq, enderecoS);
+    FecharArquivo(arq);
     //Função de verificação do projeto
     binarioNaTela(enderecoS);
 }
@@ -934,14 +934,14 @@ void Compactar(char* enderecoS){
     }
     //------//
     //Fecha o arquivo com o cabeçalho incorreto e o deleta
-    FecharArquivo(arq, enderecoS);
+    FecharArquivo(arq);
     remove(enderecoS);
 
     //Salva a nova quantidade de registros
     cab.proxRRN = RRNnovo;
 
     //Fecha o arquivo, atualizando o cabeçalho
-    FecharArquivo(novo, "t1.bin");
+    FecharArquivo(novo);
     //Substitui o antigo pelo novo compactado
     rename("t1.bin", enderecoS);
 
