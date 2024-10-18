@@ -88,7 +88,8 @@ FILE* AbrirArquivoArvore(char* endereco)
 
     //Atualiza que o arquivo está inconsistente
     cabA.status = 0;
-    EscreverCabecalhoArvore(arq, 1);
+    fseek(arq, 0, SEEK_SET);
+    fwrite(&cabA.status, sizeof(char), 1, arq);
 
     //Avança para o fim da página do cabeçalho
     fseek(arq, tamPagA, SEEK_SET);
@@ -107,6 +108,87 @@ void FecharArquivoArvore(FILE* arq)
 
     //Fecha o arquivo
     fclose(arq);
+}
+
+void InserirRegistro(FILE* arq, long nome, long pos, int RRNatual)
+{
+    char folha;
+    int qtdVal;
+    long chaveAtual;
+    int proxRRN = -1;
+    int ultimoRRN = cabA.RRNproxNo;
+
+    fseek(arq, (RRNatual + 1) * tamPagA, SEEK_SET);
+
+    fread(&folha, sizeof(char), 1, arq);
+    fread(&qtdVal, sizeof(int), 1, arq);
+    fseek(arq, sizeof(int), SEEK_CUR);
+    fseek(arq, sizeof(int), SEEK_CUR);
+
+    int posVal;
+    for(posVal = 0; i < qtdVal; i++)
+    {
+        fread(&chaveAtual, sizeof(long), 1, SEEK_CUR);
+
+        if(chaveAtual == nome)
+        {
+            printf("Falha no processamento do arquivo.");
+            return;
+        }
+
+        if(chaveAtual < nome)
+        {
+            if(!folha)
+            {
+                fseek(arq, -(sizeof(long) + sizeof(int)), SEEK_CUR);
+                fread(&proxRRN, sizeof(int), 1, arq);
+                InserirRegistro(arq, nome, pos, proxRRN);
+                break;
+            }
+            else
+                break;
+        }
+        else
+        {
+            fseek(arq, sizeof(long) + sizeof(int), SEEK_CUR);
+        }
+    }
+
+    if(proxRRN == -1)
+    {
+        printf("Falha no processamento do arquivo.");
+        return;
+    }
+
+    if(folha)
+    {
+        int P;
+        long C, Pr;
+        for(int i = qtdVal; i > posVal; i--)
+        {
+            //Posição do registro +
+            //folha + nroChavesNo + RRNdoNo +
+            //qtdVal * (Px + Cx + Prx)
+            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int) * 2 + i * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+            fread(&P, sizeof(int), 1, arq);
+            fread(&C, sizeof(long), 1, arq);
+            fread(&Pr, sizeof(long), 1, arq);
+
+            fwrite(&P, sizeof(int), 1, arq);
+            fwrite(&C, sizeof(long), 1, arq);
+            fwrite(&Pr, sizeof(long), 1, arq);
+        }
+
+        //Posição do registro +
+        //folha + nroChavesNo + RRNdoNo +
+        //qtdVal * (Px + Cx + Prx)
+        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int) * 2 + posVal * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+
+        int temp = -1;
+        fwrite(&temp, sizeof(int), 1, arq);
+        fwrite(&nome, sizeof(long), 1, arq);
+        fwrite(&pos, sizeof(long), 1, arq);
+    }
 }
 
 long EncontrarRegistro(FILE* arq, long chave)
@@ -139,7 +221,7 @@ long EncontrarRegistro(FILE* arq, long chave)
             }
             if(chave < chaveAtual)
             {
-                fseek(arq, -12, SEEK_CUR);
+                fseek(arq, -(sizeof(long) + sizeof(int)), SEEK_CUR);
                 fread(&rrnAtual, sizeof(int), 1, arq);
                 break;
             }
@@ -152,7 +234,7 @@ long EncontrarRegistro(FILE* arq, long chave)
                     break;
                 }
 
-                fseek(arq, 12, SEEK_CUR);
+                fseek(arq, sizeof(long) + sizeof(int), SEEK_CUR);
             }
         }
     }
