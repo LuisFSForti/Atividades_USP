@@ -438,11 +438,12 @@ void InserirDados(int qtd, char* enderecoDados, char* enderecoArvore)
             cab.proxRRN++;
         }
 
+        dado.chave = converteNome(dino.nome);
+        dado.pos = ftell(arq);
+
         //Salva o novo registro no local definido
         SalvarRegistro(dino, arq);
 
-        dado.chave = converteNome(dino.nome);
-        dado.pos = ftell(arq);
         printf("\n\n\n%s\n\n\n", dino.nome);
         InserirRegistro(arqA, dado, cabA.noRaiz);
 
