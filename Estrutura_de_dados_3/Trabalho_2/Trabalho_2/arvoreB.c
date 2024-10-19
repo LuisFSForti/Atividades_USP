@@ -5,39 +5,42 @@
 
 #include "arvoreB.h"
 
-//Dado utilizado para controlar o cabeÁalho dos arquivos
+//Dado utilizado para controlar o cabe√ßalho dos arquivos dos dinossauros
+Cabecalho cab;
+
+//Dado utilizado para controlar o cabe√ßalho dos arquivos dos ind√≠ces
 CabecalhoArvore cabA;
 
-//LÍ o cabeÁalho (apenas chamado pelo AbrirArquivo)
+//L√™ o cabe√ßalho (apenas chamado pelo AbrirArquivo)
 void LerCabecalhoArvore(FILE *arq)
 {
-    //Volta para o comeÁo do arquivo
+    //Volta para o come√ßo do arquivo
     fseek(arq, 0, SEEK_SET);
 
-    //LÍ os dados do cabeÁalho
+    //L√™ os dados do cabe√ßalho
     fread(&cabA.status, sizeof(char), 1, arq);
     fread(&cabA.noRaiz, sizeof(int), 1, arq);
     fread(&cabA.RRNproxNo, sizeof(int), 1, arq);
 }
 
-//Escreve o cabeÁalho salvo em cabA (apenas chamado pelo CriarArquivo e o FecharArquivo)
+//Escreve o cabe√ßalho salvo em cabA (apenas chamado pelo CriarArquivo e o FecharArquivo)
 void EscreverCabecalhoArvore(FILE *arq, char jaExiste)
 {
     //if jaExiste == 1 (true)
     if(jaExiste == 1)
-        //Volta para o comeÁo do arquivo
+        //Volta para o come√ßo do arquivo
         fseek(arq, 0, SEEK_SET);
 
-    //Escreve os dados do cabeÁalho
+    //Escreve os dados do cabe√ßalho
     fwrite(&cabA.status, sizeof(char), 1, arq);
     fwrite(&cabA.noRaiz, sizeof(int), 1, arq);
     fwrite(&cabA.RRNproxNo, sizeof(int), 1, arq);
 }
 
-//Cria um arquivo com cabeÁalho no endereÁo passado
+//Cria um arquivo com cabe√ßalho no endere√ßo passado
 FILE* CriarArquivoArvore(char* endereco)
 {
-    //Cria um arquivo no modo de escrita bin·ria
+    //Cria um arquivo no modo de escrita bin√°ria
     FILE* arq = fopen(endereco, "wb");
 
     //Se deu erro
@@ -48,22 +51,22 @@ FILE* CriarArquivoArvore(char* endereco)
         return NULL;
     }
 
-    //Garante que o arquivo estar· escrito como inconsistente
+    //Garante que o arquivo estar√° escrito como inconsistente
     cabA.status = 0;
 
-    //Escreve o cabeÁalho salvo em cabA
+    //Escreve o cabe√ßalho salvo em cabA
     EscreverCabecalhoArvore(arq, 0);
-    //Preenche o restante da p·gina com o caracter de lixo
+    //Preenche o restante da p√°gina com o caracter de lixo
     for(int i = 0; i < tamPagA - (1 + 4 + 4); i++)
         fwrite("$", sizeof(char), 1, arq);
 
     return arq;
 }
 
-//Cria um arquivo no endereÁo passado e lÍ o cabeÁalho
+//Cria um arquivo no endere√ßo passado e l√™ o cabe√ßalho
 FILE* AbrirArquivoArvore(char* endereco)
 {
-    //Abre o arquivo no modo de leitura e escrita bin·ria
+    //Abre o arquivo no modo de leitura e escrita bin√°ria
     FILE* arq = fopen(endereco, "rb+");
 
     //Se deu erro
@@ -74,10 +77,10 @@ FILE* AbrirArquivoArvore(char* endereco)
         return NULL;
     }
 
-    //LÍ o cabeÁalho
+    //L√™ o cabe√ßalho
     LerCabecalhoArvore(arq);
 
-    //Se o arquivo est· inconsistente
+    //Se o arquivo est√° inconsistente
     if(cabA.status == 0)
     {
         //Fecha o arquivo, alerta e sai
@@ -86,90 +89,143 @@ FILE* AbrirArquivoArvore(char* endereco)
         return NULL;
     }
 
-    //Atualiza que o arquivo est· inconsistente
+    //Atualiza que o arquivo est√° inconsistente
     cabA.status = 0;
     fseek(arq, 0, SEEK_SET);
     fwrite(&cabA.status, sizeof(char), 1, arq);
 
-    //AvanÁa para o fim da p·gina do cabeÁalho
+    //Avan√ßa para o fim da p√°gina do cabe√ßalho
     fseek(arq, tamPagA, SEEK_SET);
 
     return arq;
 }
 
-//Fecha o arquivo no endereÁo passado e atualiza o cabeÁalho
+//Fecha o arquivo no endere√ßo passado e atualiza o cabe√ßalho
 void FecharArquivoArvore(FILE* arq)
 {
-    //Define que o arquivo ser· fechado com Íxito
+    //Define que o arquivo ser√° fechado com √™xito
     cabA.status = '1';
 
-    //Atualiza o cabeÁalho
+    //Atualiza o cabe√ßalho
     EscreverCabecalhoArvore(arq, 1);
 
     //Fecha o arquivo
     fclose(arq);
 }
 
-void InserirRegistro(FILE* arq, long nome, long pos, int RRNatual)
+Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
 {
+    Dado dado;
+    dado.chave = -1;
+    dado.pos = -1;
+
+    if(cabA.noRaiz == -1)
+    {
+        printf("Falha no processamento do arquivo.");
+        return dado;
+    }
+
+    if(RRNatual == -1)
+    {
+        return dado;
+    }
+
     char folha;
     int qtdVal;
     long chaveAtual;
     int proxRRN = -1;
     int ultimoRRN = cabA.RRNproxNo;
 
+    //Algumas vari√°veis para auxiliar
+    int auxI = 1, auxIN = -1;
+    long auxL = 1, auxLN = -1;
+
     fseek(arq, (RRNatual + 1) * tamPagA, SEEK_SET);
 
     fread(&folha, sizeof(char), 1, arq);
     fread(&qtdVal, sizeof(int), 1, arq);
-    fseek(arq, sizeof(int), SEEK_CUR);
-    fseek(arq, sizeof(int), SEEK_CUR);
+    fseek(arq, sizeof(int) * 2, SEEK_CUR);
 
     int posVal;
-    for(posVal = 0; i < qtdVal; i++)
+    for(posVal = 0; posVal < qtdVal; posVal++)
     {
-        fread(&chaveAtual, sizeof(long), 1, SEEK_CUR);
+        fread(&chaveAtual, sizeof(long), 1, arq);
 
-        if(chaveAtual == nome)
+        if(chaveAtual == input.chave)
         {
             printf("Falha no processamento do arquivo.");
-            return;
+            return dado;
         }
 
-        if(chaveAtual < nome)
+        printf("%li %li %d - ", input.chave, chaveAtual, RRNatual);
+        if(input.chave < chaveAtual)
         {
-            if(!folha)
+            if(folha == '0')
             {
                 fseek(arq, -(sizeof(long) + sizeof(int)), SEEK_CUR);
                 fread(&proxRRN, sizeof(int), 1, arq);
-                InserirRegistro(arq, nome, pos, proxRRN);
+                printf("A %d %d\n", qtdVal, proxRRN);
+                dado = InserirRegistro(arq, input, proxRRN);
                 break;
             }
             else
+            {
+                dado.chave = 0;
                 break;
+            }
         }
         else
         {
-            fseek(arq, sizeof(long) + sizeof(int), SEEK_CUR);
+            if(posVal != qtdVal-1)
+                fseek(arq, sizeof(long) + sizeof(int), SEEK_CUR);
+            else
+            {
+                if(folha == '0')
+                {
+                    fseek(arq, sizeof(long), SEEK_CUR);
+                    fread(&proxRRN, sizeof(int), 1, arq);
+                    printf("B %d %d\n", qtdVal, proxRRN);
+                    dado = InserirRegistro(arq, input, proxRRN);
+                    break;
+                }
+                else
+                {
+                    dado.chave = 0;
+                    break;
+                }
+            }
         }
     }
 
-    if(proxRRN == -1)
-    {
-        printf("Falha no processamento do arquivo.");
-        return;
-    }
+    //Se n√£o foi passado um dado do bra√ßo acima e n√£o √© uma folha
+    if(dado.chave == -1)
+        //Sai
+        return dado;
 
-    if(folha)
+    //Se h√° espa√ßo
+    if(qtdVal < 4)
     {
+        if(folha == '1')
+            dado = input;
+
+        printf("\n\n\n%d\n\n\n", posVal);
+
         int P;
-        long C, Pr;
+        float C, Pr;
+
+        //Para mover o ponteiro mais √† direita
+        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 +
+        (qtdVal) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+        fread(&P, sizeof(int), 1, arq);
+        fseek(arq, sizeof(long)*2, SEEK_CUR);
+        fwrite(&P, sizeof(int), 1, arq);
+
         for(int i = qtdVal; i > posVal; i--)
         {
-            //PosiÁ„o do registro +
-            //folha + nroChavesNo + RRNdoNo +
-            //qtdVal * (Px + Cx + Prx)
-            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int) * 2 + i * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+            printf("%d - %d %d\n", i, qtdVal, posVal);
+            //Coloca no come√ßo do dado
+            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + i * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+
             fread(&P, sizeof(int), 1, arq);
             fread(&C, sizeof(long), 1, arq);
             fread(&Pr, sizeof(long), 1, arq);
@@ -179,15 +235,19 @@ void InserirRegistro(FILE* arq, long nome, long pos, int RRNatual)
             fwrite(&Pr, sizeof(long), 1, arq);
         }
 
-        //PosiÁ„o do registro +
-        //folha + nroChavesNo + RRNdoNo +
-        //qtdVal * (Px + Cx + Prx)
-        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int) * 2 + posVal * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (posVal) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
 
-        int temp = -1;
-        fwrite(&temp, sizeof(int), 1, arq);
-        fwrite(&nome, sizeof(long), 1, arq);
-        fwrite(&pos, sizeof(long), 1, arq);
+        fwrite(&auxIN, sizeof(int), 1, arq);
+        fwrite(&dado.chave, sizeof(long), 1, arq);
+        fwrite(&dado.pos, sizeof(long), 1, arq);
+
+        qtdVal++;
+        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char), SEEK_SET);
+        fwrite(&qtdVal, sizeof(int), 1, arq);
+
+        dado.chave = -1;
+        dado.pos = -1;
+        return dado;
     }
 }
 
@@ -276,4 +336,126 @@ void SelectArvore(char* enderecoDados, char* enderecoArvore, char* nomeDino)
     LiberaDinossauro(dino);
 
     FecharArquivo(arqDino);
+}
+
+void InserirDados(int qtd, char* enderecoDados, char* enderecoArvore)
+{
+    //Abre o arquivo lendo o cabe√ßalho
+    FILE* arq = AbrirArquivo(enderecoDados);
+    FILE* arqA = AbrirArquivoArvore(enderecoArvore);
+
+    //Se deu erro
+    if(arq == NULL || arqA == NULL)
+    {
+        //Sai pois o erro foi avisado em AbrirArquivo
+        return;
+    }
+
+    //string auxiliar
+    char* aux = calloc(200, sizeof(char));
+    //Dinossauro para armazenar os dados
+    Dinossauro dino = CriaDinossauro();
+
+    //Dado
+    Dado dado;
+
+    //Para cada registro √† ser inserido
+    for(int i = 0; i < qtd; i++)
+    {
+        //Para cada atributo do registro
+        for(int j = 0; j < 10; j++)
+        {
+            //L√™ o valor do atributo
+            scan_quote_string(aux);
+            //Se foi digitado NULO
+            if(strcmp(aux, "") == 0)
+                //Avan√ßa para o pr√≥ximo atributo
+                continue;
+
+            //Para escolher qual atibuto definir
+            switch(j)
+            {
+            case 0:
+                strcpy(dino.nome, aux);
+                break;
+            case 1:
+                strcpy(dino.dieta, aux);
+                break;
+            case 2:
+                strcpy(dino.habitat, aux);
+                break;
+            case 3:
+                dino.populacao = atoi(aux);
+                break;
+            case 4:
+                strcpy(dino.tipo, aux);
+                break;
+            case 5:
+                dino.velocidade = atoi(aux);
+                break;
+            case 6:
+                dino.unidadeMedida = aux[0];
+                break;
+            case 7:
+                dino.tamanho = atof(aux);
+                break;
+            case 8:
+                strcpy(dino.especie, aux);
+                break;
+            case 9:
+                strcpy(dino.alimento, aux);
+                break;
+            }
+        }
+
+        //Se um registro j√° foi removido logicamente
+        if(cab.nroRegRem > 0)
+        {
+            //Pega o come√ßo do atributo de encadeamento do √∫ltimo registro removido logicamente
+            fseek(arq, 1600 + 160 * cab.topo + 1, SEEK_SET);
+            dado.pos = 1600 + 160 * cab.topo;
+
+            //Pega o RRN do registro removido logicamente anterior
+            fread(&cab.topo, sizeof(int), 1, arq);
+            //Vai para o come√ßo do registro
+            fseek(arq, -5, SEEK_CUR);
+            //Define que h√° um registro removido logicamente a menos
+            cab.nroRegRem--;
+        }
+        else
+        {
+            //Pega o come√ßo do registro a ser inserido no fim
+            fseek(arq, 1600 + 160 * cab.proxRRN, SEEK_SET);
+            dado.pos = 1600 + 160 * cab.proxRRN;
+
+            //Se come√ßar√° uma nova p√°gina
+            if(cab.proxRRN % 10 == 0)
+                //Define que h√° uma nova p√°gina
+                cab.nroPagDisco++;
+
+            //Define que o √∫ltimo registro tem um RRN maior
+            cab.proxRRN++;
+        }
+
+        //Salva o novo registro no local definido
+        SalvarRegistro(dino, arq);
+
+        dado.chave = converteNome(dino.nome);
+        dado.pos = ftell(arq);
+        printf("\n\n\n%s\n\n\n", dino.nome);
+        InserirRegistro(arqA, dado, cabA.noRaiz);
+
+        //Libera o espa√ßo alocado e cria um novo dino nulo
+        LiberaDinossauro(dino);
+        dino = CriaDinossauro();
+    }
+    //Libera os espa√ßos alocados
+    free(aux);
+    LiberaDinossauro(dino);
+
+    //Fecha o arquivo, atualizando o cabe√ß√°rio
+    FecharArquivo(arq);
+    FecharArquivoArvore(arqA);
+    //Fun√ß√£o de verifica√ß√£o do projeto
+    binarioNaTela(enderecoArvore);
 }

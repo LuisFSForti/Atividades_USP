@@ -6,7 +6,7 @@
 #include "controlador.h"
 
 //Dado utilizado para controlar o cabeçalho dos arquivos
-Cabecalho cab;
+extern Cabecalho cab;
 
 //Lê o cabeçalho (apenas chamado pelo AbrirArquivo)
 void LerCabecalho(FILE *arq)
@@ -771,6 +771,8 @@ void InsertInto(char* enderecoS, int qtd)
 {
     //Abre o arquivo lendo o cabeçalho
     FILE* arq = AbrirArquivo(enderecoS);
+
+    printf("%d\n", cab.proxRRN);
 
     //Se deu erro
     if(arq == NULL)

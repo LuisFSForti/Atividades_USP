@@ -83,6 +83,16 @@ int main()
         SelectArvore(aux1, aux2, nomeDino);
         free(nomeDino);
 
+    case 9:
+        //Pega o endereço do arquivo à ser modificado
+        scanf("%s %s", aux1, aux2);
+        //Pega a quantidade de pedidos
+        qtd = 0;
+        scanf(" %d ", &qtd);
+        //Insere os registros que serão pedidos
+        InserirDados(qtd, aux1, aux2);
+        break;
+
     default:
         break;
     }

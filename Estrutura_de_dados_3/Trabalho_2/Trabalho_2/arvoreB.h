@@ -16,6 +16,7 @@
 #include "controlador.h"
 
 #define tamPagA 93
+#define qtdValReg 4
 
 typedef struct cabecalhoArvore
 {
@@ -23,6 +24,12 @@ typedef struct cabecalhoArvore
     int noRaiz;
     int RRNproxNo;
 } CabecalhoArvore;
+
+typedef struct dado
+{
+    long chave;
+    long pos;
+} Dado;
 
 //Lê o cabeçalho (apenas chamado pelo AbrirArquivo)
 void LerCabecalhoArvore(FILE *arq);
@@ -38,5 +45,6 @@ void FecharArquivoArvore(FILE* arq);
 
 long EncontrarRegistro(FILE* arq, long chave);
 void SelectArvore(char* enderecoDados, char* enderecoArvore, char* nomeDino);
+void InserirDados(int qtd, char* enderecoDados, char* enderecoArvore);
 
 #endif // ARVOREB_H_INCLUDED
