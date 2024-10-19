@@ -202,16 +202,18 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
         //Sai
         return dado;
 
+    printf("\n\n%li %li %li\n\n", chaveAtual, input.chave, input.pos);
+
     //Se há espaço
     if(qtdVal < 4)
     {
         if(folha == '1')
             dado = input;
 
-        printf("\n\n\n%d\n\n\n", posVal);
-
         int P;
-        float C, Pr;
+        long C, Pr;
+
+        printf("\n\n\n%li %d %d", dado.pos, RRNatual, posVal);
 
         //Para mover o ponteiro mais à direita
         fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 +
@@ -222,9 +224,8 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
 
         for(int i = qtdVal; i > posVal; i--)
         {
-            printf("%d - %d %d\n", i, qtdVal, posVal);
             //Coloca no começo do dado
-            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + i * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (i-1) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
 
             fread(&P, sizeof(int), 1, arq);
             fread(&C, sizeof(long), 1, arq);
