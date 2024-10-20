@@ -6,6 +6,9 @@
 #include "controlador.h"
 
 //Dado utilizado para controlar o cabeçalho dos arquivos
+//A palavra-chave extern faz com que o compilador entenda que todo
+//Cabecalho cab criado deve ser o mesmo que este, assim permitindo
+//a manipulação dele em outros códigos
 extern Cabecalho cab;
 
 //Lê o cabeçalho (apenas chamado pelo AbrirArquivo)
