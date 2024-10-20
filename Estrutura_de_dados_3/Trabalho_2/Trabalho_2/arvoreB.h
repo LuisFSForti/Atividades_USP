@@ -29,6 +29,7 @@ typedef struct dado
 {
     long chave;
     long pos;
+    int pontD;
 } Dado;
 
 //Lê o cabeçalho (apenas chamado pelo AbrirArquivo)
@@ -44,6 +45,8 @@ FILE* AbrirArquivoArvore(char* endereco);
 void FecharArquivoArvore(FILE* arq);
 
 long EncontrarRegistro(FILE* arq, long chave);
+
+void CreateArvore(char* enderecoDados, char* enderecoArvore);
 void SelectArvore(char* enderecoDados, char* enderecoArvore, char* nomeDino);
 void InserirDados(int qtd, char* enderecoDados, char* enderecoArvore);
 

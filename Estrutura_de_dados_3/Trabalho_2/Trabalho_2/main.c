@@ -73,6 +73,14 @@ int main()
         //Dá o endereço a função e compacta em arquivo novo
         scanf("%s", aux1);
         Compactar(aux1);
+        break;
+
+    case 7:
+        //Pega o endereço do arquivo à ser modificado
+        scanf("%s %s", aux1, aux2);
+        //Insere os registros que serão pedidos
+        CreateArvore(aux1, aux2);
+        break;
 
     case 8:
         scanf("%s %s %*s", aux1, aux2);
@@ -82,6 +90,7 @@ int main()
 
         SelectArvore(aux1, aux2, nomeDino);
         free(nomeDino);
+        break;
 
     case 9:
         //Pega o endereço do arquivo à ser modificado

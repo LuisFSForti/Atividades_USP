@@ -41,7 +41,7 @@ void EscreverCabecalhoArvore(FILE *arq, char jaExiste)
 FILE* CriarArquivoArvore(char* endereco)
 {
     //Cria um arquivo no modo de escrita binária
-    FILE* arq = fopen(endereco, "wb");
+    FILE* arq = fopen(endereco, "wb+");
 
     //Se deu erro
     if(arq == NULL)
@@ -52,7 +52,7 @@ FILE* CriarArquivoArvore(char* endereco)
     }
 
     //Garante que o arquivo estará escrito como inconsistente
-    cabA.status = 0;
+    cabA.status = '0';
 
     //Escreve o cabeçalho salvo em cabA
     EscreverCabecalhoArvore(arq, 0);
@@ -81,7 +81,7 @@ FILE* AbrirArquivoArvore(char* endereco)
     LerCabecalhoArvore(arq);
 
     //Se o arquivo está inconsistente
-    if(cabA.status == 0)
+    if(cabA.status == '0')
     {
         //Fecha o arquivo, alerta e sai
         fclose(arq);
@@ -90,7 +90,7 @@ FILE* AbrirArquivoArvore(char* endereco)
     }
 
     //Atualiza que o arquivo está inconsistente
-    cabA.status = 0;
+    cabA.status = '0';
     fseek(arq, 0, SEEK_SET);
     fwrite(&cabA.status, sizeof(char), 1, arq);
 
@@ -118,10 +118,37 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
     Dado dado;
     dado.chave = -1;
     dado.pos = -1;
+    dado.pontD = -1;
 
     if(cabA.noRaiz == -1)
     {
-        printf("Falha no processamento do arquivo.");
+        char raizFolha = '1';
+        int raizQtd = 1, raizRRN = 0;
+        long auxL = -1;
+
+        //Pula pra depois do cabeçalho
+        fseek(arq, tamPagA, SEEK_SET);
+        //Escreve as informações básicas da raíz
+        fwrite(&raizFolha, sizeof(char), 1, arq);
+        fwrite(&raizQtd, sizeof(int), 1, arq);
+        fwrite(&raizRRN, sizeof(int), 1, arq);
+        fwrite(&input.pontD, sizeof(int), 1, arq);
+
+        //Primeiro dado
+        fwrite(&input.chave, sizeof(long), 1, arq);
+        fwrite(&input.pos, sizeof(long), 1, arq);
+        fwrite(&input.pontD, sizeof(int), 1, arq);
+
+        for(int i = 1; i < qtdValReg; i++)
+        {
+            fwrite(&auxL, sizeof(long), 1, arq);
+            fwrite(&auxL, sizeof(long), 1, arq);
+            fwrite(&input.pontD, sizeof(int), 1, arq);
+        }
+
+
+        cabA.noRaiz = 0;
+        cabA.RRNproxNo = 1;
         return dado;
     }
 
@@ -157,20 +184,18 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
             return dado;
         }
 
-        printf("%li %li %d - ", input.chave, chaveAtual, RRNatual);
         if(input.chave < chaveAtual)
         {
             if(folha == '0')
             {
                 fseek(arq, -(sizeof(long) + sizeof(int)), SEEK_CUR);
                 fread(&proxRRN, sizeof(int), 1, arq);
-                printf("A %d %d\n", qtdVal, proxRRN);
                 dado = InserirRegistro(arq, input, proxRRN);
                 break;
             }
             else
             {
-                dado.chave = 0;
+                dado.chave = -2;
                 break;
             }
         }
@@ -180,17 +205,18 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
                 fseek(arq, sizeof(long) + sizeof(int), SEEK_CUR);
             else
             {
+                //Marca que é o maior dado do registro
+                posVal++;
                 if(folha == '0')
                 {
                     fseek(arq, sizeof(long), SEEK_CUR);
                     fread(&proxRRN, sizeof(int), 1, arq);
-                    printf("B %d %d\n", qtdVal, proxRRN);
                     dado = InserirRegistro(arq, input, proxRRN);
                     break;
                 }
                 else
                 {
-                    dado.chave = 0;
+                    dado.chave = -2;
                     break;
                 }
             }
@@ -202,45 +228,33 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
         //Sai
         return dado;
 
-    printf("\n\n%li %li %li\n\n", chaveAtual, input.chave, input.pos);
+    if(folha == '1')
+        dado = input;
 
     //Se há espaço
-    if(qtdVal < 4)
+    if(qtdVal < qtdValReg)
     {
-        if(folha == '1')
-            dado = input;
-
-        int P;
-        long C, Pr;
-
-        printf("\n\n\n%li %d %d", dado.pos, RRNatual, posVal);
-
-        //Para mover o ponteiro mais à direita
-        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 +
-        (qtdVal) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
-        fread(&P, sizeof(int), 1, arq);
-        fseek(arq, sizeof(long)*2, SEEK_CUR);
-        fwrite(&P, sizeof(int), 1, arq);
+        Dado dadoAux;
 
         for(int i = qtdVal; i > posVal; i--)
         {
             //Coloca no começo do dado
-            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (i-1) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+            fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (i-1) * (sizeof(int) + sizeof(long)*2) + sizeof(int), SEEK_SET);
 
-            fread(&P, sizeof(int), 1, arq);
-            fread(&C, sizeof(long), 1, arq);
-            fread(&Pr, sizeof(long), 1, arq);
+            fread(&dadoAux.chave, sizeof(long), 1, arq);
+            fread(&dadoAux.pos, sizeof(long), 1, arq);
+            fread(&dadoAux.pontD, sizeof(int), 1, arq);
 
-            fwrite(&P, sizeof(int), 1, arq);
-            fwrite(&C, sizeof(long), 1, arq);
-            fwrite(&Pr, sizeof(long), 1, arq);
+            fwrite(&dadoAux.chave, sizeof(long), 1, arq);
+            fwrite(&dadoAux.pos, sizeof(long), 1, arq);
+            fwrite(&dadoAux.pontD, sizeof(int), 1, arq);
         }
 
-        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (posVal) * (sizeof(int) + sizeof(long)*2), SEEK_SET);
+        fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char) + sizeof(int)*2 + (posVal) * (sizeof(int) + sizeof(long)*2) + sizeof(int), SEEK_SET);
 
-        fwrite(&auxIN, sizeof(int), 1, arq);
         fwrite(&dado.chave, sizeof(long), 1, arq);
         fwrite(&dado.pos, sizeof(long), 1, arq);
+        fwrite(&dado.pontD, sizeof(int), 1, arq);
 
         qtdVal++;
         fseek(arq, (RRNatual + 1) * tamPagA + sizeof(char), SEEK_SET);
@@ -250,6 +264,183 @@ Dado InserirRegistro(FILE* arq, Dado input, int RRNatual)
         dado.pos = -1;
         return dado;
     }
+    else
+    {
+        Dado ordem[5];
+        qtdVal = 2;
+
+        //Pula pro começo do registro, pula se é folha, pula a quantidade da dados, o rrn e o primeiro ponteiro
+        fseek(arq, (RRNatual+1) * tamPagA + sizeof(char) + sizeof(int)*2 + sizeof(int), SEEK_SET);
+
+        //Define a ordem dos dados
+        for(int i = 0; i <= qtdValReg; i++)
+        {
+            if(i == posVal)
+            {
+                ordem[i] = dado;
+            }
+            else
+            {
+                fread(&ordem[i].chave, sizeof(long), 1, arq);
+                fread(&ordem[i].pos, sizeof(long), 1, arq);
+                fread(&ordem[i].pontD, sizeof(int), 1, arq);
+            }
+        }
+
+        //Avança para o novo registro
+        fseek(arq, (cabA.RRNproxNo+1) * tamPagA, SEEK_SET);
+
+        //Dados básicos do registro
+        fwrite(&folha, sizeof(char), 1, arq);
+        fwrite(&qtdVal, sizeof(int), 1, arq);
+        fwrite(&cabA.RRNproxNo, sizeof(int), 1, arq);
+
+        //Primeiro ponteiro da esquerda do novo registro é o da direita do dado do meio
+        fwrite(&ordem[2].pontD, sizeof(int), 1, arq);
+
+        for(int i = 3; i < qtdValReg + 3; i++)
+        {
+            if(i < 5)
+            {
+                fwrite(&ordem[i].chave, sizeof(long), 1, arq);
+                fwrite(&ordem[i].pos, sizeof(long), 1, arq);
+                fwrite(&ordem[i].pontD, sizeof(int), 1, arq);
+            }
+            else
+            {
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxIN, sizeof(int), 1, arq);
+            }
+        }
+
+        //Volta pro começo do registro
+        fseek(arq, (RRNatual+1) * tamPagA + sizeof(char), SEEK_SET);
+        //Atualiza a quantidade de registros
+        fwrite(&qtdVal, sizeof(int), 1, arq);
+        //Pula o campo do rrn do registro e o primeiro ponteiro
+        fseek(arq, sizeof(int) * 2, SEEK_CUR);
+
+        //Reescreve o registro, atualizando-o
+        for(int i = 0; i < qtdValReg; i++)
+        {
+            //Escreve os dois primeiro registros
+            if(i < 2)
+            {
+                fwrite(&ordem[i].chave, sizeof(long), 1, arq);
+                fwrite(&ordem[i].pos, sizeof(long), 1, arq);
+                fwrite(&ordem[i].pontD, sizeof(int), 1, arq);
+            }
+            //Neutraliza os demais
+            else
+            {
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxIN, sizeof(int), 1, arq);
+            }
+        }
+
+        //Se não for a raiz
+        if(RRNatual != cabA.noRaiz)
+        {
+            //Atualiza para quem o ponteiro do meio deve apontar, que é o novo registro
+            ordem[2].pontD = cabA.RRNproxNo;
+            //Atualiza qual é o novo último registro
+            cabA.RRNproxNo++;
+            //Retorna o dado que deve ser inserido no registro anterior
+            return ordem[2];
+        }
+        else
+        {
+            //Atualiza para quem o ponteiro do meio deve apontar, que é o novo registro
+            ordem[2].pontD = cabA.RRNproxNo;
+            //Atualiza qual é o novo último registro
+            cabA.RRNproxNo++;
+
+            //Escreve o registro da nova raíz
+            fseek(arq, (cabA.RRNproxNo + 1) * tamPagA, SEEK_SET);
+            folha = '0';
+            fwrite(&folha, sizeof(char), 1, arq);
+            fwrite(&auxI, sizeof(int), 1, arq);
+            fwrite(&cabA.RRNproxNo, sizeof(int), 1, arq);
+
+            fwrite(&cabA.noRaiz, sizeof(int), 1, arq);
+
+            fwrite(&ordem[2].chave, sizeof(long), 1, arq);
+            fwrite(&ordem[2].pos, sizeof(long), 1, arq);
+            fwrite(&ordem[2].pontD, sizeof(int), 1, arq);
+            for(int i = 1; i < qtdValReg; i++)
+            {
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxLN, sizeof(long), 1, arq);
+                fwrite(&auxIN, sizeof(int), 1, arq);
+            }
+            cabA.noRaiz = cabA.RRNproxNo;
+            cabA.RRNproxNo++;
+            dado.chave = -1;
+            dado.pos = -1;
+            dado.pontD = -1;
+
+            return dado;
+        }
+    }
+}
+
+void CreateArvore(char* enderecoDados, char* enderecoArvore)
+{
+    cabA.noRaiz = -1;
+    cabA.RRNproxNo = -1;
+    cabA.status = '0';
+
+    FILE* arqDados = AbrirArquivo(enderecoDados);
+    FILE* arqArvore = CriarArquivoArvore(enderecoArvore);
+    Dinossauro dino;
+    Dado dado;
+
+    //Se deu erro
+    if(arqDados == NULL || arqArvore == NULL)
+    {
+        //Sai pois o erro foi avisado em AbrirArquivo
+        return;
+    }
+
+    while(1)
+    {
+        dado.pos = ftell(arqDados);
+
+        //Lê o registro atual
+        dino = CriaDinossauroBin(arqDados);
+
+        //Se não conseguiu ler
+        if(dino.removido == 'E')
+        {
+            //Libera o espaço alocado
+            LiberaDinossauro(dino);
+            //Sai do loop
+            break;
+        }
+
+        //Se o registro foi removido logicamente
+        if(dino.removido == '1')
+        {
+            //Avança para o próximo registro
+            fseek(arqDados, 159, SEEK_CUR);
+            //Libera o dino
+            LiberaDinossauro(dino);
+            continue;
+        }
+
+        dado.chave = converteNome(dino.nome);
+        dado.pontD = -1;
+
+        InserirRegistro(arqArvore, dado, cabA.noRaiz);
+
+        LiberaDinossauro(dino);
+    }
+
+    FecharArquivo(arqDados);
+    FecharArquivoArvore(arqArvore);
+    binarioNaTela(enderecoArvore);
 }
 
 long EncontrarRegistro(FILE* arq, long chave)
@@ -440,11 +631,11 @@ void InserirDados(int qtd, char* enderecoDados, char* enderecoArvore)
 
         dado.chave = converteNome(dino.nome);
         dado.pos = ftell(arq);
+        dado.pontD = -1;
 
         //Salva o novo registro no local definido
         SalvarRegistro(dino, arq);
 
-        printf("\n\n\n%s\n\n\n", dino.nome);
         InserirRegistro(arqA, dado, cabA.noRaiz);
 
         //Libera o espaço alocado e cria um novo dino nulo

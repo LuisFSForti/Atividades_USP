@@ -80,7 +80,7 @@ FILE* AbrirArquivo(char* endereco)
     //Lê o cabeçalho
     LerCabecalho(arq);
 
-    if(cab.status == 0)
+    if(cab.status == '0')
     {
         //Fecha o arquivo, alerta e sai
         fclose(arq);
