@@ -122,7 +122,7 @@
 	"controlador.h"
 	"dinossauro.h"
 
-1729533597 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\controlador.c
+1729117941 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\controlador.c
 	"controlador.h"
 
 1729117857 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\controlador.h
@@ -157,13 +157,13 @@
 1729114861 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_auxiliares.c
 	"funcoes_auxiliares.h"
 
-1729124254 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_fornecidas.c
+1729123023 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\funcoes_fornecidas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1729533597 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\main.c
+1729124179 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcoes_fornecidas.h"
@@ -173,12 +173,11 @@
 1729124244 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\arvoreb.c
 	"arvoreB.h"
 
-1729533597 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\arvoreb.h
+1729124213 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_2\trabalho_2\arvoreb.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"funcoes_fornecidas.h"
 	"funcoes_auxiliares.h"
 	"dinossauro.h"
-	"controlador.h"
 

@@ -116,54 +116,85 @@ void FecharArquivoArvore(FILE* arq)
     fclose(arq);
 }
 
-void CriarRaiz(FILE* arq, Dado input)
+//Para inserir um dado na árvore
+Dado InserirDado(FILE* arq, Dado input, int RRNatual)
 {
-    //Variáveis auxiliares para a criação da raíz
-    char raizFolha = '1';
-    int raizQtd = 1, raizRRN = 0;
-    long auxL = -1;
-
-    //Pula pra depois do cabeçalho
-    fseek(arq, tamPagA, SEEK_SET);
-    //Escreve as informações básicas da raíz
-    fwrite(&raizFolha, sizeof(char), 1, arq);
-    fwrite(&raizQtd, sizeof(int), 1, arq);
-    fwrite(&raizRRN, sizeof(int), 1, arq);
-
-    //Define o primeiro ponteiro como nulo
-    fwrite(&input.pontD, sizeof(int), 1, arq);
-
-    //Primeiro dado
-    fwrite(&input.chave, sizeof(long), 1, arq);
-    fwrite(&input.pos, sizeof(long), 1, arq);
-    fwrite(&input.pontD, sizeof(int), 1, arq);
-
-    //Neutraliza os demais dados do registro
-    for(int i = 1; i < qtdValReg; i++)
-    {
-        fwrite(&auxL, sizeof(long), 1, arq);
-        fwrite(&auxL, sizeof(long), 1, arq);
-        fwrite(&input.pontD, sizeof(int), 1, arq);
-    }
-
-
-    //Atualiza os dados do cabeçalho
-    cabA.noRaiz = 0;
-    cabA.RRNproxNo = 1;
-}
-
-Dado EncontrarPosicaoInsercao(FILE* arq, Dado input, int RRNatual, char folha, int qtdVal, int proxRRN, int* ret)
-{
-    //Onde será inserido
-    int posVal;
-    ret = &posVal;
-
-    long chaveAtual;
+    //Dado auxiliar da função
     Dado dado;
+    //Neutraliza os valores
     dado.chave = -1;
     dado.pos = -1;
     dado.pontD = -1;
 
+    //Se não tiver uma raiz
+    if(cabA.noRaiz == -1)
+    {
+        //Variáveis auxiliares para a criação da raíz
+        char raizFolha = '1';
+        int raizQtd = 1, raizRRN = 0;
+        long auxL = -1;
+
+        //Pula pra depois do cabeçalho
+        fseek(arq, tamPagA, SEEK_SET);
+        //Escreve as informações básicas da raíz
+        fwrite(&raizFolha, sizeof(char), 1, arq);
+        fwrite(&raizQtd, sizeof(int), 1, arq);
+        fwrite(&raizRRN, sizeof(int), 1, arq);
+
+        //Define o primeiro ponteiro como nulo
+        fwrite(&input.pontD, sizeof(int), 1, arq);
+
+        //Primeiro dado
+        fwrite(&input.chave, sizeof(long), 1, arq);
+        fwrite(&input.pos, sizeof(long), 1, arq);
+        fwrite(&input.pontD, sizeof(int), 1, arq);
+
+        //Neutraliza os demais dados do registro
+        for(int i = 1; i < qtdValReg; i++)
+        {
+            fwrite(&auxL, sizeof(long), 1, arq);
+            fwrite(&auxL, sizeof(long), 1, arq);
+            fwrite(&input.pontD, sizeof(int), 1, arq);
+        }
+
+
+        //Atualiza os dados do cabeçalho
+        cabA.noRaiz = 0;
+        cabA.RRNproxNo = 1;
+        //Encerra a função
+        return dado;
+    }
+
+    //Se o rrn não é válido, um erro
+    if(RRNatual == -1)
+    {
+        //Avisa o erro
+        printf("Falha no processamento do arquivo.");
+        //Retorna o dado nulo
+        return dado;
+    }
+
+    //Variáveis auxiliares
+    char folha;
+    int qtdVal;
+    long chaveAtual;
+    int proxRRN = -1;
+
+    //Valores nulos auxiliares
+    int auxI = 1, auxIN = -1;
+    long auxL = 1, auxLN = -1;
+
+    //Avança pro começo do registro atual
+    fseek(arq, (RRNatual + 1) * tamPagA, SEEK_SET);
+
+    //Lê os dados
+    fread(&folha, sizeof(char), 1, arq);
+    fread(&qtdVal, sizeof(int), 1, arq);
+    //Pula o rrn do registro e o primeiro ponteiro
+    fseek(arq, sizeof(int) * 2, SEEK_CUR);
+
+    //Onde o dado deve ser inserido no registro
+    int posVal;
     //Para cada dado no registro
     for(posVal = 0; posVal < qtdVal; posVal++)
     {
@@ -232,63 +263,6 @@ Dado EncontrarPosicaoInsercao(FILE* arq, Dado input, int RRNatual, char folha, i
             }
         }
     }
-}
-
-//Para inserir um dado na árvore
-Dado InserirDado(FILE* arq, Dado input, int RRNatual)
-{
-    //Dado auxiliar da função
-    Dado dado;
-    //Neutraliza os valores
-    dado.chave = -1;
-    dado.pos = -1;
-    dado.pontD = -1;
-
-    //Se não tiver uma raiz
-    if(cabA.noRaiz == -1)
-    {
-        //Cria a raíz inicial
-        CriarRaiz(arq, input);
-        //Encerra a função
-        return dado;
-    }
-
-    //Se o rrn não é válido, um erro
-    if(RRNatual == -1)
-    {
-        //Avisa o erro
-        printf("Falha no processamento do arquivo.");
-        //Retorna o dado nulo
-        return dado;
-    }
-
-    //Variáveis auxiliares
-    char folha;
-    int qtdVal;
-    long chaveAtual;
-    int proxRRN = -1;
-
-    //Valores nulos auxiliares
-    int auxI = 1, auxIN = -1;
-    long auxL = 1, auxLN = -1;
-
-    //Avança pro começo do registro atual
-    fseek(arq, (RRNatual + 1) * tamPagA, SEEK_SET);
-
-    //Lê os dados
-    fread(&folha, sizeof(char), 1, arq);
-    fread(&qtdVal, sizeof(int), 1, arq);
-    //Pula o rrn do registro e o primeiro ponteiro
-    fseek(arq, sizeof(int) * 2, SEEK_CUR);
-
-    //Onde o dado deve ser inserido no registro
-    int posVal;
-
-    //Qual dado deve ser inserido
-    //Se a chave for -1, nada deve ser inserido
-    //Se a chave for -2, deve inserir o input
-    //Se a chave for diferente, deve inserir o dado retornado
-    dado = EncontrarPosicaoInsercao(arq, input, RRNatual, folha, qtdVal, proxRRN, &posVal);
 
     //Se não foi passado um dado do braço acima ou não achou onde inserir
     if(dado.chave == -1)
