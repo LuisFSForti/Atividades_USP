@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1731451555 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+	"ListaDeAdjacencias.h"
+
+1731451555 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+
+1731463599 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+	<iostream>
+	<fstream>
+	"Dinossauro.h"
+
+1731463736 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.cpp
+	"Dinossauro.h"
+
+1731464679 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.h
+	<stdio.h>
+	<iostream>
+	<fstream>
+
