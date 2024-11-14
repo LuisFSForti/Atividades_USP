@@ -16,21 +16,23 @@ private:
 
 public:
     Dinossauro();
-    Dinossauro(Dinossauro& dino);
+    Dinossauro(const Dinossauro& dino);
     Dinossauro(std::fstream &arq);
-    void SalvarDinossauro(std::fstream &arq);
-    friend std::ostream& operator<<(std::ostream& out, Dinossauro& dino);
 
-    int Populacao();
-    int Velocidade();
-    float Tamanho();
-    char UnidadeMedida();
-    std::string Nome();
-    std::string Especie();
-    std::string Habitat();
-    std::string Tipo();
-    std::string Dieta();
-    std::string Alimento();
+    void SalvarDinossauro(std::fstream &arq);
+
+    friend std::ostream& operator<<(std::ostream& out, const Dinossauro& dino);
+
+    int Populacao() const;
+    int Velocidade() const;
+    float Tamanho() const;
+    char UnidadeMedida() const;
+    std::string Nome() const;
+    std::string Especie() const;
+    std::string Habitat() const;
+    std::string Tipo() const;
+    std::string Dieta() const;
+    std::string Alimento() const;
 };
 
 #endif // DINOSSAURO_H

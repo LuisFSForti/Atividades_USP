@@ -10,7 +10,7 @@ Dinossauro::Dinossauro()
     this->_velocidade = -1;
 }
 
-Dinossauro::Dinossauro(Dinossauro& dino)
+Dinossauro::Dinossauro(const Dinossauro& dino)
 {
     //Copia os dados de dino
 
@@ -22,7 +22,7 @@ Dinossauro::Dinossauro(Dinossauro& dino)
     this->_especie = dino._especie;
     this->_habitat = dino._habitat;
     this->_tipo = dino._tipo;
-    this->_alimento = dino._alimento;
+    this->_dieta = dino._dieta;
     this->_alimento = dino._alimento;
 }
 
@@ -46,7 +46,7 @@ Dinossauro::Dinossauro(std::fstream &arq)
     arq.read((char*)&this->_populacao, sizeof(int));
     arq.read((char*)&this->_populacao, sizeof(int));
     arq.read((char*)&this->_tamanho, sizeof(float));
-    arq.read((char*)&this->_unidadeMedida, sizeof(char));
+    arq.read(&this->_unidadeMedida, sizeof(char));
     arq.read((char*)&this->_velocidade, sizeof(int));
 
     //Para fazer a leitura dos dados de tamanho variavel
@@ -95,7 +95,7 @@ void Dinossauro::SalvarDinossauro(std::fstream &arq)
 }
 
 //Imprime as informacoes do dino
-std::ostream& operator<<(std::ostream& out, Dinossauro& dino)
+std::ostream& operator<<(std::ostream& out, const Dinossauro& dino)
 {
     out << "Nome: " + dino._nome << std::endl;
 
@@ -117,57 +117,56 @@ std::ostream& operator<<(std::ostream& out, Dinossauro& dino)
     if(dino._velocidade >= 0 && dino._unidadeMedida != '&')
         out << "Velocidade: " << std::to_string(dino._velocidade) << " " << dino._unidadeMedida << "m/h" << std::endl;
 
-
     return out;
 }
 
-int Dinossauro::Populacao()
+int Dinossauro::Populacao() const
 {
     return this->_populacao;
 }
 
-int Dinossauro::Velocidade()
+int Dinossauro::Velocidade() const
 {
     return this->_velocidade;
 }
 
-float Dinossauro::Tamanho()
+float Dinossauro::Tamanho() const
 {
     return this->_tamanho;
 }
 
-char Dinossauro::UnidadeMedida()
+char Dinossauro::UnidadeMedida() const
 {
     return this->_unidadeMedida;
 }
 
-std::string Dinossauro::Nome()
+std::string Dinossauro::Nome() const
 {
     return this->_nome;
 }
 
-std::string Dinossauro::Especie()
+std::string Dinossauro::Especie() const
 {
     return this->_especie;
 }
 
-std::string Dinossauro::Habitat()
+std::string Dinossauro::Habitat() const
 {
     return this->_habitat;
 }
 
-std::string Dinossauro::Tipo()
+std::string Dinossauro::Tipo() const
 {
     return this->_tipo;
 }
 
-std::string Dinossauro::Dieta()
+std::string Dinossauro::Dieta() const
 {
 
     return this->_dieta;
 }
 
-std::string Dinossauro::Alimento()
+std::string Dinossauro::Alimento() const
 {
     return this->_alimento;
 }

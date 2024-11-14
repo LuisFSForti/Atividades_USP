@@ -1,19 +1,36 @@
 # depslib dependency file v1.0
-1731451555 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+1731541099 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
 	"ListaDeAdjacencias.h"
 
-1731451555 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+1731539407 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+	"Vertice.h"
 
-1731463599 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+1731544167 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
 	<iostream>
 	<fstream>
 	"Dinossauro.h"
+	"ListaDeAdjacencias.h"
 
-1731463736 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.cpp
+1731532318 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.cpp
 	"Dinossauro.h"
 
-1731464679 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.h
+1731530528 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.h
 	<stdio.h>
 	<iostream>
 	<fstream>
+
+1731539697 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
+	<list>
+	"Dinossauro.h"
+	"Aresta.h"
+
+1731539878 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
+	"Vertice.h"
+
+1731530371 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
+	<stdio.h>
+	<iostream>
+
+1731531760 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
+	"Aresta.h"
 

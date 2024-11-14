@@ -2,29 +2,34 @@
 #include <fstream>
 
 #include "Dinossauro.h"
+#include "ListaDeAdjacencias.h"
 
 int main()
 {
-    std::fstream teste("binario1.bin", std::ios::in|std::ios::binary|std::ios::ate);
+    //std::fstream arq("binario1.bin", std::ios::in|std::ios::out|std::ios::binary);
 
-    if(!teste.is_open())
+    int cod;
+    std::string endereco;
+
+    std::cin >> cod >> endereco;
+
+    switch(cod)
     {
-        return 0;
+    case 10:
+        std::fstream arq(endereco, std::ios::in|std::ios::binary);
+
+        if(!arq.is_open())
+        {
+            return 0;
+        }
+
+        ListaDeAdjacencias lista(arq);
+        std::cout << lista;
+
+        arq.close();
+        break;
+
     }
-
-    std::cout << teste.tellg() << std::endl;
-    teste.seekg(1600 + 160);
-    std::cout << teste.tellg() << std::endl;
-
-    Dinossauro dino(teste);
-
-    std::cout << dino;
-
-    std::fstream teste2("teste.bin", std::ios::out|std::ios::binary|std::ios::ate);
-    dino.SalvarDinossauro(teste2);
-
-    teste.close();
-    teste2.close();
 
     return 0;
 }
