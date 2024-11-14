@@ -34,3 +34,38 @@
 1731531760 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
 	"Aresta.h"
 
+1731585252 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
+	"Aresta.h"
+
+1731585252 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
+	<stdio.h>
+	<iostream>
+
+1731585252 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.cpp
+	"Dinossauro.h"
+
+1731585252 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.h
+	<stdio.h>
+	<iostream>
+	<fstream>
+
+1731600379 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+	"ListaDeAdjacencias.h"
+
+1731592941 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+	"Vertice.h"
+
+1731598393 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
+	<vector>
+	"Dinossauro.h"
+	"Aresta.h"
+
+1731599110 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+	<iostream>
+	<fstream>
+	"Dinossauro.h"
+	"ListaDeAdjacencias.h"
+
+1731598422 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
+	"Vertice.h"
+

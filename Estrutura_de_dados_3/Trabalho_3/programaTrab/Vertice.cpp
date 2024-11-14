@@ -5,7 +5,7 @@ Vertice::Vertice(Dinossauro dino)
     this->_origem = Dinossauro(dino);
 
     Aresta aresta(dino.Alimento(), dino.Populacao());
-    this->_listaAlimentos.push_front(aresta);
+    this->_listaAlimentos.insert(this->_listaAlimentos.begin(), aresta);
 
     this->_grauDeSaida = 1;
     this->_grau = 1;
@@ -21,16 +21,16 @@ void Vertice::IncluirAlimento(Dinossauro dino)
 {
     Aresta aresta(dino.Alimento(), dino.Populacao());
 
-    for(auto atual = this->_listaAlimentos.begin(); atual != this->_listaAlimentos.end(); std::advance(atual, 1))
+    for(int i = 0; i < this->_listaAlimentos.size(); i++)
     {
-        int relacao = dino.Alimento().compare(atual->Valor());
+        int relacao = dino.Alimento().compare(this->_listaAlimentos.at(i).Valor());
 
         if(relacao == 0)
             return;
 
         if(relacao < 0)
         {
-            this->_listaAlimentos.insert(atual, aresta);
+            this->_listaAlimentos.insert(this->_listaAlimentos.begin() + i, aresta);
             this->_grauDeSaida++;
             this->_grau++;
             return;
@@ -68,6 +68,11 @@ std::ostream& operator<<(std::ostream& out, const Vertice& vert)
 Dinossauro Vertice::Origem() const
 {
     return this->_origem;
+}
+
+std::vector<Aresta> Vertice::ListaAlimentos() const
+{
+    return this->_listaAlimentos;
 }
 
 void Vertice::SetGrauDeEntrada(int valor)

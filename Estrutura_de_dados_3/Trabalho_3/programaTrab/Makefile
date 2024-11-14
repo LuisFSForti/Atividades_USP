@@ -1,6 +1,5 @@
 all:
-	gcc -o Trabalho3.exe *.cpp
+	g++ *.cpp -o main.exe -lm
 
 run:
-	./Trabalho3.exe
-
+	./main.exe

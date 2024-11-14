@@ -1,7 +1,7 @@
 #ifndef VERTICE_H
 #define VERTICE_H
 
-#include <list>
+#include <vector>
 
 #include "Dinossauro.h"
 #include "Aresta.h"
@@ -10,7 +10,7 @@ class Vertice
 {
 private:
     Dinossauro _origem;
-    std::list<Aresta> _listaAlimentos;
+    std::vector<Aresta> _listaAlimentos;
     int _grauDeEntrada, _grauDeSaida, _grau;
 
 public:
@@ -23,6 +23,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Vertice& vert);
 
     Dinossauro Origem() const;
+    std::vector<Aresta> ListaAlimentos() const;
     void SetGrauDeEntrada(int valor);
     int GrauDeEntrada() const;
     int GrauDeSaida() const;

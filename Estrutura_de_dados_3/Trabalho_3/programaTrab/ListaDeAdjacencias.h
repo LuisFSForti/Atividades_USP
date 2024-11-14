@@ -6,15 +6,18 @@
 class ListaDeAdjacencias
 {
 private:
-    std::list<Vertice> _listaAdj;
+    std::vector<Vertice> _listaAdj;
 
     int EncontrarDino(std::string nome);
     int EncontrarPosInsercao(std::string nome);
-    void CalcularQuantidadeEntradas(std::string nome);
+    int ContarCirculos(std::vector<std::string>* brancos, std::vector<std::string>* cinzas, int dinoAtual);
 
 public:
     ListaDeAdjacencias(std::fstream &arqEntrada);
     ~ListaDeAdjacencias();
+
+    std::vector<std::string> FindPredadores(std::string nome);
+    int ContarQuantidadeCiclos();
 
     friend std::ostream& operator<<(std::ostream& out, const ListaDeAdjacencias& lista);
 };
