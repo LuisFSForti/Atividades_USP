@@ -1,71 +1,124 @@
 #include "Vertice.h"
 
-Vertice::Vertice(Dinossauro dino)
+//Cria um vertice com um SerVivo
+Vertice::Vertice(SerVivo serVivo)
 {
-    this->_origem = Dinossauro(dino);
+    this->_origem = SerVivo(serVivo);
 
-    Aresta aresta(dino.Alimento(), dino.Populacao());
-    this->_listaAlimentos.insert(this->_listaAlimentos.begin(), aresta);
+    if(serVivo.Alimento().compare("") != 0)
+    {
+        Aresta aresta(serVivo.Alimento(), serVivo.Populacao());
+        this->_listaAlimentos.insert(this->_listaAlimentos.begin(), aresta);
 
-    this->_grauDeSaida = 1;
-    this->_grau = 1;
+        this->_grauDeSaida = 1;
+        this->_grau = 1;
+    }
+    else
+    {
+        this->_grauDeSaida = 0;
+        this->_grau = 0;
+    }
     this->_grauDeEntrada = 0;
 }
 
+//Destrutor da classe
 Vertice::~Vertice()
 {
+    //Libera o espaco armazenado para as arestas
     this->_listaAlimentos.clear();
 }
 
-void Vertice::IncluirAlimento(Dinossauro dino)
+//Para adicioanr presas
+void Vertice::IncluirAlimento(SerVivo serVivo)
 {
-    Aresta aresta(dino.Alimento(), dino.Populacao());
+    //Cria a aresta
+    Aresta aresta(serVivo.Alimento(), serVivo.Populacao());
 
-    for(int i = 0; i < this->_listaAlimentos.size(); i++)
+    //Para encontrar onde deve inserir
+    for(int i = 0; i < (int)this->_listaAlimentos.size(); i++)
     {
-        int relacao = dino.Alimento().compare(this->_listaAlimentos.at(i).Valor());
+        //Compara o nome da presa atual com a nova
+        int relacao = serVivo.Alimento().compare(this->_listaAlimentos.at(i).Valor());
 
+        //Se achou a presa que deseja inserir
+        //Retorna sem inserir
         if(relacao == 0)
             return;
 
+        //Se a presa tiver precedencia sobre o atual
         if(relacao < 0)
         {
+            //Insere no local
             this->_listaAlimentos.insert(this->_listaAlimentos.begin() + i, aresta);
+
+            //Atualiza os graus
             this->_grauDeSaida++;
             this->_grau++;
+
+            //Retorna
             return;
         }
     }
 
+    //Se nao achou onde inserir
+    //Insere no final
     this->_listaAlimentos.push_back(aresta);
+
+    //Atualiza os graus
     this->_grauDeSaida++;
     this->_grau++;
 }
 
-bool Vertice::AlimentaDe(std::string nome)
+//Para verificar se preda o ser vivo
+bool Vertice::AlimentaDe(std::string nome) const
 {
+    //Para cada aresta
     for(auto const& aresta : this->_listaAlimentos)
     {
-        if(nome.compare(aresta.Valor()) == 0)
+        //Verifica a relacao com a presa atual
+        int relacao = nome.compare(aresta.Valor());
+
+        //Se encontrou a presa passada
+        if(relacao == 0)
+            //Retorna que achou
             return true;
+
+        //Se tem precedencia
+        //Entao nao pode estar em nenhuma posicao para frente
+        if(relacao < 0)
+            break;
     }
+    //Se nao encontrou retorna falso
     return false;
 }
 
+//Para imprimir os dados
 std::ostream& operator<<(std::ostream& out, const Vertice& vert)
 {
+    //Para cada aresta
     for(const auto& aresta : vert._listaAlimentos)
     {
+        //Imprime os dados do vertice
         out <<  vert._origem.Nome() + " " + vert._origem.Especie() + " " + vert._origem.Habitat() + " " + vert._origem.Dieta() + " " + vert._origem.Tipo() + " " +
             std::to_string(vert._grauDeEntrada) + " " + std::to_string(vert._grauDeSaida) + " " + std::to_string(vert._grau);
 
+        //Imprime os dados da aresta atual
         out << " " << aresta << std::endl;
     }
 
     return out;
 }
 
-Dinossauro Vertice::Origem() const
+//Para definir o grau de entrada
+void Vertice::SetGrauDeEntrada(int valor)
+{
+    //Atualiza tambem o grau geral
+    this->_grau = this->_grauDeSaida + valor;
+    this->_grauDeEntrada = valor;
+}
+
+//Para pegar as informacoes nas outras classes
+SerVivo Vertice::Origem() const
 {
     return this->_origem;
 }
@@ -73,12 +126,6 @@ Dinossauro Vertice::Origem() const
 std::vector<Aresta> Vertice::ListaAlimentos() const
 {
     return this->_listaAlimentos;
-}
-
-void Vertice::SetGrauDeEntrada(int valor)
-{
-    this->_grau = this->_grauDeSaida + valor;
-    this->_grauDeEntrada = valor;
 }
 
 int Vertice::GrauDeEntrada() const

@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1731541099 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+1731629375 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
 	"ListaDeAdjacencias.h"
 
-1731539407 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+1731629232 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
 	"Vertice.h"
 
-1731544167 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+1731627808 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
 	<iostream>
 	<fstream>
-	"Dinossauro.h"
+	"SerVivo.h"
 	"ListaDeAdjacencias.h"
 
 1731532318 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\dinossauro.cpp
@@ -19,19 +19,19 @@
 	<iostream>
 	<fstream>
 
-1731539697 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
-	<list>
-	"Dinossauro.h"
+1731628683 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
+	<vector>
+	"SerVivo.h"
 	"Aresta.h"
 
-1731539878 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
+1731628672 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
 	"Vertice.h"
 
-1731530371 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
+1731628005 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
 	<stdio.h>
 	<iostream>
 
-1731531760 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
+1731628010 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
 	"Aresta.h"
 
 1731585252 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
@@ -68,4 +68,12 @@
 
 1731598422 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
 	"Vertice.h"
+
+1731627465 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.h
+	<stdio.h>
+	<iostream>
+	<fstream>
+
+1731627595 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.cpp
+	"SerVivo.h"
 
