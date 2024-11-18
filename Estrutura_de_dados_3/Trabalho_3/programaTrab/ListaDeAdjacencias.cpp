@@ -85,6 +85,11 @@ ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
     }
 }
 
+ListaDeAdjacencias::ListaDeAdjacencias()
+{
+    return;
+}
+
 //Destrutor da classe
 ListaDeAdjacencias::~ListaDeAdjacencias()
 {
@@ -136,31 +141,32 @@ int ListaDeAdjacencias::EncontrarPosInsercao(std::string nome) const
 }
 
 //Para fazer a contagem de ciclos no grafo
-int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::vector<std::string>* cinzas, int serVivoAtual) const
+int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::vector<std::string>* cinzas, int verticeAtual) const
 {
     //Procura a posicao dele nos brancos
     for(int i = 0; i < (int)brancos->size(); i++)
     {
         //Se encontrou
-        if(brancos->at(i).compare(this->_listaAdj.at(serVivoAtual).Origem().Nome()) == 0)
+        if(brancos->at(i).compare(this->_listaAdj.at(verticeAtual).Origem().Nome()) == 0)
         {
             //Deleta ele
             brancos->erase(brancos->begin() + i);
+            break;
         }
     }
 
     int qtd = 0;
 
     //Verifica se tem presas
-    if(this->_listaAdj.at(serVivoAtual).GrauDeSaida() != 0)
+    if(this->_listaAdj.at(verticeAtual).GrauDeSaida() != 0)
     {
         //Se tiver, salva onde ele foi inserido nos cinzas (no fim da lista)
         int pos = cinzas->size();
         //Define ele como sendo um cinza
-        cinzas->push_back(this->_listaAdj.at(serVivoAtual).Origem().Nome());
+        cinzas->push_back(this->_listaAdj.at(verticeAtual).Origem().Nome());
 
         //Para cada aresta
-        for(auto& aresta : this->_listaAdj.at(serVivoAtual).ListaAlimentos())
+        for(auto& aresta : this->_listaAdj.at(verticeAtual).ListaAlimentos())
         {
             //Para verificar se a aresta atual era originalmente branca
             bool procurou = false;
@@ -209,6 +215,72 @@ int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::v
     return qtd;
 }
 
+//Retorna o grafo transposto, para o calculo de componentes conexos
+ListaDeAdjacencias ListaDeAdjacencias::GrafoTransposto() const
+{
+    //Cria a lista nova
+    ListaDeAdjacencias listaRet;
+
+    //Copia os vertices, sem as arestas
+    for(const auto& vertice : this->_listaAdj)
+    {
+        //Insere o vertice no fim da lista, pois ja estao sendo inseridos em ordem alfabetica
+        listaRet._listaAdj.push_back(Vertice(vertice.Origem()));
+        //Remove as arestas, atualizando tambem o grau de saida e o grau geral
+        listaRet._listaAdj.back().LimparArestas();
+        //Define que a quantidade de saidas eh a antiga quantidade de entradas
+        listaRet._listaAdj.back().SetGrauDeEntrada(vertice.GrauDeSaida());
+    }
+
+    //Para cada vertice da lista antiga
+    for(const auto& vertice : this->_listaAdj)
+    {
+        //Para cada aresta original
+        for(const auto& aresta : vertice.ListaAlimentos())
+        {
+            //Encontra onde a presa esta na lista
+            int pos = this->EncontrarSerVivo(aresta.Valor());
+
+            //Inclui a nova aresta para a presa
+            //Mantem o mesmo peso, pois apenas muda a direcao da aresta
+            listaRet._listaAdj.at(pos).IncluirAlimento(Aresta(vertice.Origem().Nome(), aresta.Peso()));
+        }
+    }
+
+    return listaRet;
+}
+
+//Para calcular a quantidade de componentes conexos
+void ListaDeAdjacencias::ContarComponentes(std::vector<std::string>* naoVerificados, std::vector<std::string>* pilha, int verticeAtual)
+{
+    //Procura a posicao dele nos naoVerificados
+    for(int i = 0; i < (int)naoVerificados->size(); i++)
+    {
+        //Se encontrou
+        if(naoVerificados->at(i).compare(this->_listaAdj.at(verticeAtual).Origem().Nome()) == 0)
+        {
+            //Deleta ele
+            naoVerificados->erase(naoVerificados->begin() + i);
+            break;
+        }
+    }
+
+    for(const auto& aresta : this->_listaAdj.at(verticeAtual).ListaAlimentos())
+    {
+        int posPresa = this->EncontrarSerVivo(aresta.Valor());
+
+        for(const auto& presa : *naoVerificados)
+        {
+            if(presa.compare(aresta.Valor()) == 0)
+            {
+                this->ContarComponentes(naoVerificados, pilha, posPresa);
+            }
+        }
+    }
+
+    pilha->push_back(this->_listaAdj.at(verticeAtual).Origem().Nome());
+}
+
 //Para encontrar os predadores da presa
 std::vector<std::string> ListaDeAdjacencias::FindPredadores(std::string nome) const
 {
@@ -248,11 +320,42 @@ int ListaDeAdjacencias::ContarQuantidadeCiclos() const
     while(brancos->size() > 0)
     {
         //Chama a funcao de contar ciclos, comecando pelo primeiro branco restante
-        qtd += this->ContarCirculos(brancos, cinzas, this->EncontrarSerVivo(brancos->at(0)));
+        qtd += this->ContarCirculos(brancos, cinzas, this->EncontrarSerVivo(brancos->front()));
     }
 
     //Retorna a quantidade de ciclos total
     return qtd;
+}
+
+//Para calcular a quantidade de componentes conexos
+void ListaDeAdjacencias::CalcularComponentesConexos()
+{
+    //Ponteiros para as operacoes
+    std::vector<std::string>* naoVerificados = new std::vector<std::string>();
+    std::vector<std::string>* pilha = new std::vector<std::string>();
+
+    //Salva nos naoVerificados todos os vertices
+    for(auto& serVivo : this->_listaAdj)
+    {
+        naoVerificados->push_back(serVivo.Origem().Nome());
+    }
+
+    while(naoVerificados->size() > 0)
+    {
+        this->ContarComponentes(naoVerificados, pilha, EncontrarSerVivo(naoVerificados->front()));
+    }
+
+    naoVerificados = new std::vector<std::string>();
+
+    int qtd = 0;
+
+    while(naoVerificados->size() > 0)
+    {
+        this->ContarComponentes(pilha, naoVerificados, EncontrarSerVivo(pilha->front()));
+        qtd++;
+    }
+
+    std::cout << qtd;
 }
 
 //Para imprimir os dados

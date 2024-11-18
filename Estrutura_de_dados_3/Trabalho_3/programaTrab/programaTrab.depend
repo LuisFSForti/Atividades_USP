@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1731629375 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+1731970328 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
 	"ListaDeAdjacencias.h"
 
-1731629232 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+1731970695 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
 	"Vertice.h"
 
-1731627808 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+1731969039 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
 	<iostream>
 	<fstream>
 	"SerVivo.h"
@@ -19,19 +19,19 @@
 	<iostream>
 	<fstream>
 
-1731628683 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
+1731969267 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
 	<vector>
-	"SerVivo.h"
 	"Aresta.h"
 
-1731628672 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
+1731969263 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
 	"Vertice.h"
 
-1731628005 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
+1731969163 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
 	<stdio.h>
 	<iostream>
+	"SerVivo.h"
 
-1731628010 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
+1731969208 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
 	"Aresta.h"
 
 1731585252 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp

@@ -38,10 +38,10 @@
 		</Compiler>
 		<Unit filename="Aresta.cpp" />
 		<Unit filename="Aresta.h" />
-		<Unit filename="Dinossauro.cpp" />
-		<Unit filename="Dinossauro.h" />
 		<Unit filename="ListaDeAdjacencias.cpp" />
 		<Unit filename="ListaDeAdjacencias.h" />
+		<Unit filename="SerVivo.cpp" />
+		<Unit filename="SerVivo.h" />
 		<Unit filename="Vertice.cpp" />
 		<Unit filename="Vertice.h" />
 		<Unit filename="main.cpp" />

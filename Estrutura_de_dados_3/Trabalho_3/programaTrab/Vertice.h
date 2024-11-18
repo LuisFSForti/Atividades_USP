@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "SerVivo.h"
 #include "Aresta.h"
 
 //Para armazenar as informacoes dos vertices
@@ -24,15 +23,19 @@ public:
     virtual ~Vertice();
 
     //Para adicioanr presas
-    void IncluirAlimento(SerVivo serVivo);
+    void IncluirAlimento(Aresta aresta);
     //Para verificar se preda o ser vivo
     bool AlimentaDe(std::string nome) const;
 
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const Vertice& vert);
 
-    //Para definir o grau de entrada
+    //Para ter um vertice sem arestas, importante para calcular o grafo transposto
+    //Esta funcao tambem aceita um SerVivo como parametro, pois Aresta tem um construtor com SerVivo
+    void LimparArestas();
+    //Para definir os graus
     void SetGrauDeEntrada(int valor);
+    void SetGrauDeSaida(int valor);
 
     //Para pegar as informacoes nas outras classes
     SerVivo Origem() const;

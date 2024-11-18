@@ -29,16 +29,14 @@ Vertice::~Vertice()
 }
 
 //Para adicioanr presas
-void Vertice::IncluirAlimento(SerVivo serVivo)
+//Esta funcao tambem aceita um SerVivo como parametro, pois Aresta tem um construtor com SerVivo
+void Vertice::IncluirAlimento(Aresta aresta)
 {
-    //Cria a aresta
-    Aresta aresta(serVivo.Alimento(), serVivo.Populacao());
-
     //Para encontrar onde deve inserir
     for(int i = 0; i < (int)this->_listaAlimentos.size(); i++)
     {
         //Compara o nome da presa atual com a nova
-        int relacao = serVivo.Alimento().compare(this->_listaAlimentos.at(i).Valor());
+        int relacao = aresta.Valor().compare(this->_listaAlimentos.at(i).Valor());
 
         //Se achou a presa que deseja inserir
         //Retorna sem inserir
@@ -109,12 +107,26 @@ std::ostream& operator<<(std::ostream& out, const Vertice& vert)
     return out;
 }
 
-//Para definir o grau de entrada
+//Para ter um vertice sem arestas, importante para calcular o grafo transposto
+void Vertice::LimparArestas()
+{
+    this->_listaAlimentos.clear();
+    this->SetGrauDeSaida(0);
+}
+
+//Para definir os graus
 void Vertice::SetGrauDeEntrada(int valor)
 {
     //Atualiza tambem o grau geral
     this->_grau = this->_grauDeSaida + valor;
     this->_grauDeEntrada = valor;
+}
+
+void Vertice::SetGrauDeSaida (int valor)
+{
+    //Atualiza tambem o grau geral
+    this->_grau = this->_grauDeEntrada + valor;
+    this->_grauDeSaida = valor;
 }
 
 //Para pegar as informacoes nas outras classes

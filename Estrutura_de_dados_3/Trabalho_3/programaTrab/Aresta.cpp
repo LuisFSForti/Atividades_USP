@@ -7,6 +7,12 @@ Aresta::Aresta(std::string valor, int peso)
     this->_peso = peso;
 }
 
+Aresta::Aresta(SerVivo serVivo)
+{
+    this->_valor = serVivo.Alimento();
+    this->_peso = serVivo.Populacao();
+}
+
 //Para imprimir os dados da aresta
 std::ostream& operator<<(std::ostream& out, const Aresta& arest)
 {

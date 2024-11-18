@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "SerVivo.h"
+
 //Para salvar as informacoes das arestas
 class Aresta
 {
@@ -14,6 +16,7 @@ private:
 public:
     //Construtor com nome e quantidade
     Aresta(std::string valor, int peso);
+    Aresta(SerVivo serVivo);
 
     //Para imprimir os dados da aresta
     friend std::ostream& operator<<(std::ostream& out, const Aresta& arest);
