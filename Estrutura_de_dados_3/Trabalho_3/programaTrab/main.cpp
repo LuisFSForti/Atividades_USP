@@ -110,6 +110,25 @@ int main()
 
             break;
         }
+    case 13:
+        {
+            //Cria o grafo
+            ListaDeAdjacencias lista(arq);
+            arq.close();
+
+            int qtdComponentesConexos = lista.CalcularComponentesConexos();
+
+            if(qtdComponentesConexos == 0)
+            {
+                std::cout << "Sim, o grafo é fortemente conexo e possui " << qtdComponentesConexos << " componente.";
+            }
+            else
+            {
+                std::cout << "Não, o grafo não é fortemente conexo e possui " << qtdComponentesConexos << " componentes.";
+            }
+
+            break;
+        }
     }
 
     return 0;

@@ -278,7 +278,8 @@ void ListaDeAdjacencias::ContarComponentes(std::vector<std::string>* naoVerifica
         }
     }
 
-    pilha->push_back(this->_listaAdj.at(verticeAtual).Origem().Nome());
+    //std::cout << this->_listaAdj.at(verticeAtual).Origem().Nome() << " - " << verticeAtual << std::endl;
+    pilha->insert(pilha->begin(), this->_listaAdj.at(verticeAtual).Origem().Nome());
 }
 
 //Para encontrar os predadores da presa
@@ -328,7 +329,7 @@ int ListaDeAdjacencias::ContarQuantidadeCiclos() const
 }
 
 //Para calcular a quantidade de componentes conexos
-void ListaDeAdjacencias::CalcularComponentesConexos()
+int ListaDeAdjacencias::CalcularComponentesConexos()
 {
     //Ponteiros para as operacoes
     std::vector<std::string>* naoVerificados = new std::vector<std::string>();
@@ -345,17 +346,20 @@ void ListaDeAdjacencias::CalcularComponentesConexos()
         this->ContarComponentes(naoVerificados, pilha, EncontrarSerVivo(naoVerificados->front()));
     }
 
+    delete naoVerificados;
     naoVerificados = new std::vector<std::string>();
+
+    ListaDeAdjacencias listaTransposta = this->GrafoTransposto();
 
     int qtd = 0;
 
-    while(naoVerificados->size() > 0)
+    while(pilha->size() > 0)
     {
-        this->ContarComponentes(pilha, naoVerificados, EncontrarSerVivo(pilha->front()));
+        listaTransposta.ContarComponentes(pilha, naoVerificados, EncontrarSerVivo(pilha->front()));
         qtd++;
     }
 
-    std::cout << qtd;
+    return qtd;
 }
 
 //Para imprimir os dados

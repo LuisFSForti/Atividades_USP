@@ -36,7 +36,7 @@ public:
     //Para iniciar a contagem de ciclos
     int ContarQuantidadeCiclos() const;
     //Para calcular a quantidade de componentes conexos
-    void CalcularComponentesConexos();
+    int CalcularComponentesConexos();
 
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const ListaDeAdjacencias& lista);

@@ -41,15 +41,15 @@ SerVivo::SerVivo(const SerVivo& serVivo)
 //Deve estar no comeco do registro para funcionar
 SerVivo::SerVivo(std::fstream &arq)
 {
-    //Se esta no fim do arquivo
-    if(arq.eof())
+    //Le se foi removido logicamente
+    if(!arq.read(&this->_unidadeMedida, sizeof(char)))
     {
+        //Se esta no fim do arquivo
+
         //Avisa que esta no fim
         this->_unidadeMedida = 'E';
         return;
     }
-    //Le se foi removido logicamente
-    arq.read(&this->_unidadeMedida, sizeof(char));
     //Se foi removido, retorna
     if(this->_unidadeMedida == '1')
     {
