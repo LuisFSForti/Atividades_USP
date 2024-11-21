@@ -151,7 +151,7 @@ int ListaDeAdjacencias::EncontrarPosInsercao(std::string nome) const
 //Para fazer a contagem de ciclos no grafo
 int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::vector<std::string>* cinzas, int verticeAtual) const
 {
-    //Procura a posicao dele nos brancos
+    //Procura a posição dele nos brancos
     for(int i = 0; i < (int)brancos->size(); i++)
     {
         //Se encontrou
@@ -185,8 +185,6 @@ int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::v
                 //Se encontrou
                 if(brancos->at(i).compare(aresta.Valor()) == 0)
                 {
-
-
                     //Chama a função novamente, somando o retorno dela
                     qtd += this->ContarCirculos(brancos, cinzas, this->EncontrarSerVivo(aresta.Valor()));
                     //Define que era um vértice branco
@@ -288,7 +286,8 @@ void ListaDeAdjacencias::ContarComponentes(std::vector<std::string>* naoVerifica
         }
     }
 
-    //std::cout << this->_listaAdj.at(verticeAtual).Origem().Nome() << " - " << verticeAtual << std::endl;
+    //Ao terminar de operar com as suas arestas
+    //Insere no final da pilha o vértice atual
     pilha->insert(pilha->begin(), this->_listaAdj.at(verticeAtual).Origem().Nome());
 }
 
@@ -304,7 +303,7 @@ std::vector<std::string> ListaDeAdjacencias::FindPredadores(std::string nome) co
         //Se o atual se alimenta da presa procurada
         if(atual.AlimentaDe(nome))
             //Adiciona o predador na lista
-            //Como o loop ja está em ordem, basta inserir no fim da lista
+            //Como o loop já está em ordem, basta inserir no fim da lista
             predadores.push_back(atual.Origem().Nome());
     }
 
@@ -315,11 +314,11 @@ std::vector<std::string> ListaDeAdjacencias::FindPredadores(std::string nome) co
 //Para iniciar a contagem de ciclos
 int ListaDeAdjacencias::ContarQuantidadeCiclos() const
 {
-    //Cria os ponteiros para os vertices brancos e cinzas
+    //Cria os ponteiros para os vértices brancos e cinzas
     std::vector<std::string>* brancos = new std::vector<std::string>();
     std::vector<std::string>* cinzas = new std::vector<std::string>();
 
-    //Salva nos brancos todos os vertices
+    //Salva nos brancos todos os vértices
     for(auto& serVivo : this->_listaAdj)
     {
         brancos->push_back(serVivo.Origem().Nome());
@@ -327,10 +326,10 @@ int ListaDeAdjacencias::ContarQuantidadeCiclos() const
 
     int qtd = 0;
 
-    //Enquanto algum vertice não tiver sido analisado
+    //Enquanto algum vértice não tiver sido analisado
     while(brancos->size() > 0)
     {
-        //Chama a funcao de contar ciclos, comecando pelo primeiro branco restante
+        //Chama a função de contar ciclos, começando pelo primeiro branco não verificado
         qtd += this->ContarCirculos(brancos, cinzas, this->EncontrarSerVivo(brancos->front()));
     }
 
@@ -341,31 +340,42 @@ int ListaDeAdjacencias::ContarQuantidadeCiclos() const
 //Para calcular a quantidade de componentes conexos
 int ListaDeAdjacencias::CalcularComponentesConexos()
 {
-    //Ponteiros para as operacoes
+    //Algoritmo de Kosaraju
+
+    //Ponteiros para as operações
     std::vector<std::string>* naoVerificados = new std::vector<std::string>();
     std::vector<std::string>* pilha = new std::vector<std::string>();
 
-    //Salva nos naoVerificados todos os vertices
+    //Salva nos naoVerificados todos os vértices
     for(auto& serVivo : this->_listaAdj)
     {
         naoVerificados->push_back(serVivo.Origem().Nome());
     }
 
+    //Enquanto algum vértice não tiver sido analisado
     while(naoVerificados->size() > 0)
     {
+        //Chama a função de calcular os componentes, começando pelo primeiro vértice em naoVerificados
         this->ContarComponentes(naoVerificados, pilha, EncontrarSerVivo(naoVerificados->front()));
     }
 
+    //Limpa os naoVerificados
     delete naoVerificados;
+    //Reinstancia
     naoVerificados = new std::vector<std::string>();
 
+    //Cria o grafo transposto
     ListaDeAdjacencias listaTransposta = this->GrafoTransposto();
 
+    //Para salvar a quantidade de componentes conexos
     int qtd = 0;
 
+    //Enquanto algum vértice não tiver sido analisado
     while(pilha->size() > 0)
     {
+        //Chama a função de calcular os componentes, começando pelo primeiro vértice da pilha
         listaTransposta.ContarComponentes(pilha, naoVerificados, EncontrarSerVivo(pilha->front()));
+        //Aumenta a quantidade de componentes em 1
         qtd++;
     }
 
@@ -375,16 +385,22 @@ int ListaDeAdjacencias::CalcularComponentesConexos()
 //Para calcular o risco de uma presa em relação a um predador
 int ListaDeAdjacencias::CalcularRisco(std::string predador, std::string presa)
 {
+    //Encontra o predador e a presa
     int posPredador = this->EncontrarSerVivo(predador);
     int posPresa = this->EncontrarSerVivo(presa);
 
+    //Se algum deles não existir
     if(posPredador == -1 || posPresa == -1)
+        //Retorna erro
         return -1;
 
+    //Para salvar as informações de cada vértice
     int **dados = (int**) malloc(this->_listaAdj.size() * sizeof(int*));
 
+    //Para cada vértice
     for(int i = 0; i < (int)this->_listaAdj.size(); i++)
     {
+        //Instancia um espaço para dois inteiros
         dados[i] = (int*) malloc(2 * sizeof(int));
         //Não avaliado
         dados[i][0] = 0;
@@ -392,54 +408,76 @@ int ListaDeAdjacencias::CalcularRisco(std::string predador, std::string presa)
         dados[i][1] = INT_MAX;
     }
 
+    //Começa pelo predador
     int atual = posPredador;
+    //Para arrumar os valores
     int presaAtual;
 
-    //Para iterar sobre todos os vértices
+    //Define que o predador já foi analisasdo
     dados[posPredador][0] = 1;
+    //E que a distância dele é 0
     dados[posPredador][1] = 0;
+
+    //Para iterar sobre todos os vértices
     for(int i = 0; i < (int)this->_listaAdj.size(); i++)
     {
-        //Para atualizar os dados
+        //Para cada aresta do vértice atual
         for(const auto& aresta : this->_listaAdj.at(atual).ListaAlimentos())
         {
+            //Pega a posição da presa no grafo
             presaAtual = EncontrarSerVivo(aresta.Valor());
 
+            //Se a distância entre o predador e ela for maior que a distância entre ela e o vértice atual
             if(dados[presaAtual][1] > aresta.Peso() + dados[atual][1])
             {
+                //Atualiza a distância
                 dados[presaAtual][1] = aresta.Peso() + dados[atual][1];
             }
         }
 
+        //Salva que o vértice atual foi analisado
         dados[atual][0] = 1;
+
+        //Flag nula
         atual = -1;
 
+        //Para encontrar o próximo vértice a ser analisado
         for(int j = 0; j < (int)this->_listaAdj.size(); j++)
         {
-            //Se ainda não foi iterado
+            //Se ainda não foi iterado e não tem uma distância inválida
+            //Uma distância inválida significa que o vértice não é adjacente a nenhum dos vértices iterados até o momento
             if(dados[j][0] == 0 && dados[j][1] != INT_MAX)
             {
+                //Se o atual não foi definido ainda
                 if(atual == -1)
                 {
+                    //Salva o vértice atual
                     atual = j;
+                    //Avança
                     continue;
                 }
+                //Se o vértice j estiver mais próximo que o atual
                 if(dados[atual][1] > dados[j][1])
+                    //Salva o vértice atual
                     atual = j;
             }
         }
 
+        //Se atual não foi salvo
+        //Então todos os caminhos do componente foram verificados
+        //Encerra-se o loop de iteração antecipadamente
         if(atual == -1)
             break;
     }
 
+    //Retorna a distância salva entre o predador e a presa
     return dados[posPresa][1];
 }
 
 //Para imprimir os dados
 std::ostream& operator<<(std::ostream& out, const ListaDeAdjacencias& lista)
 {
-    //Para cada vertice
+    //Para cada vértice
     for(auto const& atual : lista._listaAdj)
     {
         out << atual;
