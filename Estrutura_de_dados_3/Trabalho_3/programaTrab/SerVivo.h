@@ -1,3 +1,8 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #ifndef SerVivo_H
 #define SerVivo_H
 
@@ -9,6 +14,7 @@
 class SerVivo
 {
 private:
+    //Dados do ser vivo
     int _populacao, _velocidade;
     float _tamanho;
     char _unidadeMedida;
@@ -17,18 +23,18 @@ private:
 public:
     //Construtor vazio, gera valores nulos
     SerVivo();
-    //Construtor com nome, serve para os seres vivos que ainda nao tem dados, apenas o nomes
+    //Construtor com nome, serve para os seres vivos que ainda não tem dados, apenas o nome
     SerVivo(std::string nome);
-    //Construtor de copia
+    //Construtor de cópia
     SerVivo(const SerVivo& serVivo);
-    //Construtor usando um arquivo binario
-    //Deve estar no comeco do registro para funcionar
+    //Construtor usando um arquivo binário
+    //Deve estar no começo do registro para funcionar
     SerVivo(std::fstream &arq);
 
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const SerVivo& serVivo);
 
-    //Para pegar as informacoes nas outras classes
+    //Para pegar as informações nas outras classes
     int Populacao() const;
     int Velocidade() const;
     float Tamanho() const;

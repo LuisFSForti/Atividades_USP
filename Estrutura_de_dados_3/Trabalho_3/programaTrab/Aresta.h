@@ -1,3 +1,8 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #ifndef ARESTA_H
 #define ARESTA_H
 
@@ -16,12 +21,13 @@ private:
 public:
     //Construtor com nome e quantidade
     Aresta(std::string valor, int peso);
+    //Construtor com os dados do predador
     Aresta(SerVivo serVivo);
 
     //Para imprimir os dados da aresta
     friend std::ostream& operator<<(std::ostream& out, const Aresta& arest);
 
-    //Para pegar as informacoes nas outras classes
+    //Para pegar as informações nas outras classes
     std::string Valor() const;
     int Peso() const;
 };

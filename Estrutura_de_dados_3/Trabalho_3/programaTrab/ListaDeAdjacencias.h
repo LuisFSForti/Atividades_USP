@@ -1,5 +1,12 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #ifndef LISTADEADJACENCIAS_H
 #define LISTADEADJACENCIAS_H
+
+#include <limits.h>
 
 #include "Vertice.h"
 
@@ -37,6 +44,7 @@ public:
     int ContarQuantidadeCiclos() const;
     //Para calcular a quantidade de componentes conexos
     int CalcularComponentesConexos();
+    int CalcularRisco(std::string predador, std::string presa);
 
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const ListaDeAdjacencias& lista);

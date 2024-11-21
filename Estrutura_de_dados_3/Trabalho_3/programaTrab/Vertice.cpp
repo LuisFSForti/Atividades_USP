@@ -1,3 +1,8 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #include "Vertice.h"
 
 //Cria um vertice com um SerVivo

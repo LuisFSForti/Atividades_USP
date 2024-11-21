@@ -1,3 +1,8 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #include "ListaDeAdjacencias.h"
 
 //Construtor com arquivo de entrada
@@ -360,6 +365,69 @@ int ListaDeAdjacencias::CalcularComponentesConexos()
     }
 
     return qtd;
+}
+
+int ListaDeAdjacencias::CalcularRisco(std::string predador, std::string presa)
+{
+    int posPredador = this->EncontrarSerVivo(predador);
+    int posPresa = this->EncontrarSerVivo(presa);
+
+    if(posPredador == -1 || posPresa == -1)
+        return -1;
+
+    int **dados = (int**) malloc(this->_listaAdj.size() * sizeof(int*));
+
+    for(int i = 0; i < (int)this->_listaAdj.size(); i++)
+    {
+        dados[i] = (int*) malloc(2 * sizeof(int));
+        //Não avaliado
+        dados[i][0] = 0;
+        //Distância infinita
+        dados[i][1] = INT_MAX;
+    }
+
+    int atual = posPredador;
+    int presaAtual;
+
+    //Para iterar sobre todos os vértices
+    dados[posPredador][0] = 1;
+    dados[posPredador][1] = 0;
+    for(int i = 0; i < (int)this->_listaAdj.size(); i++)
+    {
+        //Para atualizar os dados
+        for(const auto& aresta : this->_listaAdj.at(atual).ListaAlimentos())
+        {
+            presaAtual = EncontrarSerVivo(aresta.Valor());
+
+            if(dados[presaAtual][1] > aresta.Peso() + dados[atual][1])
+            {
+                dados[presaAtual][1] = aresta.Peso() + dados[atual][1];
+            }
+        }
+
+        dados[atual][0] = 1;
+        atual = -1;
+
+        for(int j = 0; j < (int)this->_listaAdj.size(); j++)
+        {
+            //Se ainda não foi iterado
+            if(dados[j][0] == 0 && dados[j][1] != INT_MAX)
+            {
+                if(atual == -1)
+                {
+                    atual = j;
+                    continue;
+                }
+                if(dados[atual][1] > dados[j][1])
+                    atual = j;
+            }
+        }
+
+        if(atual == -1)
+            break;
+    }
+
+    return dados[posPresa][1];
 }
 
 //Para imprimir os dados

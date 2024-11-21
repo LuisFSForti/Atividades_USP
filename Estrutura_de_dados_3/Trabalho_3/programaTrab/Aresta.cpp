@@ -1,3 +1,8 @@
+//Luis Filipe Silva Forti - 14592348
+//Lucien Rodrigues Franzen - 14554835
+
+//Trabalho 3 de ED3
+
 #include "Aresta.h"
 
 //Construtor com nome e quantidade
@@ -7,8 +12,10 @@ Aresta::Aresta(std::string valor, int peso)
     this->_peso = peso;
 }
 
+//Construtor com dados do predador
 Aresta::Aresta(SerVivo serVivo)
 {
+    //Salva a presa e a população do predador
     this->_valor = serVivo.Alimento();
     this->_peso = serVivo.Populacao();
 }
@@ -21,7 +28,7 @@ std::ostream& operator<<(std::ostream& out, const Aresta& arest)
     return out;
 }
 
-//Para pegar as informacoes nas outras classes
+//Para pegar as informações nas outras classes
 std::string Aresta::Valor() const
 {
     return this->_valor;
