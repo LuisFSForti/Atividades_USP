@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Luís Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -14,20 +14,21 @@
 class ListaDeAdjacencias
 {
 private:
-    //Lista de adjacencias
+    //Lista de adjacências
     std::vector<Vertice> _listaAdj;
 
-    //Funcoes internas
+    //Funções internas
 
+    //Construtor vazio, necessário pra fazer o grafo transposto
     ListaDeAdjacencias();
 
-    //Encontra onde o ser vivo esta, avisando se ele nao estiver
+    //Encontra onde o ser vivo está, avisando se ele não estiver
     int EncontrarSerVivo(std::string nome) const;
     //Encontra onde o ser vivo deve ser inserido
     int EncontrarPosInsercao(std::string nome) const;
     //Para fazer a contagem de ciclos no grafo
     int ContarCirculos(std::vector<std::string>* brancos, std::vector<std::string>* cinzas, int verticeAtual) const;
-    //Retorna o grafo transposto, para o calculo de componentes conexos
+    //Retorna o grafo transposto, para o cálculo de componentes conexos
     ListaDeAdjacencias GrafoTransposto() const;
     //Para calcular a quantidade de componentes conexos
     void ContarComponentes(std::vector<std::string>* naoVerificados, std::vector<std::string>* pilha, int verticeAtual);
@@ -44,6 +45,7 @@ public:
     int ContarQuantidadeCiclos() const;
     //Para calcular a quantidade de componentes conexos
     int CalcularComponentesConexos();
+    //Para calcular o risco de uma presa em relação a um predador
     int CalcularRisco(std::string predador, std::string presa);
 
     //Para imprimir os dados

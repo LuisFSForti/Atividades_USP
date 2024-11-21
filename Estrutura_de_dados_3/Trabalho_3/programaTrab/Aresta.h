@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Lu√≠s Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -27,7 +27,7 @@ public:
     //Para imprimir os dados da aresta
     friend std::ostream& operator<<(std::ostream& out, const Aresta& arest);
 
-    //Para pegar as informaÁıes nas outras classes
+    //Para pegar as informa√ß√µes nas outras classes
     std::string Valor() const;
     int Peso() const;
 };

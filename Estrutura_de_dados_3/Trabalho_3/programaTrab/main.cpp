@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Luís Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -155,7 +155,7 @@ int main()
                     endereco.erase(0, endereco.find("\"") + 1);
                 }
 
-                //Calcula o risco da presa
+                //Calcula o risco da presa em relação ao predador
                 int resultado = lista.CalcularRisco(nomes[0], nomes[1]);
 
                 //Imprime os nomes do predador e da presa

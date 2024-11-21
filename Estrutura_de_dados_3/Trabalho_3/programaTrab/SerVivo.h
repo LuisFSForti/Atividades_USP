@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Lu√≠s Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -23,18 +23,18 @@ private:
 public:
     //Construtor vazio, gera valores nulos
     SerVivo();
-    //Construtor com nome, serve para os seres vivos que ainda n„o tem dados, apenas o nome
+    //Construtor com nome, serve para os seres vivos que ainda n√£o tem dados, apenas o nome
     SerVivo(std::string nome);
-    //Construtor de cÛpia
+    //Construtor de c√≥pia
     SerVivo(const SerVivo& serVivo);
-    //Construtor usando um arquivo bin·rio
-    //Deve estar no comeÁo do registro para funcionar
+    //Construtor usando um arquivo bin√°rio
+    //Deve estar no come√ßo do registro para funcionar
     SerVivo(std::fstream &arq);
 
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const SerVivo& serVivo);
 
-    //Para pegar as informaÁıes nas outras classes
+    //Para pegar as informa√ß√µes nas outras classes
     int Populacao() const;
     int Velocidade() const;
     float Tamanho() const;

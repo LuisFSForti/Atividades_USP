@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Luís Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -79,7 +79,7 @@ SerVivo::SerVivo(std::fstream &arq)
     //Libera o espaço alocado
     delete auxC;
 
-    //Pega tudo do comeco da string ate o primeiro #
+    //Pega tudo do começo da string ate o primeiro #
     this->_nome = aux.substr(0, aux.find("#"));
     //Deleta o que foi salvo
     aux.erase(0, aux.find("#") + 1);

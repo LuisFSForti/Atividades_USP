@@ -34,10 +34,10 @@
 1731969208 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
 	"Aresta.h"
 
-1731971285 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
+1732193037 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.cpp
 	"Aresta.h"
 
-1731971285 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
+1732194605 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\aresta.h
 	<stdio.h>
 	<iostream>
 	"SerVivo.h"
@@ -50,24 +50,24 @@
 	<iostream>
 	<fstream>
 
-1732191118 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
+1732193986 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.cpp
 	"ListaDeAdjacencias.h"
 
-1732191208 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
+1732195285 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\listadeadjacencias.h
 	<limits.h>
 	"Vertice.h"
 
-1731971285 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
+1732194566 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.h
 	<vector>
 	"Aresta.h"
 
-1732191110 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
+1732193046 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\main.cpp
 	<iostream>
 	<fstream>
 	"SerVivo.h"
 	"ListaDeAdjacencias.h"
 
-1731971285 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
+1732194369 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\vertice.cpp
 	"Vertice.h"
 
 1731627465 c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.h
@@ -78,11 +78,11 @@
 1731627595 source:c:\users\luis\documents\escola\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.cpp
 	"SerVivo.h"
 
-1731971285 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.h
+1732194615 c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.h
 	<stdio.h>
 	<iostream>
 	<fstream>
 
-1731974367 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.cpp
+1732193215 source:c:\users\luis\documents\facul\atividades_usp\estrutura_de_dados_3\trabalho_3\programatrab\servivo.cpp
 	"SerVivo.h"
 

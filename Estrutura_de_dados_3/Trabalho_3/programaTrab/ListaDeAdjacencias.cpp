@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//Luís Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -8,15 +8,15 @@
 //Construtor com arquivo de entrada
 ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
 {
-    //Volta para o comeco do arquivo
-    //Possivelmente redundante, mas garante o funcionamento do codigo
+    //Volta para o começo do arquivo
+    //Possivelmente redundante, mas garante o funcionamento do código
     arqEntrada.seekg(0);
 
-    //Verifica se o arquivo esta consistente
+    //Verifica se o arquivo está consistente
     char status;
     arqEntrada.read(&status, sizeof(char));
 
-    //Se nao estiver consistente
+    //Se não estiver consistente
     if(status == '0')
     {
         //Alerta
@@ -27,19 +27,19 @@ ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
         return;
     }
 
-    //Pula para o comeco dos registros
+    //Pula para o começo dos registros
     arqEntrada.seekg(1600);
 
-    //Le o primeiro registro
+    //Lê o primeiro registro
     SerVivo serVivo(arqEntrada);
 
-    //Enquanto nao chegou no final do arquivo
+    //Enquanto não chegou no final do arquivo
     while(serVivo.UnidadeMedida() != 'E')
     {
         //Para definir onde inserir
         int posSer;
 
-        //Se o alimento deste serVivo nao existe no grafo
+        //Se o alimento deste serVivo não existe no grafo
         if(this->EncontrarSerVivo(serVivo.Alimento()) == -1)
         {
             //Encontra onde deveria ser inserido
@@ -51,13 +51,14 @@ ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
         //Calcula onde inserir o serVivo
         posSer = this->EncontrarPosInsercao(serVivo.Nome());
 
-        //Se ele nao existe no grafo
+        //Se ele não existe no grafo
         if(this->EncontrarSerVivo(serVivo.Nome()) == -1)
         {
-            //Insere ele na posicao adequada
+            //Insere ele na posição adequada
             this->_listaAdj.insert(this->_listaAdj.begin() + posSer, Vertice(serVivo));
+            this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
 
-            //Le um novo serVivo
+            //Lê um novo serVivo
             serVivo = SerVivo(arqEntrada);
             //Continua o loop
             continue;
@@ -65,31 +66,33 @@ ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
 
         //Se o serVivo existe
 
-        //Se ele ja tiver uma aresta, significa que ele ja esta consistente
+        //Se ele tiver uma aresta, significa que ele está consistente
         if(this->_listaAdj.at(posSer).GrauDeSaida() > 0)
         {
             //Adiciona a nova presa
             this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
         }
-        //Se ele nao tiver uma aresta, entao ele esta inconsistente
+        //Se ele não tiver uma aresta, entao ele está inconsistente
         else
         {
-            //Recria o vertice, agora com o restante dos dados
+            //Recria o vértice, agora com o restante dos dados
             this->_listaAdj.at(posSer) = Vertice(serVivo);
+            this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
         }
 
-        //Le um novo serVivo
+        //Lê um novo serVivo
         serVivo = SerVivo(arqEntrada);
     }
 
-    //Para todos os vertices
+    //Para todos os vértices
     for(auto& atual : this->_listaAdj)
     {
-        //Calcula qual eh o seu grau de entrada
+        //Calcula qual é o seu grau de entrada
         atual.SetGrauDeEntrada(this->FindPredadores(atual.Origem().Nome()).size());
     }
 }
 
+//Construtor vazio, necessário pra fazer o grafo transposto
 ListaDeAdjacencias::ListaDeAdjacencias()
 {
     return;
@@ -98,49 +101,49 @@ ListaDeAdjacencias::ListaDeAdjacencias()
 //Destrutor da classe
 ListaDeAdjacencias::~ListaDeAdjacencias()
 {
-    //Libera os vertices criados
+    //Libera os vértices criados
     this->_listaAdj.clear();
 }
 
-//Encontra onde o ser vivo esta, avisando se ele nao estiver
+//Encontra onde o ser vivo está, avisando se ele não existir
 int ListaDeAdjacencias::EncontrarSerVivo(std::string nome) const
 {
-    //Para cada vertice
+    //Para cada vértice
     for(int i = 0; i < (int)this->_listaAdj.size(); i++)
     {
-        //Calcula a relacao do vertice com o ser vivo procurado
+        //Calcula a relação do vértice com o ser vivo procurado
         int relacao = nome.compare(this->_listaAdj.at(i).Origem().Nome());
 
-        //Se for quem esta procurando
+        //Se for quem está procurando
         if(relacao == 0)
             //Retorna a posicao
             return i;
 
-        //Se o ser vivo tiver precedencia sobre o atual, ele nao pode estar para frente
+        //Se o ser vivo tiver precêdencia sobre o atual, ele não pode estar para frente
         if(relacao < 0)
             //Encerra a pesquisa
             break;
     }
 
-    //Retorna que nao encontrou
+    //Retorna que não encontrou
     return -1;
 }
 
 //Encontra onde o ser vivo deve ser inserido
 int ListaDeAdjacencias::EncontrarPosInsercao(std::string nome) const
 {
-    //Para cada vertice
+    //Para cada vértice
     for(int i = 0; i < (int)this->_listaAdj.size(); i++)
     {
-        //Se o ser vivo tiver precedencia sobre o atual ou for o atual
+        //Se o ser vivo tiver precêdencia sobre o atual ou for o atual
         if(nome.compare(this->_listaAdj.at(i).Origem().Nome()) <= 0)
         {
-            //Retorna a posicao atual
+            //Retorna a posição atual
             return i;
         }
     }
 
-    //Se nao tem precedencia sobre nenhum outro ou nao foi achado
+    //Se não tem precedencia sobre nenhum outro ou não foi achado
     //Retorna que deve ser inserido no fim da lista
     return this->_listaAdj.size();
 }
@@ -173,31 +176,33 @@ int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::v
         //Para cada aresta
         for(auto& aresta : this->_listaAdj.at(verticeAtual).ListaAlimentos())
         {
-            //Para verificar se a aresta atual era originalmente branca
+            //Para verificar se a aresta atual era para um vértice originalmente branco
             bool procurou = false;
 
-            //Procura a posicao dele nos brancos
+            //Procura a posição da presa nos brancos
             for(int i = 0; i < (int)brancos->size(); i++)
             {
                 //Se encontrou
                 if(brancos->at(i).compare(aresta.Valor()) == 0)
                 {
-                    //Chama a funcao novamente, somando o retorno dela
+
+
+                    //Chama a função novamente, somando o retorno dela
                     qtd += this->ContarCirculos(brancos, cinzas, this->EncontrarSerVivo(aresta.Valor()));
-                    //Define que era uma branca
+                    //Define que era um vértice branco
                     procurou = true;
                     //Encerra o loop de pesquisa
                     break;
                 }
             }
 
-            //Se era uma branca
+            //Se era um branco
             if(procurou)
-                //Avanca para a proxima aresta
+                //Avança para a próxima aresta
                 continue;
 
-            //Se nao era branca
-            //Procura a posicao dele nos cinzas
+            //Se não era branco
+            //Procura a posição dele nos cinzas
             for(int i = 0; i < (int)cinzas->size(); i++)
             {
                 //Se encontrou
@@ -220,34 +225,32 @@ int ListaDeAdjacencias::ContarCirculos(std::vector<std::string>* brancos, std::v
     return qtd;
 }
 
-//Retorna o grafo transposto, para o calculo de componentes conexos
+//Retorna o grafo transposto, para o cálculo de componentes conexos
 ListaDeAdjacencias ListaDeAdjacencias::GrafoTransposto() const
 {
     //Cria a lista nova
     ListaDeAdjacencias listaRet;
 
-    //Copia os vertices, sem as arestas
+    //Copia os vértices, sem as arestas
     for(const auto& vertice : this->_listaAdj)
     {
-        //Insere o vertice no fim da lista, pois ja estao sendo inseridos em ordem alfabetica
+        //Insere o vértice no fim da lista, pois já estão sendo inseridos em ordem alfabética
         listaRet._listaAdj.push_back(Vertice(vertice.Origem()));
-        //Remove as arestas, atualizando tambem o grau de saida e o grau geral
-        listaRet._listaAdj.back().LimparArestas();
-        //Define que a quantidade de saidas eh a antiga quantidade de entradas
+        //Define que a quantidade de saídas é a antiga quantidade de entradas
         listaRet._listaAdj.back().SetGrauDeEntrada(vertice.GrauDeSaida());
     }
 
-    //Para cada vertice da lista antiga
+    //Para cada vértice da lista antiga
     for(const auto& vertice : this->_listaAdj)
     {
-        //Para cada aresta original
+        //Para cada aresta
         for(const auto& aresta : vertice.ListaAlimentos())
         {
-            //Encontra onde a presa esta na lista
+            //Encontra onde a presa está na lista
             int pos = this->EncontrarSerVivo(aresta.Valor());
 
             //Inclui a nova aresta para a presa
-            //Mantem o mesmo peso, pois apenas muda a direcao da aresta
+            //Mantém o mesmo peso, pois apenas muda a direção da aresta
             listaRet._listaAdj.at(pos).IncluirAlimento(Aresta(vertice.Origem().Nome(), aresta.Peso()));
         }
     }
@@ -258,7 +261,7 @@ ListaDeAdjacencias ListaDeAdjacencias::GrafoTransposto() const
 //Para calcular a quantidade de componentes conexos
 void ListaDeAdjacencias::ContarComponentes(std::vector<std::string>* naoVerificados, std::vector<std::string>* pilha, int verticeAtual)
 {
-    //Procura a posicao dele nos naoVerificados
+    //Procura a posição dele nos naoVerificados
     for(int i = 0; i < (int)naoVerificados->size(); i++)
     {
         //Se encontrou
@@ -270,15 +273,17 @@ void ListaDeAdjacencias::ContarComponentes(std::vector<std::string>* naoVerifica
         }
     }
 
+    //Para cada aresta do vértice
     for(const auto& aresta : this->_listaAdj.at(verticeAtual).ListaAlimentos())
     {
-        int posPresa = this->EncontrarSerVivo(aresta.Valor());
-
+        //Para cada presa ainda não verificada
         for(const auto& presa : *naoVerificados)
         {
+            //Se achou a presa da aresta
             if(presa.compare(aresta.Valor()) == 0)
             {
-                this->ContarComponentes(naoVerificados, pilha, posPresa);
+                //Chama a função novamente, passando pro próximo vértice
+                this->ContarComponentes(naoVerificados, pilha, this->EncontrarSerVivo(aresta.Valor()));
             }
         }
     }
@@ -299,7 +304,7 @@ std::vector<std::string> ListaDeAdjacencias::FindPredadores(std::string nome) co
         //Se o atual se alimenta da presa procurada
         if(atual.AlimentaDe(nome))
             //Adiciona o predador na lista
-            //Como o loop ja esta em ordem, basta inserir no fim da lista
+            //Como o loop ja está em ordem, basta inserir no fim da lista
             predadores.push_back(atual.Origem().Nome());
     }
 
@@ -322,7 +327,7 @@ int ListaDeAdjacencias::ContarQuantidadeCiclos() const
 
     int qtd = 0;
 
-    //Enquanto algum vertice nao tiver sido analisado
+    //Enquanto algum vertice não tiver sido analisado
     while(brancos->size() > 0)
     {
         //Chama a funcao de contar ciclos, comecando pelo primeiro branco restante
@@ -367,6 +372,7 @@ int ListaDeAdjacencias::CalcularComponentesConexos()
     return qtd;
 }
 
+//Para calcular o risco de uma presa em relação a um predador
 int ListaDeAdjacencias::CalcularRisco(std::string predador, std::string presa)
 {
     int posPredador = this->EncontrarSerVivo(predador);

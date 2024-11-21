@@ -1,4 +1,4 @@
-//Luis Filipe Silva Forti - 14592348
+//LuÃ­s Filipe Silva Forti - 14592348
 //Lucien Rodrigues Franzen - 14554835
 
 //Trabalho 3 de ED3
@@ -10,7 +10,7 @@
 
 #include "Aresta.h"
 
-//Para armazenar as informações dos vertices
+//Para armazenar as informaÃ§Ãµes dos vertices
 class Vertice
 {
 private:
@@ -18,16 +18,17 @@ private:
     SerVivo _origem;
     //A lista de arestas
     std::vector<Aresta> _listaAlimentos;
-    //Informações dos graus
+    //InformaÃ§Ãµes dos graus
     int _grauDeEntrada, _grauDeSaida, _grau;
 
 public:
-    //Cria um vértice com um SerVivo
+    //Cria um vÃ©rtice com um SerVivo
     Vertice(SerVivo serVivo);
     //Destrutor da classe
     virtual ~Vertice();
 
     //Para adicioanr presas
+    //Esta funÃ§Ã£o tambem aceita um SerVivo como parametro, pois Aresta tem um construtor com SerVivo
     void IncluirAlimento(Aresta aresta);
     //Para verificar se preda o ser vivo
     bool AlimentaDe(std::string nome) const;
@@ -35,14 +36,10 @@ public:
     //Para imprimir os dados
     friend std::ostream& operator<<(std::ostream& out, const Vertice& vert);
 
-    //Para ter um vértice sem arestas, importante para calcular o grafo transposto
-    //Esta função tambem aceita um SerVivo como parametro, pois Aresta tem um construtor com SerVivo
-    void LimparArestas();
-    //Para definir os graus
+    //Para definir o grau de entrada
     void SetGrauDeEntrada(int valor);
-    void SetGrauDeSaida(int valor);
 
-    //Para pegar as informacoes nas outras classes
+    //Para pegar as informaÃ§Ãµes nas outras classes
     SerVivo Origem() const;
     std::vector<Aresta> ListaAlimentos() const;
     int GrauDeEntrada() const;
