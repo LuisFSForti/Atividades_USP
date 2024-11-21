@@ -25,9 +25,9 @@ public:
     //Cria um vértice com um SerVivo
     Vertice(SerVivo serVivo);
     //Destrutor da classe
-    virtual ~Vertice();
+    ~Vertice();
 
-    //Para adicioanr presas
+    //Para adicionar presas
     //Esta função tambem aceita um SerVivo como parametro, pois Aresta tem um construtor com SerVivo
     void IncluirAlimento(Aresta aresta);
     //Para verificar se preda o ser vivo

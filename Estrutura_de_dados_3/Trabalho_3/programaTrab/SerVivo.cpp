@@ -25,23 +25,6 @@ SerVivo::SerVivo(std::string nome)
     this->_nome = nome;
 }
 
-//Construtor de cópia
-SerVivo::SerVivo(const SerVivo& serVivo)
-{
-    //Copia os dados de serVivo
-
-    this->_populacao = serVivo._populacao;
-    this->_tamanho = serVivo._tamanho;
-    this->_unidadeMedida = serVivo._unidadeMedida;
-    this->_velocidade = serVivo._velocidade;
-    this->_nome = serVivo._nome;
-    this->_especie = serVivo._especie;
-    this->_habitat = serVivo._habitat;
-    this->_tipo = serVivo._tipo;
-    this->_dieta = serVivo._dieta;
-    this->_alimento = serVivo._alimento;
-}
-
 //Construtor usando um arquivo binário
 //Deve estar no começo do registro para funcionar
 SerVivo::SerVivo(std::fstream &arq)

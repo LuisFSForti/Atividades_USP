@@ -66,19 +66,15 @@ ListaDeAdjacencias::ListaDeAdjacencias(std::fstream &arqEntrada)
 
         //Se o serVivo existe
 
-        //Se ele tiver uma aresta, significa que ele está consistente
-        if(this->_listaAdj.at(posSer).GrauDeSaida() > 0)
-        {
-            //Adiciona a nova presa
-            this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
-        }
         //Se ele não tiver uma aresta, entao ele está inconsistente
-        else
+        if(this->_listaAdj.at(posSer).GrauDeSaida() <= 0)
         {
             //Recria o vértice, agora com o restante dos dados
             this->_listaAdj.at(posSer) = Vertice(serVivo);
-            this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
         }
+
+        //Incluir novas presas
+        this->_listaAdj.at(posSer).IncluirAlimento(serVivo);
 
         //Lê um novo serVivo
         serVivo = SerVivo(arqEntrada);

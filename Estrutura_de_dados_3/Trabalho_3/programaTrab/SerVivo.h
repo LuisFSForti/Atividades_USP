@@ -25,8 +25,6 @@ public:
     SerVivo();
     //Construtor com nome, serve para os seres vivos que ainda não tem dados, apenas o nome
     SerVivo(std::string nome);
-    //Construtor de cópia
-    SerVivo(const SerVivo& serVivo);
     //Construtor usando um arquivo binário
     //Deve estar no começo do registro para funcionar
     SerVivo(std::fstream &arq);
