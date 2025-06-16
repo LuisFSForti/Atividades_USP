@@ -53,4 +53,14 @@ public class RecursosController : MonoBehaviour
 
         _recursosDisponiveis.Add(val);
     }
+
+    public int RecursosDisponiveis()
+    {
+        return _recursosDisponiveis.Count;
+    }
+
+    public bool TodosDisponiveis()
+    {
+        return _recursosDisponiveis.Count == _slotsRecursos.Count;
+    }
 }

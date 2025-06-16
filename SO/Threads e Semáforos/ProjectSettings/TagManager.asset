@@ -9,6 +9,7 @@ TagManager:
   - Triangulo
   - Losango
   - Estrela
+  - Thread
   layers:
   - Default
   - TransparentFX

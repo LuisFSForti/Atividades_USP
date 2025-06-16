@@ -16,8 +16,8 @@ public class ThreadController : MonoBehaviour, IDropHandler
     [SerializeField] private List<Image> _slotsRecursos;
     //Controladores de textos dos recursos da thread
     [SerializeField] private List<TMP_Text> _repeticoesRecursos;
-    //Quantidade de recursos e repetições máximos em um dado instante e número máximo de etapas
-    [SerializeField] private int _maximoRecursoPorVez, _maximasRepeticoes, _maximaEtapas;
+    //Quantidade de recursos, repetições em um dado instante e número de etapas
+    [SerializeField] private int _minimoRecursoPorVez, _maximoRecursoPorVez, _minimasRepeticoes, _maximasRepeticoes, _minimasEtapas, _maximaEtapas;
     //Tempo mínimo e máximo de processamento
     [SerializeField] private float _tempoMinimo, _tempoMaximo;
 
@@ -158,7 +158,7 @@ public class ThreadController : MonoBehaviour, IDropHandler
 
         //Calcula quantos recursos novos ele quer
         //Se já tiver algum recurso restante da etapa anterior, diminui o limite e a chance de requisitar novos
-        _esperandoRecursos = UnityEngine.Random.Range(1 - _recursosDesejados.Count, _maximoRecursoPorVez - _recursosDesejados.Count + 1);
+        _esperandoRecursos = UnityEngine.Random.Range(_minimoRecursoPorVez - _recursosDesejados.Count, _maximoRecursoPorVez - _recursosDesejados.Count + 1);
 
         //Se não quiser recursos novos
         if (_esperandoRecursos <= 0)
@@ -183,11 +183,19 @@ public class ThreadController : MonoBehaviour, IDropHandler
             int val = possiveisRecursos[i];
 
             //Para cada valor em _recursosDesejados, verifica se é igual ao valor relacionado ao recurso, se sim, salva que existe um valor igual
-            IEnumerable<bool> existe = _recursosDesejados.Where(recursos => recursos[0] == val).Select(recursos => _recursosDesejados.Contains(recursos));
+            bool existe = false;
+            foreach(int[] n in _recursosDesejados)
+            {
+                if (n[0] == val)
+                {
+                    existe = true; 
+                    break; 
+                }
+            }
 
             //Pega o primeiro retorno
             //Como não podem ter valores repetidos, basta verificar o primeiro ou se sequer existe um
-            if(existe.FirstOrDefault())
+            if(existe)
             {
                 //Se sim, remove o valor dos recursos
                 possiveisRecursos.Remove(val);
@@ -197,11 +205,19 @@ public class ThreadController : MonoBehaviour, IDropHandler
             }
 
             //Para cada valor em _ultimosRecursosUsados, verifica se é igual ao valor relacionado ao recurso, se sim, salva que ele não deveria ser utilizado novamente tão cedo
-            existe = _ultimosRecursosUsados.Where(recursos => recursos[0] == val).Select(recursos => _ultimosRecursosUsados.Contains(recursos));
+            existe = false;
+            foreach (int[] n in _ultimosRecursosUsados)
+            {
+                if (n[0] == val)
+                {
+                    existe = true; 
+                    break;
+                }
+            }
 
             //Pega o primeiro retorno
             //Como não podem ter valores repetidos, basta verificar o primeiro ou se sequer existe um
-            if (existe.FirstOrDefault())
+            if (existe)
             {
                 //Se sim, remove o valor dos recursos
                 possiveisRecursos.Remove(val);
@@ -229,7 +245,7 @@ public class ThreadController : MonoBehaviour, IDropHandler
             possiveisRecursos.Remove(recurso);
 
             //Adiciona o recurso à lista de recursos desejados, com uma repetição aleatória dentro do limite
-            _recursosDesejados.Add(new int[2] { recurso, UnityEngine.Random.Range(1, _maximasRepeticoes + 1) });
+            _recursosDesejados.Add(new int[2] { recurso, UnityEngine.Random.Range(_minimasRepeticoes, _maximasRepeticoes + 1) });
 
             //Se o número de repetições com o recurso for maior que o número de etapas restantes
             if (_recursosDesejados[i][1] > _numeroDeEtapas - _etapasProcessadas)
@@ -252,16 +268,25 @@ public class ThreadController : MonoBehaviour, IDropHandler
     //Quando o jogador soltar um recurso na tela
     public void OnDrop(PointerEventData eventData)
     {
+        //Para o jogador não poder alocar recursos quando o jogo está parado
+        if (Time.timeScale == 0f)
+            return;
+
         //Define qual o valor do recurso pela sua tag
         int recurso = (int)Enum.Parse(typeof(Recursos), eventData.pointerDrag.tag);
 
         //Para cada valor em _recursosDesejados, verifica se é igual ao valor relacionado ao recurso e, se for, salva sua posição na lista
-        IEnumerable<int> posicaoRecurso = _recursosDesejados.Where(recursos => recursos[0] == recurso).Select(recursos => _recursosDesejados.IndexOf(recursos));
+        int pos = -1;
 
-        //Pega o primeiro retorno
-        //Como não podem ter valores repetidos, basta verificar o primeiro ou se sequer existe um
-        int pos = posicaoRecurso.FirstOrDefault();
-
+        for(int i = 0; i < _recursosDesejados.Count; i++)
+        {
+            if (_recursosDesejados[i][0] == recurso)
+            {
+                pos = i;
+                break;
+            }
+        }
+        
         //Se possui uma posição
         if (pos >= 0)
         {
@@ -309,7 +334,7 @@ public class ThreadController : MonoBehaviour, IDropHandler
         _progresso = 0;
 
         //Calcula um número de etapas aleatório
-        _numeroDeEtapas = UnityEngine.Random.Range(3, _maximaEtapas);
+        _numeroDeEtapas = UnityEngine.Random.Range(_minimasEtapas, _maximaEtapas);
         //Define que não foram processadas nenhuma
         _etapasProcessadas = 0;
         //Calcula o tempo de processamento no intervalo
