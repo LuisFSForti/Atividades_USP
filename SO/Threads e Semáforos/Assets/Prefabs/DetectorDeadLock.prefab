@@ -118,10 +118,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5874651752424601160, guid: 2bd0674fdcc1da846933779863f3f499, type: 3}
       propertyPath: m_text
-      value: "DeadLocks acontecem quando nenhuma thread consegue mais prosseguir.\nElas
-        ocorrem quando pelo menos um de seus recursos est\xE1 preso em outra thread
-        que, por sua vez, est\xE1 esperando um recurso preso na primeira thread,
-        impedindo que ambas prossigam."
+      value: "DeadLocks acontecem quando duas ou mais threads n\xE3o conseguem mais
+        prosseguir.\nElas ocorrem quando uma thread est\xE1 esperando um recurso
+        que j\xE1 est\xE1 reservado por outra thread, a qual tamb\xE9m est\xE1 esperando
+        por um recurso reservado em outra thread, assim formando um c\xEDrculo de
+        espera."
       objectReference: {fileID: 0}
     - target: {fileID: 5874651752424601160, guid: 2bd0674fdcc1da846933779863f3f499, type: 3}
       propertyPath: m_fontSize

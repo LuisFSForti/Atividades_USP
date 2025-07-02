@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SairDoJogo : MonoBehaviour
 {
+    //Fecha o jogo
     public void Sair()
     {
         Application.Quit();

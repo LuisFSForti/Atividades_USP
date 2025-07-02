@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ReiniciarFase : MonoBehaviour
 {
+    //Recarrega a cena atual
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

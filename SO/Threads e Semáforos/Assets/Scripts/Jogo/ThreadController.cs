@@ -33,8 +33,28 @@ public class ThreadController : MonoBehaviour, IDropHandler
     private bool _jaLimpou;
     //Número de etapas total, quantas já foram processados e quantos recursos está esperando para avançar
     private int _numeroDeEtapas, _etapasProcessadas, _esperandoRecursos;
-    //A lista de recursos necessários para as etapas e a lista de recursos usado na última etapa
-    private List<int[]> _recursosDesejados, _ultimosRecursosUsados;
+    //A lista de recursos necessários para a etapa
+    private List<int[]> _recursosDesejados;
+    //A lista de recursos usados na última etapa e a lista dos recursos reservados para a etapa atual
+    private List<int> _ultimosRecursosUsados, _recursosReservados;
+
+    //Para scripts externos poderem analisar os pedidos de cada thread
+    public List<int[]> RecursosDesejados
+    {
+        get { return _recursosDesejados; }
+    }
+
+    //Para scripts externos poderem analisar os recursos reservados de cada thread
+    public List<int> RecursosReservados
+    {
+        get { return _recursosReservados; }
+    }
+
+    //Para scripts externos verificarem se está esperando recursos
+    public bool EstaParado()
+    {
+        return _esperandoRecursos > 0;
+    }
 
     //Para calcular quando será a próxima etapa
     private void CalcularProximaEtapa()
@@ -102,7 +122,7 @@ public class ThreadController : MonoBehaviour, IDropHandler
     private void LimparRecursos()
     {
         //Reinstancia a lista de recursos usados na última etapa
-        _ultimosRecursosUsados = new List<int[]>();
+        _ultimosRecursosUsados = new List<int>();
 
         //Para cada recurso
         for (int i = 0; i < _recursosDesejados.Count; i++)
@@ -131,7 +151,9 @@ public class ThreadController : MonoBehaviour, IDropHandler
                 _controladorRecursos.RecursoLiberado(_recursosDesejados[i][0]);
 
                 //Salva qual recurso está sendo removido
-                _ultimosRecursosUsados.Add(_recursosDesejados[i]);
+                _ultimosRecursosUsados.Add(_recursosDesejados[i][0]);
+                //Remove o recurso dos reservados
+                _recursosReservados.Remove(_recursosDesejados[i][0]);
                 //Remove ele da lista
                 _recursosDesejados.Remove(_recursosDesejados[i]);
 
@@ -206,9 +228,9 @@ public class ThreadController : MonoBehaviour, IDropHandler
 
             //Para cada valor em _ultimosRecursosUsados, verifica se é igual ao valor relacionado ao recurso, se sim, salva que ele não deveria ser utilizado novamente tão cedo
             existe = false;
-            foreach (int[] n in _ultimosRecursosUsados)
+            foreach (int n in _ultimosRecursosUsados)
             {
-                if (n[0] == val)
+                if (n == val)
                 {
                     existe = true; 
                     break;
@@ -292,6 +314,8 @@ public class ThreadController : MonoBehaviour, IDropHandler
         {
             //Atualiza que recebeu o recurso
             AtualizarVisualRecurso(pos, Color.green);
+            //Adiciona o recurso à lista dos reservados
+            _recursosReservados.Add(recurso);
             //Define que está esperando um a menos agora
             _esperandoRecursos--;
 
@@ -352,7 +376,10 @@ public class ThreadController : MonoBehaviour, IDropHandler
         _recursosDesejados = new List<int[]>();
 
         //Instancia a lista de recursos usados na última etapa
-        _ultimosRecursosUsados = new List<int[]>();
+        _ultimosRecursosUsados = new List<int>();
+
+        //Instancia a lista de recursos reservados para a etapa
+        _recursosReservados = new List<int>();
     }
 
     void Update()
