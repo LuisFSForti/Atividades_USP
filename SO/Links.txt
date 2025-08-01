@@ -1,0 +1,8 @@
+Vídeo: https://youtu.be/2_uKLXyNmP4
+Jogo: https://piforti.itch.io/threads-e-semaforos
+Formulário: https://docs.google.com/forms/d/e/1FAIpQLSfIMmW5yCy5X1EZ6S1JNaww2A6757FwUkJ9cnbWu6WuJEUKmg/viewform?usp=dialog
+
+Github (código-fonte):
+https://github.com/LuisFSForti/Atividades_USP/tree/main/SO/Threads%20e%20Sem%C3%A1foros
+
+O código-fonte não está sendo enviado em anexo por ser muito grande.
