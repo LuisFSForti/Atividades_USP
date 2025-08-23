@@ -246,6 +246,10 @@ int main(){
     glColor3f(0.0f, 1.0f, 1.0f);
     alg_geral(400, 300, 500, 250);
     alg_geral(400, 300, 500, 150);
+
+    //Retas aleatorias
+    alg_geral(200, 100, 100, 350);
+    alg_geral(700, 300, 500, 550);
     
     glEnd();
     //troca os buffer de cor para exibição correta
@@ -265,3 +269,4 @@ int main(){
     return 0;
 }
 
+// g++ alg_pm.cpp $(pkg-config --libs --cflags glfw3) -lGL
