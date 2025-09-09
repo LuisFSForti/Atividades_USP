@@ -1,0 +1,22 @@
+#include <cstring>
+#include <iostream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <string>
+#include <thread>
+#include <atomic>
+
+class Cliente
+{
+private:
+    int _clientSocket;
+    std::atomic<bool> _servidorFechou, _clienteFechou;
+    std::thread _threadConexao;
+
+public:
+    Cliente(std::string ipv4);
+    void CheckOnServer();
+    void FecharCliente();
+};

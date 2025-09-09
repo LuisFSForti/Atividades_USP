@@ -18,8 +18,12 @@ int main()
         std::string ipv4;
         std::cin >> ipv4;
 
-        Servidor* servidor = new Servidor(ipv4);
-        free(servidor);
+        Servidor servidor(ipv4);
+
+        std::string lixo;
+        std::cin >> lixo;
+
+        servidor.FecharServidor();
     }
     else
     {
@@ -27,8 +31,12 @@ int main()
         std::string ipv4;
         std::cin >> ipv4;
 
-        Cliente* cliente = new Cliente(ipv4);
-        free(cliente);
+        Cliente cliente(ipv4);
+
+        std::string lixo;
+        std::cin >> lixo;
+
+        cliente.FecharCliente();
     }
 
     return 0;
