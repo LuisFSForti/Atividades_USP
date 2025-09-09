@@ -1,0 +1,13 @@
+	org 0000h
+
+main:
+	SETB P0.7
+	CLR P3.4
+	SETB P3.3
+
+	MOV P1, #00000001b
+
+	CLR P3.4
+	CLR P3.3
+
+	MOV P1, #00000001b
