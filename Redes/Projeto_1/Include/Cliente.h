@@ -11,7 +11,7 @@
 class Cliente
 {
 private:
-    int _clientSocket;
+    int _serverSocket;
     std::atomic<bool> _servidorFechou, _clienteFechou;
     std::thread _threadConexao;
 

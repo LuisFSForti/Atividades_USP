@@ -18,6 +18,11 @@ int main()
         std::string ipv4;
         std::cin >> ipv4;
 
+        if (ipv4.empty()) {
+            std::cerr << "Erro: endereço IPV4 vazio!\n";
+            return 1; // or loop until valid
+        }
+
         Servidor servidor(ipv4);
 
         std::string lixo;
