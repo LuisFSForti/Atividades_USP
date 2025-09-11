@@ -25,6 +25,11 @@ Servidor::Servidor(std::string ipv4)
     _threadAccept = std::thread(&Servidor::AcceptClients, this);
 }
 
+Servidor::~Servidor()
+{
+    FecharServidor();
+}
+
 void Servidor::AcceptClients()
 {
     struct timeval tv;
@@ -49,8 +54,16 @@ void Servidor::AcceptClients()
         if (clientSocket < 0)
         {
             if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                // timeout happened
+                std::cout << "Accept timeout" << std::endl;
                 continue;  // go back to loop, check _stopAccepting
+            }
+            if(errno == EINTR) {
+                perror("Signal blocking");
+                continue; // interrupted by shutdown or signal
+            }
+            if (errno == EBADF || errno == ENOTSOCK || errno == EINVAL) {
+                std::cout << "Socket sutdown" << std::endl;
+                break;
             }
 
             perror("Accept failed");
@@ -73,10 +86,21 @@ void Servidor::CheckOnClient(int clientSocket)
     recv(clientSocket, buffer, sizeof(buffer), 0);
     std::cout << "Conectou! " << buffer << std::endl;
 
+    std::vector<Carta> teste;
+    teste.emplace_back(Carta("A", ouros));
+    teste.emplace_back(Carta("K", copas));
+    teste.emplace_back(Carta("3", ouros));
+    teste.emplace_back(Carta("6", paus));
+
+    int n = teste.size();
+    int i = 0;
+
     while(!_servidorFechou)
     {
-        const char* message = "Ola";
-        int ret = send(clientSocket, message, strlen(message), MSG_NOSIGNAL);
+        i++;
+        i %= n;
+        std::string message = teste.at(i).ToJson().dump();
+        int ret = send(clientSocket, &message[0], message.length(), MSG_NOSIGNAL);
 
         if(ret == -1)
         {
@@ -84,7 +108,7 @@ void Servidor::CheckOnClient(int clientSocket)
             {
                 std::cout << "Cliente " << clientSocket << " fechou a conexão!" << std::endl;
                 close(clientSocket);
-                break;
+                return;
             }
             else
             {
@@ -94,10 +118,17 @@ void Servidor::CheckOnClient(int clientSocket)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(timeoutMensagens));
     }
+
+    close(clientSocket);
 }
 
 void Servidor::FecharServidor()
 {
+    if(_servidorFechou)
+        return;
+
+    shutdown(_serverSocket, SHUT_RDWR);
+
     _stopAccepting = true;
     if(_threadAccept.joinable())
         _threadAccept.join();

@@ -1,11 +1,25 @@
 #include <cstring>
 #include <iostream>
+#include <csignal>
 
 #include "Servidor.h"
 #include "Cliente.h"
+#include "Carta.h"
+
+Servidor* servidorGlobal = nullptr;
+
+//Pra quando der cntrl+C no console ele fechar o servidor adequadamente
+void signalHandler(int signum) {
+    std::cout << "Signal " << signum << " received, shutting down server..." << std::endl;
+    if (servidorGlobal)
+        servidorGlobal->FecharServidor();
+    std::_Exit(0); // exit immediately after cleanup
+}
 
 int main()
 {
+    std::signal(SIGINT, signalHandler);
+
     std::cout << "Escolha o modo de host: \n1 - Servidor\n2 - Cliente" << std::endl;
 
     int escolha;
@@ -25,10 +39,10 @@ int main()
 
         Servidor servidor(ipv4);
 
+        servidorGlobal = &servidor;
+
         std::string lixo;
         std::cin >> lixo;
-
-        servidor.FecharServidor();
     }
     else
     {

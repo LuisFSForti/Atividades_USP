@@ -20,6 +20,11 @@ Cliente::Cliente(std::string ipv4)
     _threadConexao = std::thread(&Cliente::CheckOnServer, this);
 }
 
+Cliente::~Cliente()
+{
+    FecharCliente();
+}
+
 void Cliente::CheckOnServer()
 {
     char buffer[1024];
@@ -34,9 +39,13 @@ void Cliente::CheckOnServer()
         
         if (ret > 0) {
             buffer[ret] = '\0';
-            std::cout << "Mensagem do servidor: " << buffer << std::endl;
+
+            Carta test(nlohmann::json::parse(buffer));
+
+            std::cout << "Mensagem do servidor: " << test << std::endl;
         } else if (ret == 0) {
             std::cout << "Servidor fechou a conexão!\n";
+            _servidorFechou = true;
             close(_serverSocket);
             break;
         } else {
@@ -53,6 +62,9 @@ void Cliente::CheckOnServer()
 
 void Cliente::FecharCliente()
 {
+    if(_clienteFechou)
+        return;
+
     _clienteFechou = true;
 
     if(_threadConexao.joinable())

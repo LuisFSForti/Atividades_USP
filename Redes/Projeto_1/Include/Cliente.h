@@ -8,6 +8,11 @@
 #include <thread>
 #include <atomic>
 
+#include "Carta.h"
+
+#ifndef CLIENTE_H
+#define CLIENTE_H
+
 class Cliente
 {
 private:
@@ -17,6 +22,9 @@ private:
 
 public:
     Cliente(std::string ipv4);
+    ~Cliente();
     void CheckOnServer();
     void FecharCliente();
 };
+
+#endif // CLIENTE_H
