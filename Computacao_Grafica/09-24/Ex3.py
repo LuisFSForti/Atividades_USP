@@ -1,3 +1,6 @@
+import sys
+print(">>> Running with:", sys.executable)
+
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *

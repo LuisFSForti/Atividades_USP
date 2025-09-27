@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1759014029 source:c:\users\luis\documents\escola\atividades_usp\computacao_grafica\trbalho1opengl\main.cpp
+	<iostream>
+	<vector>
+	<array>
+	<limits>
+	<cmath>
+	<algorithm>
+	<utility>
+	<GL/glut.h>
+	<random>
+	<chrono>
+
+1759014322 source:c:\users\luis\documents\facul\atividades_usp\computacao_grafica\trabalho1opengl\main.cpp
+	<iostream>
+	<vector>
+	<array>
+	<limits>
+	<cmath>
+	<algorithm>
+	<utility>
+	<GL/glut.h>
+	<random>
+	<chrono>
+
