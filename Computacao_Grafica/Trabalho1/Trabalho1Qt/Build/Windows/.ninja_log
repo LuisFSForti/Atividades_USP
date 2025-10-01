@@ -1,0 +1,16 @@
+# ninja log v6
+15	1208	7810637545038840	Gui_0_autogen/timestamp	da6242f0bb645536
+15	1208	7810637545038840	Gui_0_autogen/mocs_compilation.cpp	da6242f0bb645536
+15	1208	7810637545038840	C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/Gui_0_autogen/timestamp	da6242f0bb645536
+15	1208	7810637545038840	C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/Gui_0_autogen/mocs_compilation.cpp	da6242f0bb645536
+1223	6361	7810637546355303	CMakeFiles/Gui_0.dir/main.cpp.obj	4413087233175269
+1231	6520	7810637546445058	CMakeFiles/Gui_0.dir/painter.cpp.obj	2c48284e2ac2546f
+1219	6547	7810637546315396	CMakeFiles/Gui_0.dir/Gui_0_autogen/mocs_compilation.cpp.obj	2147a7a33ec7124
+1227	8141	7810637546395190	CMakeFiles/Gui_0.dir/mainwindow.cpp.obj	6f808e924f171296
+8141	8724	7810637615538529	Gui_0.exe	f4493e5a9a5b2c8e
+27	305	7810637823415746	Gui_0_autogen/timestamp	da6242f0bb645536
+27	305	7810637823415746	Gui_0_autogen/mocs_compilation.cpp	da6242f0bb645536
+27	305	7810637823415746	C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/Gui_0_autogen/timestamp	da6242f0bb645536
+27	305	7810637823415746	C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/Gui_0_autogen/mocs_compilation.cpp	da6242f0bb645536
+307	6764	7810637826208269	CMakeFiles/Gui_0.dir/mainwindow.cpp.obj	6f808e924f171296
+6764	7261	7810637890773833	Gui_0.exe	f4493e5a9a5b2c8e

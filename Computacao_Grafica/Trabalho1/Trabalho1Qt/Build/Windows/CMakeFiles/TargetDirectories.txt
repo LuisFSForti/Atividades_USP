@@ -1,0 +1,9 @@
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/Gui_0.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/edit_cache.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/rebuild_cache.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/list_install_components.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/install.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/install/local.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/install/strip.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/Gui_0_autogen_timestamp_deps.dir
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/Build/Windows/CMakeFiles/Gui_0_autogen.dir
