@@ -10,6 +10,7 @@
 #include <vector>
 #include <mutex>
 
+#include "json.hpp"
 #include "Carta.h"
 
 #define timeoutMensagens 1000
@@ -17,22 +18,48 @@
 #ifndef SERVIDOR_H
 #define SERVIDOR_H
 
+//Para relacionar o número do socket com sua respectiva thread
+struct DadosSocket
+{
+    int socket;
+    std::thread thread;
+};
+
 class Servidor
 {
 private:
     int _serverSocket;
     std::atomic<bool> _stopAccepting, _servidorFechou;
+    std::atomic<int> _socketClienteAtual;
+
     std::thread _threadAccept;
-    std::vector<std::thread> _threadsConexoes;
-    std::vector<int> _threadsMortas;
+
+    std::vector<DadosSocket> _threadsConexoes;
+    std::vector<int> _clientsAccepted, _clientsClosed;
+
     std::mutex _controle;
+
+    nlohmann::json _mensagemClienteAtual;
+
+    void AcceptClients();
+    void CheckOnClient(int clientSocket);
 
 public:
     Servidor(std::string ipv4);
     ~Servidor();
-    void AcceptClients();
-    void CheckOnClient(int clientSocket);
+
+    void SetClientAtual(int clientSocket);
+    void SendClientMessage(int clientSocket, nlohmann::json msg);
+    void BroadcastMessage(nlohmann::json msg);
+    nlohmann::json GetClientMessage();
+
+    void CloseDeadThreads();
+    void StopAccpetingClients();
     void FecharServidor();
+
+    std::vector<int> GetNewSockets();
+    std::vector<int> GetClosedSockets();
+    bool ServerOpen();
 };
 
 #endif // SERVIDOR_H

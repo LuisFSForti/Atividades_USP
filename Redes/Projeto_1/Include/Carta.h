@@ -39,6 +39,7 @@ private:
 public:
     Carta(std::string valor, char naipe);
     Carta(nlohmann::json json);
+    
     nlohmann::json ToJson();
 
     friend bool operator>(const Carta& a, const Carta& b);

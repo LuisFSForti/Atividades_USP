@@ -31,7 +31,7 @@ $(OBJ_DIR):
 
 # Run program
 run: $(BIN)
-	clear
+	
 	./$(BIN)
 
 # Clean up

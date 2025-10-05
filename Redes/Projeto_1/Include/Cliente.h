@@ -7,8 +7,12 @@
 #include <string>
 #include <thread>
 #include <atomic>
+#include <mutex>
 
+#include "json.hpp"
 #include "Carta.h"
+
+#define timeoutMensagens 1000
 
 #ifndef CLIENTE_H
 #define CLIENTE_H
@@ -17,14 +21,25 @@ class Cliente
 {
 private:
     int _serverSocket;
-    std::atomic<bool> _servidorFechou, _clienteFechou;
+    std::atomic<bool> _clienteFechou;
     std::thread _threadConexao;
+
+    std::mutex _controle;
+
+    nlohmann::json _mensagemServidor;
+
+    void CheckOnServer();
 
 public:
     Cliente(std::string ipv4);
     ~Cliente();
-    void CheckOnServer();
+
+    void SendServerMessage(nlohmann::json msg);
+    nlohmann::json GetServerMessage();
+
     void FecharCliente();
+
+    bool ConnectionOpen();
 };
 
 #endif // CLIENTE_H
