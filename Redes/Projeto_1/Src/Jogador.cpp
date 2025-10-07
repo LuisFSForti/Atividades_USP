@@ -8,30 +8,22 @@ Jogador::Jogador()
 
 Jogador::Jogador(Carta carta1, Carta carta2, int fichasIniciais)
 {
-    this->_mao.push_back(carta1);
-    this->_mao.push_back(carta2);
+    this->_mao[0] = carta1;
+    this->_mao[1] = carta2;
 
     this->_valorFichas = fichasIniciais;
 }
 
 Jogador::Jogador(nlohmann::json json)
 {
-    this->_mao.push_back(Carta(json["Carta1"]));
-    this->_mao.push_back(Carta(json["Carta2"]));
-}
-
-void Jogador::ComprarCarta(Carta carta)
-{
-    if(this->_mao.size() >= 2)
-        throw std::runtime_error("Tentou pegar carta do baralho com a mão cheia!");
-
-    this->_mao.push_back(carta);
+    this->_mao[0] = Carta(json["Carta1"]);
+    this->_mao[1] = Carta(json["Carta2"]);
 }
 
 void Jogador::TrocarMao(Carta carta1, Carta carta2)
 {
-    this->_mao[0] == carta1;
-    this->_mao[1] == carta2;
+    this->_mao[0] = carta1;
+    this->_mao[1] = carta2;
 }
 
 void Jogador::Apostar(int quantidade)
@@ -62,6 +54,11 @@ nlohmann::json Jogador::ToJson()
     aux["Fichas"] = _valorFichas;
 
     return aux;
+}
+
+Carta* Jogador::GetMao()
+{
+    return _mao;
 }
 
 std::ostream& operator<<(std::ostream &out, const Jogador &a)

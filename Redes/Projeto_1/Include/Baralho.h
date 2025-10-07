@@ -1,5 +1,6 @@
-#include "Carta.h"
 #include <random>
+
+#include "Carta.h"
 
 #ifndef BARALHO_H
 #define BARALHO_H

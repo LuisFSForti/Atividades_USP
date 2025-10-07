@@ -37,10 +37,15 @@ private:
     char _naipe;
 
 public:
-    Carta(std::string valor, char naipe);
+    //valor == "N" -> carta neutra, inválida
+    Carta(std::string valor = "N", char naipe = ouros);
     Carta(nlohmann::json json);
     
     nlohmann::json ToJson();
+    std::string GetValue();
+    char GetNaipe();
+
+    bool EhSequencia(Carta outra);
 
     friend bool operator>(const Carta& a, const Carta& b);
     friend bool operator==(const Carta& a, const Carta &b);

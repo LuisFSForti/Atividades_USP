@@ -9,7 +9,7 @@
 class Jogador
 {
 private:
-    std::vector<Carta> _mao;
+    Carta _mao[2];
     int _valorFichas;
 
 public:
@@ -17,14 +17,15 @@ public:
     Jogador(Carta carta1, Carta carta2, int fichasIniciais);
     Jogador(nlohmann::json json);
 
-    void ComprarCarta(Carta carta);
     void TrocarMao(Carta carta1, Carta carta2);
     void Apostar(int quantidade);
     void Coletar(int quantidade);
 
     int FichasRestantes();
+    Carta* GetMao();
 
     nlohmann::json ToJson();
+
 
     friend std::ostream& operator<<(std::ostream &out, const Jogador &a);
 };

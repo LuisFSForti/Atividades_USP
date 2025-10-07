@@ -2,20 +2,24 @@
 
 Carta::Carta(std::string valor, char naipe)
 {
-    auto pos1 = std::find(referenciaValores.begin(), referenciaValores.end(), valor);
-
-    if(pos1 == referenciaValores.end())
+    //valor == "N" -> carta neutra, inválida
+    if(valor != "N")
     {
-        std::cerr << "Valor da carta inválido!" << std::endl;
-        exit(EXIT_FAILURE);
-    }
+        auto pos1 = std::find(referenciaValores.begin(), referenciaValores.end(), valor);
 
-    auto pos2 = std::find(referenciaNaipes.begin(), referenciaNaipes.end(), naipe);
+        if(pos1 == referenciaValores.end())
+        {
+            std::cerr << "Valor da carta inválido!" << std::endl;
+            exit(EXIT_FAILURE);
+        }
 
-    if(pos2 == referenciaNaipes.end())
-    {
-        std::cerr << "Naipe da carta inválido!" << std::endl;
-        exit(EXIT_FAILURE);
+        auto pos2 = std::find(referenciaNaipes.begin(), referenciaNaipes.end(), naipe);
+
+        if(pos2 == referenciaNaipes.end())
+        {
+            std::cerr << "Naipe da carta inválido!" << std::endl;
+            exit(EXIT_FAILURE);
+        }
     }
 
     this->_valor = valor;
@@ -29,6 +33,13 @@ Carta::Carta(nlohmann::json json)
 
 nlohmann::json Carta::ToJson()
 {
+    //Se for uma carta inválida
+    if(_valor == "N")
+    {
+        std::cerr << "Valor da carta inválido!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
     nlohmann::json aux;
 
     aux["Cod"] = "Carta";
@@ -38,8 +49,59 @@ nlohmann::json Carta::ToJson()
     return aux;
 }
 
+std::string Carta::GetValue()
+{
+    //Se for uma carta inválida
+    if(_valor == "N")
+    {
+        std::cerr << "Valor da carta inválido!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return _valor;
+}
+
+char Carta::GetNaipe()
+{
+    //Se for uma carta inválida
+    if(_valor == "N")
+    {
+        std::cerr << "Valor da carta inválido!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return _naipe;
+}
+
+bool Carta::EhSequencia(Carta outra)
+{
+    //Se for uma carta inválida
+    if(_valor == "N")
+    {
+        return false;
+    }
+
+    int idx = std::distance(referenciaValores.begin(), 
+        std::find(referenciaValores.begin(), referenciaValores.end(), _valor));
+
+    if(idx == 0)
+        return false;
+
+    return outra._valor == referenciaValores[idx-1];
+}
+
 bool operator>(const Carta& a, const Carta& b)
 {
+    //Se for uma carta inválida
+    if(a._valor == "N")
+    {
+        return false;
+    }
+    if(b._valor == "N")
+    {
+        return true;
+    }
+
     auto pos1 = std::find(referenciaValores.begin(), referenciaValores.end(), a._valor);
     auto pos2 = std::find(referenciaValores.begin(), referenciaValores.end(), b._valor);
 
@@ -51,11 +113,24 @@ bool operator>(const Carta& a, const Carta& b)
 
 bool operator==(const Carta& a, const Carta &b)
 {
+    //Se for uma carta inválida
+    if(a._valor == "N" || b._valor == "N")
+    {
+        return false;
+    }
+
     return (a._valor == b._valor) && (a._naipe == b._naipe);
 }
 
 std::ostream& operator<<(std::ostream &out, const Carta &a)
 {
+    //Se for uma carta inválida
+    if(a._valor == "N")
+    {
+        std::cerr << "Valor da carta inválido!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
     out << a._valor << " de ";
 
     switch (a._naipe)

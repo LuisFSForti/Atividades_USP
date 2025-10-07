@@ -7,12 +7,7 @@
 #include "Carta.h"
 #include "Baralho.h"
 #include "Jogador.h"
-
-struct DadosJogador
-{
-    int socket;
-    Jogador jogador;
-};
+#include "GerenciadorJogo.h"
 
 Servidor* servidorGlobal = nullptr;
 
@@ -41,7 +36,7 @@ bool InputAvailable()
 
 int main()
 {
-    std::signal(SIGINT, signalHandler);
+    /*std::signal(SIGINT, signalHandler);
 
     std::cout << "Escolha o modo de host: \n1 - Dealer\n2 - Jogador" << std::endl;
 
@@ -148,7 +143,7 @@ int main()
         }
 
         cliente.FecharCliente();
-    }
+    }*/
 
     return 0;
 }
