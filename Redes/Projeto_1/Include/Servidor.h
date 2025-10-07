@@ -13,10 +13,10 @@
 #include "json.hpp"
 #include "Carta.h"
 
-#define timeoutMensagens 1000
-
 #ifndef SERVIDOR_H
 #define SERVIDOR_H
+
+#define timeoutMensagens 1000
 
 //Para relacionar o número do socket com sua respectiva thread
 struct DadosSocket

@@ -3,6 +3,8 @@
 #include "json.hpp"
 #include "Carta.h"
 
+#define codJogador "Jogador"
+
 #ifndef JOGADOR_H
 #define JOGADOR_H
 
@@ -11,10 +13,10 @@ class Jogador
 private:
     Carta _mao[2];
     int _valorFichas;
+    std::string _nome;
 
 public:
-    Jogador();
-    Jogador(Carta carta1, Carta carta2, int fichasIniciais);
+    Jogador(Carta carta1 = Carta(), Carta carta2 = Carta(), int fichasIniciais = -1, std::string nome = "");
     Jogador(nlohmann::json json);
 
     void TrocarMao(Carta carta1, Carta carta2);
@@ -23,6 +25,7 @@ public:
 
     int FichasRestantes();
     Carta* GetMao();
+    std::string GetNome();
 
     nlohmann::json ToJson();
 

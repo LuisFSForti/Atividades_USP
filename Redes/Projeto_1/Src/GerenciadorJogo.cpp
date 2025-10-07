@@ -552,25 +552,273 @@ RankingMao GerenciadorJogo::VerificarMao(Jogador jogador)
     }
 }
 
-//Distribuir cartas e definir mesa
-void GerenciadorJogo::IniciarRodada()
+void GerenciadorJogo::VerificarNovosJogadores()
 {
+    for(int newSocket : _servidor->GetNewSockets())
+    {
+        std::string nomeJogador;
 
+        _servidor->SendClientMessage(newSocket, codPedirNome);
+        _servidor->SetClientAtual(newSocket);
+
+        nlohmann::json msg;
+        do
+        {
+            msg = _servidor->GetClientMessage();
+        } while (msg.is_null());
+
+        if(msg["Cod"] == codFornecerNome)
+        {
+            nomeJogador = msg["Valor"];
+
+            _jogadores.push_back({ newSocket, 
+                                Jogador(Carta(), Carta(), _fichasEntrada, nomeJogador) });
+
+            std::cout << "Jogador " << nomeJogador << " entrou!" << std::endl;
+        }
+        else
+        {
+            std::cerr << "Mensagem inválida de adição de jogador do socket " << 
+                            newSocket << std::endl;
+                    
+            _servidor->FecharServidor();
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+void GerenciadorJogo::VerificarJogadoresFechados()
+{
+    std::vector<int> jogadoresQueFecharam = _servidor->GetClosedSockets();
+    for(int closedSocket : jogadoresQueFecharam)
+    {
+        for(int i = 0; i < (int)_jogadores.size(); i++)
+        {
+            if(_jogadores[i].socket == closedSocket)
+            {
+                std::cout << _jogadores[i].jogador.GetNome()
+                        << " desconectou!" << std::endl;
+
+                _jogadores.erase(_jogadores.begin() + i);
+                i--;
+            }
+        }
+    }
+}
+
+//Distribuir cartas e definir mesa
+void GerenciadorJogo::IniciarJogo()
+{
+    int jogadorAtual = _primeiroJogadorRodada;
+    _pote = 0;
+    _jogadoresRestantes = _jogadores.size();
+    _numeroRodada = 0;
+    Baralho baralhoAtual = Baralho();
+
+    for(DadosJogador jog : _jogadores)
+    {
+        jog.jogador.TrocarMao(baralhoAtual.PegarCarta(), baralhoAtual.PegarCarta());
+        _servidor->SendClientMessage(jog.socket, jog.jogador.ToJson());
+
+        _apostasJogadores[jog.socket] = 0;
+    }
+
+    for(int i = 0; i < 5; i++)
+    {
+        _mesa[i] = baralhoAtual.PegarCarta();
+    }
+
+    nlohmann::json msgSmall;
+    msgSmall["Cod"] = msgSmall;
+    msgSmall["Valor"] = _smallBlind;
+    _apostasJogadores[_jogadores[jogadorAtual].socket] = _smallBlind;
+
+    _servidor->SendClientMessage(_jogadores[jogadorAtual].socket, msgSmall);
+
+    jogadorAtual = (jogadorAtual + 1) % _jogadores.size();
+
+    nlohmann::json msgBig;
+    msgBig["Cod"] = msgBig;
+    msgBig["Valor"] = _bigBlind;
+
+    _servidor->SendClientMessage(_jogadores[jogadorAtual].socket, msgBig);
+    _apostasJogadores[_jogadores[jogadorAtual].socket] = _bigBlind;
 }
 
 void GerenciadorJogo::RodadaDeApostas()
 {
+    int jogadorAtual = _primeiroJogadorRodada;
+    //Salva como sendo o jogador anterior ao primeiro
+    int ultimoJogadorQueAumentou = (_primeiroJogadorRodada + _jogadores.size() - 1) % _jogadores.size();
 
+    while(jogadorAtual != ultimoJogadorQueAumentou)
+    {
+        //Se ele deu fold anteriormente
+        if(_apostasJogadores[_jogadores[jogadorAtual].socket] == -1)
+            continue;
+
+        //Se ele deu all-in
+        if(_jogadores[jogadorAtual].jogador.FichasRestantes() == 0)
+            continue;
+
+        nlohmann::json msgComunicacao;
+        msgComunicacao["Cod"] = codComunicarAcao;
+
+        nlohmann::json msg;
+        msg["Cod"] = codPedirAposta;
+
+        _servidor->SendClientMessage(_jogadores[jogadorAtual].socket, msg);
+        _servidor->SetClientAtual(_jogadores[jogadorAtual].socket);
+
+        do
+        {
+            std::vector<int> jogadoresQueFecharam = _servidor->GetClosedSockets();
+            for(int closedSocket : jogadoresQueFecharam)
+            {
+                for(int i = 0; i < (int)_jogadores.size(); i++)
+                {
+                    if(_jogadores[i].socket == closedSocket)
+                    {
+                        _pote += _apostasJogadores[_jogadores[i].socket];
+                        _pote += _jogadores[i].jogador.FichasRestantes();
+
+                        std::cout << _jogadores[i].jogador.GetNome()
+                                << " desconectou!" << std::endl;
+                        msgComunicacao["Msg"] += _jogadores[i].jogador.GetNome();
+
+                        _jogadores.erase(_jogadores.begin() + i);
+                        i--;
+                    }
+                }
+            }
+            //Avisa os jogadores quem desconectou
+            if(jogadoresQueFecharam.size() > 0)
+            {
+                _servidor->BroadcastMessage(msgComunicacao);
+                msgComunicacao["Msg"] = "";
+            }
+
+            msg = _servidor->GetClientMessage();
+        } while (msg.is_null());
+        
+        if(msg["Cod"] == codAposta)
+        {
+            int valorAposta = msg["Valor"];
+            if(_jogadores[jogadorAtual].jogador.FichasRestantes() < valorAposta)
+            {
+                std::cerr << "Aposta inválida do jogador " << 
+                            _jogadores[jogadorAtual].jogador.GetNome() << std::endl;
+                    
+                _servidor->FecharServidor();
+                exit(EXIT_FAILURE);
+            }
+
+            _apostasJogadores[_jogadores[jogadorAtual].socket] += valorAposta;
+            _jogadores[jogadorAtual].jogador.Apostar(valorAposta);
+            ultimoJogadorQueAumentou = jogadorAtual;
+
+            //Se ele deu all-in
+            if(_jogadores[jogadorAtual].jogador.FichasRestantes() == 0)
+            {
+                std::cout << "All-in de " << _jogadores[jogadorAtual].jogador.GetNome() 
+                << " = " 
+                << std::to_string(_apostasJogadores[_jogadores[jogadorAtual].socket]) 
+                << std::endl;
+
+                msgComunicacao["Msg"] = _jogadores[jogadorAtual].jogador.GetNome()
+                        + " deu all-in, aumentando a aposta para "
+                        + std::to_string(_apostasJogadores[_jogadores[jogadorAtual].socket]);
+            }
+            else
+            {
+                std::cout << "Aposta de " << _jogadores[jogadorAtual].jogador.GetNome() 
+                << " = " 
+                << std::to_string(_apostasJogadores[_jogadores[jogadorAtual].socket]) 
+                << std::endl;
+
+                msgComunicacao["Msg"] = _jogadores[jogadorAtual].jogador.GetNome()
+                        + " aumentou a aposta para "
+                        + std::to_string(_apostasJogadores[_jogadores[jogadorAtual].socket]);
+            }                        
+        }
+        else if(msg["Cod"] == codFold)
+        {
+            int valor = _apostasJogadores[_jogadores[jogadorAtual].socket];
+            _pote += valor;
+            _apostasJogadores[_jogadores[jogadorAtual].socket] = -1;
+            _jogadoresRestantes--;
+
+            //Se há apenas um jogador restante
+            if(_jogadoresRestantes == 1)
+                break;
+
+            std::cout << "Fold de " << _jogadores[jogadorAtual].jogador.GetNome() 
+                << std::endl;
+
+            msgComunicacao["Msg"] = _jogadores[jogadorAtual].jogador.GetNome() 
+                        + " deu fold, aumentando o pote em "
+                        + std::to_string(valor);
+        }
+        else if(msg["Cod"] == codCheck)
+        {
+            std::cout << "Check de " << _jogadores[jogadorAtual].jogador.GetNome() 
+                << std::endl;
+
+            msgComunicacao["Msg"] = _jogadores[jogadorAtual].jogador.GetNome() 
+                        + " deu check";
+        }
+        else
+        {
+            std::cerr << "Código de retorno da aposta inválido!" << std::endl;
+            _servidor->FecharServidor();
+            exit(EXIT_FAILURE);
+        }
+
+        //Avisa os demais jogadores o que o jogador atual fez
+        for(DadosJogador jogador : _jogadores)
+        {
+            if(jogador.socket != _jogadores[jogadorAtual].socket)
+            {
+                _servidor->SendClientMessage(jogador.socket, msgComunicacao);
+            }
+        }
+
+        jogadorAtual = (jogadorAtual + 1) % _jogadores.size();
+    }
 }
 
 //Vira a próxima carta
 void GerenciadorJogo::AvancarRodada()
 {
+    if(_numeroRodada == 0)
+    {
+        std::cout << "Virando as primeiras 3 cartas" << std::endl;
 
+        for(int i = 0; i < 3; i++)
+            _servidor->BroadcastMessage(_mesa[i].ToJson());
+
+        _numeroRodada++;
+    }
+    else if(_numeroRodada == 1)
+    {
+        std::cout << "Virando a terceira carta" << std::endl;
+
+        _servidor->BroadcastMessage(_mesa[3].ToJson());
+
+        _numeroRodada++;
+    }
+    else
+    {
+        std::cout << "Virando a última carta" << std::endl;
+
+        _servidor->BroadcastMessage(_mesa[4].ToJson());
+
+        _numeroRodada++;
+    }
 }
 
 //Checa as mãos e define o vencedor
-void GerenciadorJogo::FinalizarRodada()
+void GerenciadorJogo::FinalizarJogo()
 {
 
 }

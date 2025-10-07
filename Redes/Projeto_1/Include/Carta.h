@@ -11,6 +11,8 @@
 #define copas 'C'
 #define paus 'P'
 
+#define codCarta "Carta"
+
 #ifndef REFERENCIAVALORES
 #define REFERENCIAVALORES
 

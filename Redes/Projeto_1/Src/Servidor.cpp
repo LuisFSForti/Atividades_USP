@@ -103,12 +103,12 @@ void Servidor::AcceptClients()
         //Se não houve erros
 
         //Avisa que fez uma nova conexão e com quem
-        //std::cout << "Nova conexão: " << clientSocket << std::endl;
+        std::cout << "Nova conexão: " << clientSocket << std::endl;
 
         //Espera a mensagem de confirmação do cliente
         char buffer[1024] = { 0 };
         recv(clientSocket, buffer, sizeof(buffer), 0);
-        //std::cout << "Conectou! Mensagem do cliente: " << buffer << std::endl;
+        std::cout << "Conectou! Mensagem do cliente: " << buffer << std::endl;
 
         {
             std::lock_guard<std::mutex> lock(_controle);
@@ -366,8 +366,6 @@ void Servidor::FecharServidor()
 
     //Socket inválido
     _serverSocket = -1;
-
-    std::cout << "ACABOU" << std::endl;
 }
 
 std::vector<int> Servidor::GetNewSockets()

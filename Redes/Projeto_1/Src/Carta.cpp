@@ -42,7 +42,7 @@ nlohmann::json Carta::ToJson()
 
     nlohmann::json aux;
 
-    aux["Cod"] = "Carta";
+    aux["Cod"] = codCarta;
     aux["Valor"] = _valor;
     aux["Naipe"] = _naipe;
 

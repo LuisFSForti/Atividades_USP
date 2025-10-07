@@ -36,7 +36,7 @@ bool InputAvailable()
 
 int main()
 {
-    /*std::signal(SIGINT, signalHandler);
+    std::signal(SIGINT, signalHandler);
 
     std::cout << "Escolha o modo de host: \n1 - Dealer\n2 - Jogador" << std::endl;
 
@@ -56,31 +56,15 @@ int main()
         }
 
         servidorGlobal = new Servidor(ipv4);
-
-        std::vector<DadosJogador> jogadores;
-        Baralho baralho;
-        int fichasIniciais = 1000;
+        GerenciadorJogo gerenciador(servidorGlobal);
 
         std::cout << "Digite 'Iniciar' e pressione [Enter] para começar o jogo!" << std::endl;
         while (servidorGlobal->ServerOpen()) {
-            for(int newSocket : servidorGlobal->GetNewSockets())
-            {
-                jogadores.push_back({ newSocket, Jogador(baralho.PegarCarta(), baralho.PegarCarta(), fichasIniciais) });
-                std::cout << "Jogador " << jogadores.size() << " entrou!" << std::endl;
-            }
-
-            for(int closedSocket : servidorGlobal->GetClosedSockets())
-            {
-                for(int i = 0; i < (int)jogadores.size(); i++)
-                {
-                    if(jogadores[i].socket == closedSocket)
-                    {
-                        jogadores.erase(jogadores.begin() + i);
-                        std::cout << "Jogador " << i+1 << " desconectou!" << std::endl;
-                        break;
-                    }
-                }
-            }
+            std::cout << "A";
+            gerenciador.VerificarNovosJogadores();
+            std::cout << "B";
+            gerenciador.VerificarJogadoresFechados();
+            std::cout << "C" << std::endl;
 
             if (InputAvailable()) {
                 std::cout << "E" << std::endl;
@@ -99,11 +83,6 @@ int main()
             usleep(100000);
         }
 
-        servidorGlobal->SendClientMessage(jogadores[0].socket, jogadores[0].jogador.ToJson());
-
-        while(true)
-            ;
-
         servidorGlobal->FecharServidor();
 
         delete servidorGlobal;
@@ -114,21 +93,40 @@ int main()
         std::string ipv4;
         std::cin >> ipv4;
 
+        std::cout << "Qual é o seu nome?" << std::endl;
+        std::string nomeJogador;
+        std::cin >> nomeJogador;
+
         Cliente cliente(ipv4);
         Jogador jogador;
         
         while (cliente.ConnectionOpen()) {
+            std::cout << "A";
             nlohmann::json msg = cliente.GetServerMessage();
             if(!msg.is_null())
             {
-                if(msg["Cod"] == "Jogador")
+                std::cout << "B";
+                if(msg["Cod"] == codJogador)
                 {
+                    std::cout << "J";
                     jogador = Jogador(msg);
                     std::cout << jogador << std::endl;
                     
                     break;
                 }
+                if(msg["Cod"] == codPedirNome)
+                {
+                    std::cout << "N";
+                    msg.clear();
+                    msg["Cod"] = codFornecerNome;
+                    msg["Valor"] = nomeJogador;
+
+                    std::cout << "C";
+                    cliente.SendServerMessage(msg);
+                    std::cout << "D";
+                }
             }
+            std::cout << "E" << std::endl;
 
             if (InputAvailable()) {
                 std::string input;
@@ -143,7 +141,7 @@ int main()
         }
 
         cliente.FecharCliente();
-    }*/
+    }
 
     return 0;
 }
