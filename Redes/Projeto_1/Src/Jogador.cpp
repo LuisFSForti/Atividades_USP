@@ -36,7 +36,7 @@ void Jogador::Coletar(int quantidade)
     this->_valorFichas += quantidade;
 }
 
-int Jogador::FichasRestantes()
+int Jogador::GetFichas()
 {
     return this->_valorFichas;
 }

@@ -23,7 +23,7 @@ public:
     void Apostar(int quantidade);
     void Coletar(int quantidade);
 
-    int FichasRestantes();
+    int GetFichas();
     Carta* GetMao();
     std::string GetNome();
 

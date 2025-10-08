@@ -5,7 +5,6 @@ Servidor::Servidor(std::string ipv4)
     //Enquanto não estiver perfeitamente funcional, define que não está aberto
     _stopAccepting = true;
     _servidorFechou = true;
-    _mensagemClienteAtual = nullptr;
 
     //Cria um socket pro servidor
     _serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,7 +52,6 @@ Servidor::Servidor(std::string ipv4)
     //Com o socket corretamente configurado, inicia o servidor
     _servidorFechou = false;
     _stopAccepting = false;
-    _socketClienteAtual = -1;
 
     //Com o socket feito, cria a thread de aceitar clientes
     _threadAccept = std::thread(&Servidor::AcceptClients, this);
@@ -95,7 +93,7 @@ void Servidor::AcceptClients()
             else
             {
                 //Outros erros quaisquer
-                perror("Accept failed");
+                //perror("Accept failed");
                 continue;
             }
         }
@@ -115,6 +113,7 @@ void Servidor::AcceptClients()
 
             //Cria uma thread pra ouvir o cliente
             _threadsConexoes.push_back({clientSocket, std::thread(&Servidor::CheckOnClient, this, clientSocket)});
+            _mensagensClientes[clientSocket] = std::vector<nlohmann::json>();
 
             //Salva que um novo socket foi adicionado
             _clientsAccepted.push_back(clientSocket);
@@ -142,14 +141,36 @@ void Servidor::CheckOnClient(int clientSocket)
         //ret > 0 -> mensagem recebida, ret == número de char recebidos
         if (ret > 0)
         {
-            //Coloca um \0 no final pra deixar a string bem definida
+            //Para deixar a string bem definida
             buffer[ret] = '\0';
 
-            if(_socketClienteAtual == clientSocket)
+            //Como múltiplos jsons podem chegar de uma vez, precisa separá-los
+            std::string entrada = buffer;
+            int contagemChaves = 0;
+            int comecoJsonAtual = 0;
+            for (size_t i = 0; i < entrada.size(); ++i) 
             {
-                std::lock_guard<std::mutex> lock(_controle);
+                if (entrada[i] == '{') 
+                {
+                    if (contagemChaves == 0) 
+                        comecoJsonAtual = i; // start of JSON
 
-                _mensagemClienteAtual = nlohmann::json::parse(buffer);
+                    contagemChaves++;
+                }
+                else if (entrada[i] == '}') 
+                {
+                    contagemChaves--;
+                    if (contagemChaves == 0)
+                    {
+                        std::string jsonAtual = entrada.substr(comecoJsonAtual, i - comecoJsonAtual + 1);
+                        
+                        {
+                            std::lock_guard<std::mutex> lock(_controle);
+
+                            _mensagensClientes[clientSocket].push_back(nlohmann::json::parse(jsonAtual));
+                        }
+                    }
+                }
             }
         }
         //ret == 0 -> cliente fechou o socket corretamente
@@ -191,17 +212,12 @@ void Servidor::CheckOnClient(int clientSocket)
         else
         {
             //Avisa o erro
-            perror("recv");            
+            //perror("recv");            
         }
     }
 
     //Fecha a conexão
     close(clientSocket);
-}
-
-void Servidor::SetClientAtual(int clientSocket)
-{
-    _socketClienteAtual = clientSocket;
 }
 
 void Servidor::SendClientMessage(int clientSocket, nlohmann::json msg)
@@ -241,7 +257,7 @@ void Servidor::SendClientMessage(int clientSocket, nlohmann::json msg)
             }
             else
             {
-                perror("Send failed");
+                //perror("Send failed");
                 //Espera um pouco
                 std::this_thread::sleep_for(std::chrono::milliseconds(timeoutMensagens));
             }
@@ -260,6 +276,16 @@ void Servidor::BroadcastMessage(nlohmann::json msg)
         {
             SendClientMessage(clientSocket.socket, msg);
         }
+    }
+}
+
+void Servidor::AdicionarClienteParaRemocao(int clientSocket)
+{
+    {
+        std::lock_guard<std::mutex> lock(_controle);
+
+        if(std::find(_clientsClosed.begin(), _clientsClosed.end(), clientSocket) == _clientsClosed.end())
+            _clientsClosed.push_back(clientSocket);
     }
 }
 
@@ -282,6 +308,7 @@ void Servidor::CloseDeadThreads()
                     threadsToJoin.push_back(std::move(_threadsConexoes[i].thread));
 
                     _threadsConexoes.erase(_threadsConexoes.begin() + i);
+                    _mensagensClientes.erase(clientSocket);
                 }
             }            
         }
@@ -299,10 +326,18 @@ void Servidor::CloseDeadThreads()
     threadsToJoin.clear();
 }
 
-nlohmann::json Servidor::GetClientMessage()
+nlohmann::json Servidor::GetClientMessage(int clientSocket)
 {
-    nlohmann::json msg = _mensagemClienteAtual;
-    _mensagemClienteAtual = nullptr;
+    nlohmann::json msg;
+    {
+        std::lock_guard<std::mutex> lock(_controle);
+
+        if(_mensagensClientes[clientSocket].size() <= 0)
+            return nlohmann::json();
+
+        msg = _mensagensClientes[clientSocket][0];
+        _mensagensClientes[clientSocket].erase(_mensagensClientes[clientSocket].begin());
+    }
 
     return msg;
 }
@@ -321,9 +356,6 @@ void Servidor::StopAccpetingClients()
 
 void Servidor::FecharServidor()
 {
-    if(_servidorFechou)
-        return;
-
     //Define que o servidor fechou
     _servidorFechou = true;
 

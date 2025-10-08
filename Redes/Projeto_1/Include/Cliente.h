@@ -26,7 +26,7 @@ private:
 
     std::mutex _controle;
 
-    nlohmann::json _mensagemServidor;
+    std::vector<nlohmann::json> _mensagensServidor;
 
     void CheckOnServer();
 

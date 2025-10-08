@@ -58,31 +58,38 @@ int main()
         servidorGlobal = new Servidor(ipv4);
         GerenciadorJogo gerenciador(servidorGlobal);
 
-        std::cout << "Digite 'Iniciar' e pressione [Enter] para começar o jogo!" << std::endl;
-        while (servidorGlobal->ServerOpen()) {
-            std::cout << "A";
-            gerenciador.VerificarNovosJogadores();
-            std::cout << "B";
-            gerenciador.VerificarJogadoresFechados();
-            std::cout << "C" << std::endl;
+        bool jogando = true;
+        while(jogando)
+        {
+            std::cout << "========================================================================" << std::endl;
+            std::cout << "\nDigite 'Iniciar' e pressione [Enter] para começar o jogo!" << std::endl;
+            std::cout << "Digite 'Encerrar' e pressione [Enter] para terminar o jogo!\n" << std::endl;
 
-            if (InputAvailable()) {
-                std::cout << "E" << std::endl;
-                std::string input;
-                
-                getline(std::cin, input);
+            while (servidorGlobal->ServerOpen()) 
+            {
+                gerenciador.VerificarNovosJogadores();
+                gerenciador.VerificarJogadoresFechados();
 
-                if(input == "Iniciar")
-                {
-                    servidorGlobal->StopAccpetingClients();
-                    break;
+                if (InputAvailable()) {
+                    std::string input;
+                    
+                    getline(std::cin, input);
+
+                    if(input == "Iniciar")
+                    {
+                        gerenciador.JogarPartida();
+                        break;
+                    }
+                    else if(input == "Encerrar")
+                    {
+                        jogando = false;
+                        break;
+                    }
                 }
+
+                usleep(100000);
             }
-
-            // Small sleep so we don't busy-wait
-            usleep(100000);
         }
-
         servidorGlobal->FecharServidor();
 
         delete servidorGlobal;
@@ -95,48 +102,206 @@ int main()
 
         std::cout << "Qual é o seu nome?" << std::endl;
         std::string nomeJogador;
-        std::cin >> nomeJogador;
+
+        while(nomeJogador == "")
+            getline(std::cin, nomeJogador);
 
         Cliente cliente(ipv4);
-        Jogador jogador;
         
-        while (cliente.ConnectionOpen()) {
-            std::cout << "A";
+        //Como o único input do jogador com o jogo é pra apostar, basta um bool
+        bool jogoEsperandoInput = false;
+        int valorMinimo = 0;
+        //Dados do jogador, incluindo a mão dele na rodada
+        Jogador jogador;
+        //A mesa da rodada
+        std::vector<Carta> mesa;
+        while (cliente.ConnectionOpen()) 
+        {
             nlohmann::json msg = cliente.GetServerMessage();
             if(!msg.is_null())
             {
-                std::cout << "B";
-                if(msg["Cod"] == codJogador)
+                //Servidor conectou e está pedindo o nome do jogador
+                if(msg[codigo] == codPedirNome)
                 {
-                    std::cout << "J";
-                    jogador = Jogador(msg);
-                    std::cout << jogador << std::endl;
-                    
-                    break;
-                }
-                if(msg["Cod"] == codPedirNome)
-                {
-                    std::cout << "N";
                     msg.clear();
-                    msg["Cod"] = codFornecerNome;
-                    msg["Valor"] = nomeJogador;
+                    msg[codigo] = codFornecerNome;
+                    msg[codAtributoNomeJogador] = nomeJogador;
 
-                    std::cout << "C";
                     cliente.SendServerMessage(msg);
-                    std::cout << "D";
+                }
+                //Servidor está mandando um jogador, sinal de que éstá iniciando a rodada
+                else if(msg[codigo] == codJogador)
+                {
+                    jogador = Jogador(msg);
+                    mesa.clear();
+                }
+                //Se está recebendo uma carta, então a mesa virou uma carta
+                else if(msg[codigo] == codCarta)
+                {
+                    //Adiciona a carta à mesa
+                    mesa.push_back(Carta(msg));
+                }
+                //Se o jogador for um dos blinds
+                else if(msg[codigo] == codSmall || msg[codigo] == codBig)
+                {
+                    jogador.Apostar(msg[codAtributoValor].get<int>());
+                }
+                else if(msg[codigo] == codGanho)
+                {
+                    jogador.Coletar(msg[codAtributoValor].get<int>());
+                }
+                else if(msg[codigo] == codComunicacao)
+                {
+                    std::cout << "========================================================================"
+                                << std::endl << std::endl << std::endl;
+
+                    std::cout << "Mesa:" << std::endl;
+                    for(Carta car : mesa)
+                        std::cout << car << std::endl;
+
+                    std::cout << "\nSua mão: " << std::endl;
+                    for(int i = 0; i < 2; i++)
+                        std::cout << jogador.GetMao()[i] << std::endl;
+
+                    std::cout << std::endl << std::endl;
+
+                    std::cout << "Jogadores:" << std::endl;
+
+                    for (auto& [nome, fichas] : msg[codTabelaFichasRestantes].items()) {
+                        std::cout << nome << ": " << fichas << std::endl;
+                    }
+
+                    std::cout << "Maior aposta é de " << msg[codMaiorAposta][codAtributoNomeJogador]
+                            << " com " << msg[codMaiorAposta][codAtributoValor] << std::endl;
+
+                    std::cout << "A mesa está com " << msg[codValorPote] << std::endl;
+
+                    std::cout << msg[codAtributoMensagem] << std::endl << std::endl;
+                }
+                else if(msg[codigo] == codComunicacaoDesconectou || msg[codigo] == codComunicacaoFinalizacao)
+                {
+                    std::cout << msg[codAtributoMensagem] << std::endl << std::endl;
+                }
+                else if(msg[codigo] == codPedirAposta)
+                {
+                    jogoEsperandoInput = true;
+                    valorMinimo = msg[codAtributoValor].get<int>();
+
+                    if(valorMinimo > jogador.GetFichas())
+                    {
+                        std::cout << "Faça sua aposta:\n" 
+                            << "0 = Fold\n" << "1 = All-In\n" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "Faça sua aposta:\n" 
+                            << "0 = Fold\n" << "1 = Call (" << valorMinimo << ")\n";
+
+                        std::cout << "\n\n" << valorMinimo << " - " << jogador.GetFichas() << std::endl << std::endl << std::endl;
+                        if(valorMinimo < jogador.GetFichas())
+                            std::cout << "Outro número = valor à apostar (mínimo de " << valorMinimo << ")\n";
+
+                        std::cout << std::endl;
+                    }
                 }
             }
-            std::cout << "E" << std::endl;
 
             if (InputAvailable()) {
                 std::string input;
 
                 getline(std::cin, input);
 
-                break;
+                if(jogoEsperandoInput && input != "")
+                {
+                    int escolha;
+                    try
+                    {
+                        escolha = std::stoi(input);
+                    }
+                     catch (const std::invalid_argument& e) {
+                        std::cout << "Digite um número!" << std::endl;
+                        continue;
+                    } catch (const std::out_of_range& e) {
+                        std::cout << "Número fora do alcance de inteiros!" << std::endl;
+                        continue;
+                    }
+
+                    if(valorMinimo > jogador.GetFichas())
+                    {
+                        switch (escolha)
+                        {
+                        //Fold
+                        case 0:
+                            msg.clear();
+                            msg[codigo] = codFold;
+                            cliente.SendServerMessage(msg);
+
+                            jogoEsperandoInput = false;
+                            break;
+                        
+                        //All-in
+                        case 1:
+                            msg.clear();
+                            msg[codigo] = codAposta;
+                            msg[codAtributoValor] = jogador.GetFichas();
+                            cliente.SendServerMessage(msg);
+                            jogador.Apostar(jogador.GetFichas());
+
+                            jogoEsperandoInput = false;
+                            break;
+
+                        default:
+                            std::cout << "Digite uma escolha válida!" << std::endl;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        switch (escolha)
+                        {
+                        //Fold
+                        case 0:
+                            msg.clear();
+                            msg[codigo] = codFold;
+                            cliente.SendServerMessage(msg);
+
+                            jogoEsperandoInput = false;
+                            break;
+                        
+                        //Call
+                        case 1:
+                            msg.clear();
+                            msg[codigo] = codAposta;
+                            msg[codAtributoValor] = valorMinimo;
+                            cliente.SendServerMessage(msg);
+                            jogador.Apostar(valorMinimo);
+
+                            jogoEsperandoInput = false;
+                            break;
+
+                        default:
+                            if(valorMinimo > escolha || escolha > jogador.GetFichas())
+                            {
+                                std::cout << "Digite uma escolha válida!" << std::endl;   
+                                break;
+                            }
+                            else
+                            {
+                                msg.clear();
+                                msg[codigo] = codAposta;
+                                msg[codAtributoValor] = escolha;
+                                cliente.SendServerMessage(msg);
+                                jogador.Apostar(escolha + valorMinimo);
+
+                                jogoEsperandoInput = false;
+
+                                break;
+                            }
+                        }
+                    }
+                }
             }
 
-            // Small sleep so we don't busy-wait
             usleep(100000);
         }
 

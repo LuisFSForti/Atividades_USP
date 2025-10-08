@@ -30,7 +30,6 @@ class Servidor
 private:
     int _serverSocket;
     std::atomic<bool> _stopAccepting, _servidorFechou;
-    std::atomic<int> _socketClienteAtual;
 
     std::thread _threadAccept;
 
@@ -39,7 +38,7 @@ private:
 
     std::mutex _controle;
 
-    nlohmann::json _mensagemClienteAtual;
+    std::map<int, std::vector<nlohmann::json>> _mensagensClientes;
 
     void AcceptClients();
     void CheckOnClient(int clientSocket);
@@ -48,11 +47,11 @@ public:
     Servidor(std::string ipv4);
     ~Servidor();
 
-    void SetClientAtual(int clientSocket);
     void SendClientMessage(int clientSocket, nlohmann::json msg);
     void BroadcastMessage(nlohmann::json msg);
-    nlohmann::json GetClientMessage();
+    nlohmann::json GetClientMessage(int clientSocket);
 
+    void AdicionarClienteParaRemocao(int clientSocket);
     void CloseDeadThreads();
     void StopAccpetingClients();
     void FecharServidor();

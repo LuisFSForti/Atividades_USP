@@ -3,7 +3,6 @@
 Cliente::Cliente(std::string ipv4)
 {
     _clienteFechou = true;
-    _mensagemServidor = nullptr;
 
     _serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -50,15 +49,36 @@ void Cliente::CheckOnServer()
         //ret > 0 -> mensagem recebida, ret == número de char recebidos
         if (ret > 0)
         {
-            //Coloca um \0 no final pra deixar a string bem definida
+            //Para deixar a string bem definida
             buffer[ret] = '\0';
 
+            //Como múltiplos jsons podem chegar de uma vez, precisa separá-los
+            std::string entrada = buffer;
+            int contagemChaves = 0;
+            int comecoJsonAtual = 0;
+            for (size_t i = 0; i < entrada.size(); ++i) 
             {
-                _controle.lock();
+                if (entrada[i] == '{') 
+                {
+                    if (contagemChaves == 0) 
+                        comecoJsonAtual = i; // start of JSON
 
-                _mensagemServidor = nlohmann::json::parse(buffer);
+                    contagemChaves++;
+                }
+                else if (entrada[i] == '}') 
+                {
+                    contagemChaves--;
+                    if (contagemChaves == 0)
+                    {
+                        std::string jsonAtual = entrada.substr(comecoJsonAtual, i - comecoJsonAtual + 1);
+                        
+                        {
+                            std::lock_guard<std::mutex> lock(_controle);
 
-                _controle.unlock();
+                            _mensagensServidor.push_back(nlohmann::json::parse(jsonAtual));
+                        }
+                    }
+                }
             }
         }
         //ret == 0 -> servidor fechou o socket corretamente
@@ -77,7 +97,7 @@ void Cliente::CheckOnServer()
         else
         {
             //Avisa o erro
-            perror("recv");
+            //perror("recv");
 
             //Server fechou forçadamente
             if(errno == ECONNRESET)
@@ -122,7 +142,7 @@ void Cliente::SendServerMessage(nlohmann::json msg)
             }
             else
             {
-                perror("Send failed");
+                //perror("Send failed");
                 //Espera um pouco
                 std::this_thread::sleep_for(std::chrono::milliseconds(timeoutMensagens));
             }
@@ -132,8 +152,16 @@ void Cliente::SendServerMessage(nlohmann::json msg)
 
 nlohmann::json Cliente::GetServerMessage()
 {
-    nlohmann::json msg = _mensagemServidor;
-    _mensagemServidor = nullptr;
+    nlohmann::json msg;
+    {
+        std::lock_guard<std::mutex> lock(_controle);
+
+        if(_mensagensServidor.size() <= 0)
+            return nlohmann::json();
+
+        msg = _mensagensServidor[0];
+        _mensagensServidor.erase(_mensagensServidor.begin());
+    }
 
     return msg;
 }
