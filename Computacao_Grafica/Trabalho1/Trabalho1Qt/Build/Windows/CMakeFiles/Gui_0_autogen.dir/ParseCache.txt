@@ -409,7 +409,7 @@ C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabal
  mdp:C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/mainwindow.h
  mdp:C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/painter.h
 C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/painter.h
-C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/main.cpp
 C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/painter.cpp
+C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/main.cpp
 C:/Users/Luis/Documents/Facul/Atividades_USP/Computacao_Grafica/Trabalho1/Trabalho1Qt/mainwindow.cpp
  uic:./ui_mainwindow.h
