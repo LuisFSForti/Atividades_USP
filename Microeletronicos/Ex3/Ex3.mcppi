@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=LCD.c
+Value=Ex3.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -16,7 +16,7 @@ Value=0
 [EEPROM_DEFINITION]
 Value=
 [FILES]
-File0=LCD.c
+File0=Ex3.c
 Count=1
 [BINARIES]
 Count=0
@@ -24,7 +24,7 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=LCD.c
+File0=Ex3.c
 Count=1
 [EEPROM]
 Count=0
@@ -52,7 +52,9 @@ Count=6
 VECTOR_MODE=0
 IVT_BASE=00000008
 [EXPANDED_NODES]
-Count=0
+0=Ex3.mcppi
+1=Sources
+Count=2
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
@@ -96,7 +98,7 @@ Count=0
 1255=FT810
 1602=FT812
 1603=FT812
-Count=42
+Count=43
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]
