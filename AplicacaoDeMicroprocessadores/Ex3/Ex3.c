@@ -18,6 +18,7 @@ void main()
 {
      unsigned int ADC;
      //WordToStr sempre faz uma saída de 6 caracteres
+     //Fazer a string de 6 caracteres deixa a string o mais bem-definida possível
      //https://download.mikroe.com/documents/compilers/mikroc/pic/help/conversions_library.htm
      unsigned char Texto[6];
      float tensao;

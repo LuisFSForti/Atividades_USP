@@ -20,6 +20,7 @@ void main()
  unsigned int ADC;
 
 
+
  unsigned char Texto[6];
  float tensao;
  int tensaoInteira;
