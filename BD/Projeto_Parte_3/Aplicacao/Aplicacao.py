@@ -80,7 +80,7 @@ def VerificarNumeroResidencia(numero):
 def VerificaTelefone(tel):
     #Regex, idêntico ao que está dentro da base de dados
     #r"..." -> string raw, para evitar alertas de erros com '\'
-    return bool(re.match(r"^\(\d{2}\)9\d{4}-\d{4}$", tel))
+    return bool(re.match(r"^\(\d{2}\)9\d{4}\-\d{4}$", tel))
 
 #Função para verificar a cor/raça
 def VerificaCor(cor):
@@ -107,8 +107,56 @@ def GetConfirmacao(msg):
 
 #======================================= INSERT ======================================
 
-#Primeira parte da inserção, cuida da tabela Pessoa
-def InsertPessoaPaciente(conn, cursor):
+#Verifica a existência do CPF na base de dados, seja como Pessoa ou como Paciente
+#0 == Nenhum Registro, retorna ID nulo
+#1 == Registrado em Pessoa, retorna também o ID do registro
+#2 == Registrado em Paciente (e, consequentemente, em Pessoa), retorna também o ID do registro
+#-1 == Erro, retorna ID nulo
+def VerificaExistenciaPessoaPaciente(pool, cpf):
+    #Verifica se este CPF já está cadastrado como Pessoa
+    #Como Pessoa tem especialização obrigatória, isso só acontecerá com Funcionários
+
+    sqlSelectPessoa = "SELECT * FROM PESSOA WHERE CPF = :cpfPessoa"
+    dados = {"cpfPessoa": cpf}
+
+    try:
+        #Pega uma conexão com o BD
+        with pool.acquire() as conn:
+            #Cria um cursor pra conexão
+            with conn.cursor() as cursor:
+                #cursor.execute trata os dados, protegendo contra injeções
+                cursor.execute(sqlSelectPessoa, dados)
+                rows = cursor.fetchall()
+
+                #Como o CPF é único, só pode haver 0 ou 1 registro
+                if len(rows) == 1:
+                    #Pega o seu id de registro
+                    idPessoaBytes = rows[0][0]
+
+                    #Verifica se já está registrado como um Paciente
+                    sqlSelectPaciente = "SELECT * FROM PACIENTE WHERE PESSOA = :idPessoa"
+                    dados = {"idPessoa": idPessoaBytes}
+                    #cursor.execute trata os dados, protegendo contra injeções
+                    cursor.execute(sqlSelectPaciente, dados)
+                    rows = cursor.fetchall()
+
+                    #Novamente, ID é único, terá 0 ou 1 registro
+                    if len(rows) == 1:
+                        return 2, idPessoaBytes
+                    #Se não estiver como Paciente
+                    else:
+                        return 1, idPessoaBytes
+                else:
+                    return 0, None
+    except oracledb.Error as e:
+        print(f"\nErro oracle: {e}\n")
+        return -1, None
+    except Exception as e:
+        print(f"\nErro: {e}\n")
+        return -1, None
+
+#Função para pegar os dados para registro em Pessoa
+def GetDadosPessoa(pool):
     #Cria fora do loop para serem usados na inserção posteriormente
     cpf = None
     nome = None
@@ -136,38 +184,18 @@ def InsertPessoaPaciente(conn, cursor):
         #Print de separação, para facilitar a legibilidade
         print("")
 
-        #Verifica se este CPF já está cadastrado como Pessoa
-        #Como Pessoa tem especialização obrigatória, isso só acontecerá com Funcionários
-
-        sqlSelectPessoa = "SELECT * FROM PESSOA WHERE CPF = :cpfPessoa"
-        dados = {"cpfPessoa": cpf}
-        #cursor.execute trata os dados, protegendo contra injeções
-        cursor.execute(sqlSelectPessoa, dados)
-        rows = cursor.fetchall()
-
-        #Como o CPF é único, só pode haver 0 ou 1 registro
-        if len(rows) == 1:
-            #Pega o seu id de registro
-            idPessoaBytes = rows[0][0]
-
-            #Verifica se já está registrado como um Paciente
-            sqlSelectPaciente = "SELECT * FROM PACIENTE WHERE PESSOA = :idPessoa"
-            dados = {"idPessoa": idPessoaBytes}
-            #cursor.execute trata os dados, protegendo contra injeções
-            cursor.execute(sqlSelectPaciente, dados)
-            rows = cursor.fetchall()
-
-            #Novamente, ID é único, terá 0 ou 1 registro
-            if len(rows) == 1:
-                #Informa que já está cadastrado e fecha a operação
-                print("O CPF " + cpf + " já está cadastrado como um paciente!")
-                
-                #Print de separação, para facilitar a legibilidade
-                print("")
+        #Verifica se o CPF já está no BD
+        #Caso a Pessoa exista sem ser Paciente, pega também o ID de registro
+        existencia, idPessoaBytes = VerificaExistenciaPessoaPaciente(pool, cpf)
+        match existencia:
+            #Se teve algum erro
+            case -1:
                 return
-
-            #Se não estiver como Paciente
-            else:
+            #Se não estiver
+            case 0:
+                pass
+            #Se estiver como Pessoa
+            case 1:
                 #Alerta o usuário
                 print("O CPF " + cpf + " já está cadastrado como uma pessoa!")
 
@@ -176,11 +204,24 @@ def InsertPessoaPaciente(conn, cursor):
 
                 #Se não quiser registrar a Pesoa como Paciente (digitou o CPF errado)
                 if proceder == 'N':
-                    return
+                    #Print de separação, para facilitar a legibilidade
+                    print("")
+
+                    return None
                 #Se quiser, avança pra próxima parte
                 else:
-                    InsertPaciente(conn, cursor, idPessoaBytes)
-                    return                  
+                    #Print de separação, para facilitar a legibilidade
+                    print("")
+
+                    return {"ID_PESSOA_BYTES": idPessoaBytes}
+            #Se estiver como Paciente
+            case 2:
+                #Informa que já está cadastrado e fecha a operação
+                print("O CPF " + cpf + " já está cadastrado como um paciente!")
+                
+                #Print de separação, para facilitar a legibilidade
+                print("")
+                return None
 
         #Se já não estiver cadastrado como Pessoa, pega o restante das informações
 
@@ -350,9 +391,19 @@ def InsertPessoaPaciente(conn, cursor):
         #Print de separação, para facilitar a legibilidade
         print("")
 
-        #Se os dados estiverem corretos, sai do loop
+        #Se os dados estiverem corretos, retorna-os
         if confirmacao == 'S':
-            break
+            return {
+                    "CPF": cpf,
+                    "NOME": nome,
+                    "ESTADO": estado,
+                    "CIDADE": cidade, 
+                    "BAIRRO": bairro,
+                    "RUA": rua, 
+                    "NUMERO": numero, 
+                    "TELEFONE1": telefone1, 
+                    "TELEFONE2": telefone2
+                }
 
         #Se algum dado estiver incorreto, reinicia o loop
         #Limpa todos os dados
@@ -366,39 +417,8 @@ def InsertPessoaPaciente(conn, cursor):
         telefone1 = None
         telefone2 = None
 
-    #Após coletar os dados
-    #Cria no cursor uma variável, necessário pra usar o RETURNING INTO
-    idPessoaRet = cursor.var(oracledb.BINARY)
-    #RETURNING INTO -> pega o ID criado no insert, que vai ser necessário pra próxima parte da inserção
-    sqlInsertPessoa = "INSERT INTO PESSOA (CPF, NOME, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, TELEFONE1, TELEFONE2) " \
-        "VALUES (:CPF, :NOME, :ESTADO, :CIDADE, :BAIRRO, :RUA, :NUMERO, :TELEFONE1, :TELEFONE2) RETURNING ID INTO :ID_RET"
-    dados = {
-        "CPF": cpf,
-        "NOME": nome,
-        "ESTADO": estado,
-        "CIDADE": cidade, 
-        "BAIRRO": bairro,
-        "RUA": rua, 
-        "NUMERO": numero, 
-        "TELEFONE1": telefone1, 
-        "TELEFONE2": telefone2, 
-        "ID_RET": idPessoaRet
-    }
-
-    try:
-        #cursor.execute trata os dados, protegendo contra injeções
-        cursor.execute(sqlInsertPessoa, dados)
-        #Pega o ID retornado
-        idPessoaBytes = idPessoaRet.getvalue()[0]
-
-        #Avança pra próxima parte da inserção
-        InsertPaciente(conn, cursor, idPessoaBytes)
-    
-    except oracledb.Error as e:
-        print(f"Erro ao inserir: {e}")
-
-#Segunda parte da inserção, cuida da tabela Paciente
-def InsertPaciente(conn, cursor, idPessoaBytes):
+#Função para pegar os dados para registro em Paciente
+def GetDadosPaciente():
     #Cria fora do loop para serem usados na inserção posteriormente
     sexo = None
     nascimento = None
@@ -567,7 +587,15 @@ def InsertPaciente(conn, cursor, idPessoaBytes):
 
         #Se os dados estiverem corretos, sai do loop
         if confirmacao == 'S':
-            break
+            return {
+                "SEXO": sexo,
+                "NASCIMENTO": nascimento,
+                "OBITO": obito,
+                "COR": cor,
+                "PESO": peso, 
+                "TELEFONE_EMERGENCIA1": telefoneEmergencia1, 
+                "TELEFONE_EMERGENCIA2": telefoneEmergencia2
+            }
 
         #Se algum dado estiver incorreto, reinicia o loop
         #Limpa todos os dados
@@ -579,43 +607,68 @@ def InsertPaciente(conn, cursor, idPessoaBytes):
         telefoneEmergencia1 = None
         telefoneEmergencia2 = None
 
-    #Após coletar os dados
-    sqlInsertPaciente = "INSERT INTO PACIENTE (PESSOA, SEXO, NASCIMENTO, OBITO, COR, PESO, TELEFONE_EMERGENCIA1, TELEFONE_EMERGENCIA2) " \
-        "VALUES (:ID_PESSOA, :SEXO, :NASCIMENTO, :OBITO, :COR, :PESO, :TELEFONE_EMERGENCIA1, :TELEFONE_EMERGENCIA2)"
-    dados = {
-        "ID_PESSOA": idPessoaBytes,
-        "SEXO": sexo,
-        "NASCIMENTO": nascimento,
-        "OBITO": obito,
-        "COR": cor,
-        "PESO": peso, 
-        "TELEFONE_EMERGENCIA1": telefoneEmergencia1, 
-        "TELEFONE_EMERGENCIA2": telefoneEmergencia2
-    }
+#Cuida do processo de inserção do paciente
+def InsertPessoaPaciente(pool):
+    dadosPessoa = GetDadosPessoa(pool)
 
-    try:
-        #cursor.execute trata os dados, protegendo contra injeções
-        cursor.execute(sqlInsertPaciente, dados)
+    #Se o Paciente já existe, ou se o usuário optou por não registrá-lo
+    if dadosPessoa is None:
+        return
 
-        print(f"\n\nPaciente ID = {BinParaHex(idPessoaBytes)} registrado com sucesso!")
-        #Instrui o usuário à orientar o Paciente
-        print("Caso o paciente tenha interesse em se tornar doador de órgãos, informe-o sobre os próximos passos:")
-        print("- Ele pode manifestar sua vontade conversando com a família, que é a responsável pela autorização final.")
-        print("- É recomendado esclarecer dúvidas com a equipe médica ou com o serviço de orientação do hospital.")
-        print("- Se desejar, o paciente pode solicitar materiais explicativos sobre doação de órgãos.")
-        print("- Reforce que a decisão é voluntária e pode ser alterada a qualquer momento.\n\n")
-
-        #Chama commit na base de dados, salvando os dados por definitivo
-        conn.commit()
+    dadosPaciente = GetDadosPaciente()
     
+    #Após coletar os dados
+    try:
+        #Pega uma conexão com o BD
+        with pool.acquire() as conn:
+            #Cria um cursor pra conexão
+            with conn.cursor() as cursor:
+                idPessoaBytes = dadosPessoa.get("ID_PESSOA_BYTES")
+                
+                #Se o paciente não estava pré-cadastrado como pessoa
+                if idPessoaBytes is None:
+                    #Cria no cursor uma variável, necessário pra usar o RETURNING INTO
+                    idPessoaRet = cursor.var(oracledb.BINARY)
+
+                    #RETURNING INTO -> pega o ID criado no insert, que vai ser necessário pra próxima parte da inserção
+                    sqlInsertPessoa = \
+                        "INSERT INTO PESSOA (CPF, NOME, ESTADO, CIDADE, BAIRRO, RUA, NUMERO, TELEFONE1, TELEFONE2) " \
+                        "VALUES (:CPF, :NOME, :ESTADO, :CIDADE, :BAIRRO, :RUA, :NUMERO, :TELEFONE1, :TELEFONE2) RETURNING ID INTO :ID_RET"
+                    dadosPessoa["ID_RET"] = idPessoaRet
+
+                    #cursor.execute trata os dados, protegendo contra injeções
+                    cursor.execute(sqlInsertPessoa, dadosPessoa)
+                    #Pega o ID retornado
+                    idPessoaBytes = idPessoaRet.getvalue()[0]
+
+                sqlInsertPaciente = \
+                    "INSERT INTO PACIENTE (PESSOA, SEXO, NASCIMENTO, OBITO, COR, PESO, TELEFONE_EMERGENCIA1, TELEFONE_EMERGENCIA2) " \
+                    "VALUES (:ID_PESSOA_BYTES, :SEXO, :NASCIMENTO, :OBITO, :COR, :PESO, :TELEFONE_EMERGENCIA1, :TELEFONE_EMERGENCIA2)"
+                
+                dadosPaciente["ID_PESSOA_BYTES"] = idPessoaBytes
+
+                #cursor.execute trata os dados, protegendo contra injeções
+                cursor.execute(sqlInsertPaciente, dadosPaciente)
+                #Chama commit na base de dados, salvando os dados por definitivo
+                conn.commit()
+
+                print(f"\n\nPaciente ID = {BinParaHex(idPessoaBytes)} registrado com sucesso!")
+                #Instrui o usuário à orientar o Paciente
+                print("Caso o paciente tenha interesse em se tornar doador de órgãos, informe-o sobre os próximos passos:")
+                print("- Ele pode manifestar sua vontade conversando com a família, que é a responsável pela autorização final.")
+                print("- É recomendado esclarecer dúvidas com a equipe médica ou com o serviço de orientação do hospital.")
+                print("- Se desejar, o paciente pode solicitar materiais explicativos sobre doação de órgãos.")
+                print("- Reforce que a decisão é voluntária e pode ser alterada a qualquer momento.\n\n")
+    
+    #with conn -> realiza rollback automático quando sai do seu bloco
     except oracledb.Error as e:
-        print(f"Erro ao inserir: {e}")
-        #Se houve um erro, cancela a inserção feita na função anterior
-        conn.rollback()
+        print(f"\nErro oracle: {e}\n")
+    except Exception as e:
+        print(f"\nErro: {e}\n")
 
 #======================================= SELECT ======================================
 
-def SelectPessoa(cursor):
+def SelectPessoa(pool):
     idPessoa = None
     cpf = None
     nome = None
@@ -676,60 +729,95 @@ def SelectPessoa(cursor):
         "telefone2": telefone2
     }
 
-    #cursor.execute trata os dados, protegendo contra injeções
-    cursor.execute(sqlSelectPessoa, dados)
+    try:
+        #Pega uma conexão com o BD
+        with pool.acquire() as conn:
+            #Cria um cursor pra conexão
+            with conn.cursor() as cursor:
+                #cursor.execute trata os dados, protegendo contra injeções
+                cursor.execute(sqlSelectPessoa, dados)
 
-    rows = cursor.fetchall()
-    #Pega o nome das colunas
-    cols = [desc[0] for desc in cursor.description]
+                rows = cursor.fetchall()
+                #Pega o nome das colunas
+                cols = [desc[0] for desc in cursor.description]
 
-    #Converte a primeira coluna de toda linha (o ID) de binário para hexadecimal
-    #[...] + row[1:] -> concatena o resultado da função com o restante da linha
-    hexRows = [[BinParaHex(row[0])] + list(row[1:]) for row in rows]
+                #Converte a primeira coluna de toda linha (o ID) de binário para hexadecimal
+                #[...] + row[1:] -> concatena o resultado da função com o restante da linha
+                hexRows = [[BinParaHex(row[0])] + list(row[1:]) for row in rows]
 
-    #Imprime a tabela obtida
-    print(f"\n==== Tabela Pessoa ====")
-    print(tabulate(hexRows, headers=cols, tablefmt="psql"))
+                #Imprime a tabela obtida
+                print(f"\n==== Tabela Pessoa ====")
+                print(tabulate(hexRows, headers=cols, tablefmt="psql"))
 
-    #Print de separação, para facilitar a legibilidade
-    print("")
+                #Print de separação, para facilitar a legibilidade
+                print("")
 
+    except oracledb.Error as e:
+        print(f"\nErro oracle: {e}\n")
+    except Exception as e:
+        print(f"\nErro: {e}\n")
 
 #======================================= MAIN ======================================
 
-#Carrega o .env
-load_dotenv()
-#Cria o dsn com os detalhes do servidor no .env
-dsn = oracledb.makedsn(
-    host = os.getenv("host"),
-    port = os.getenv("port"),
-    service_name = os.getenv("service_name")
-    )
-#Cria uma conexão com o servidor, usando o usuário do .env
-conn = oracledb.connect(user = os.getenv("user"), password = os.getenv("password"), dsn=dsn)
-#Cria um cursor para a conexão
-#Ele é quem interage com o BD
-cursor = conn.cursor()
+if __name__ == "__main__":
+    #Abre o .env
+    load_dotenv()
 
-while True:
-    print(
-        "Selecione uma função:\n" +
-        "[0] Inserir um novo paciente\n" +
-        "[1] Procurar uma pessoa\n" +
-        "[2] Fechar o programa\n"
-    )
+    #Pega os dados do .env
+    db_user = os.getenv("user")
+    db_pass = os.getenv("password")
+    db_host = os.getenv("host")
+    db_port = os.getenv("port")
+    db_service = os.getenv("service_name")
 
-    comando = input("Digite a função desejada: ").strip()
+    #Se algum dado estiver faltando (ou o .env em si)
+    if not all([db_user, db_pass, db_host, db_port, db_service]):
+        print("\n[ERRO] Arquivo .env incompleto!\n")
+        print("Verifique: user, password, host, port, service_name\n")
+        exit()
 
-    match comando:
-        case '0':
-            InsertPessoaPaciente(conn, cursor)
-        case '1':
-            SelectPessoa(cursor)
-        case '2':
-            print("Encerrando o código...")
-            break
-        case _:
-            print("Comando inválido!\n\n")
+    dsn = oracledb.makedsn(host=db_host, port=db_port, service_name=db_service)
 
-conn.close()
+    pool = None
+    try:
+        print("Conectando ao banco de dados...")
+        pool = oracledb.create_pool(
+            user=db_user,
+            password=db_pass,
+            dsn=dsn,
+            min=1,
+            max=2,
+            increment=1
+        )
+        print("Sistema iniciado com sucesso!\n")
+
+        while True:
+            print(
+                "Selecione uma função:\n" +
+                "[0] Inserir um novo paciente\n" +
+                "[1] Procurar uma pessoa\n" +
+                "[2] Fechar o programa\n"
+            )
+
+            comando = input("Digite a função desejada: ").strip()
+
+            match comando:
+                case '0':
+                    InsertPessoaPaciente(pool)
+                case '1':
+                    SelectPessoa(pool)
+                case '2':
+                    print("\nEncerrando o código...")
+                    break
+                case _:
+                    print("Comando inválido!\n")
+
+    except oracledb.Error as e:
+        print(f"\n[ERRO FATAL DE CONEXÃO]: {e}")
+    except KeyboardInterrupt:
+        print("\n\nEncerrando forçadamente pelo usuário...")
+    #Independentemente do erro esse trecho irá rodar, até mesmo se não ocorrer (comando '2')
+    finally:
+        if pool is not None:
+            pool.close()
+            print("Conexão com o banco encerrada.\n")

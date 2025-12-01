@@ -1,6 +1,7 @@
 --Procura todos os doadores disponíveis para os receptores com prioridade máxima,
---avaliando o tipo sanguíneo encontrado nos exames de cada um
-SELECT R.TIPO_ORGAO, R.RECEPTOR, D.DOADOR, E1.RESULTADO AS RESULTADO_EXAME_RECEPTOR, E2.RESULTADO AS RESULTADO_EXAME_DOADOR
+--avaliando o tipo sanguíneo encontrado nos exames de cada um para verificar a compatibilidade do receptor com o doador.
+--Se um deles não tiver realizado o exame, eles não serão considerados pela bsuca
+SELECT DISTINCT R.TIPO_ORGAO, R.RECEPTOR, D.DOADOR
 FROM RECEPTOR_ESPERA R 
 JOIN EXAME E1 ON R.RECEPTOR = E1.PACIENTE
 JOIN DOADOR_DOA D ON R.TIPO_ORGAO = D.TIPO_ORGAO
@@ -51,7 +52,7 @@ AND R.PRIORIDADE = 1;
 
 --Lista o número de óbitos durante cirurgias de cada hospital
 SELECT H.NOME,
---Conta o número de pessoas que o horário de óbito 
+--Conta o número de pessoas cujo horário de óbito 
 --está dentro da janela de alguma cirurgia em que elas eram pacientes
 COUNT(
     CASE
@@ -60,13 +61,14 @@ COUNT(
     END
 ) AS OBITOS
 FROM HOSPITAL H
-LEFT JOIN CIRURGIA C ON H.ID = C.HOSPITAL
-JOIN PACIENTE P ON P.PESSOA = C.PACIENTE
+LEFT JOIN CIRURGIA C ON H.ID = C.HOSPITAL         --LEFT JOIN para preservar, no select, hospitais que não realizaram cirurgia alguma
+LEFT JOIN PACIENTE P ON P.PESSOA = C.PACIENTE
 GROUP BY H.NOME
-ORDER BY 2 DESC;
+ORDER BY OBITOS DESC;
 
 
 -- Lista os doadores que doaram todos os órgãos possíveis
+-- Esse é o nosso SELECT que utiliza divisão relacional
 SELECT DISTINCT C.PACIENTE
 FROM CIRURGIA C
 WHERE NOT EXISTS
@@ -84,7 +86,7 @@ WHERE NOT EXISTS
     )
 );
 
---Checa se existem pessoas que doaram órgãos que elas receberam, não considerando rins
+--Checa se existem pessoas que doaram órgãos que elas receberam em uma cirurgia anterior. Os rins são desconsiderados nessa busca
 SELECT C.PACIENTE, O.TIPO, O.LADO
 FROM CIRURGIA C JOIN ORGAO O
 ON C.ID = O.COLETA
@@ -98,7 +100,7 @@ AND O.TIPO <> 'RIM';
 
 
 --Seleciona hospitais que realizaram cirurgias para os quais não estavam autorizados
-SELECT H.NOME, O.TIPO, TO_CHAR(C.DATA_HORARIO_INICIO, 'YYYY/MM/DD HH24:MI::SS') AS DATA_HORARIO_INICIO, C.TIPO
+SELECT H.NOME, O.TIPO, TO_CHAR(C.DATA_HORARIO_INICIO, 'YYYY/MM/DD HH24:MI:SS') AS DATA_HORARIO_INICIO, C.TIPO
 FROM HOSPITAL H 
 JOIN CIRURGIA C ON C.HOSPITAL = H.ID
 JOIN ORGAO O ON C.ID = O.COLETA OR C.ID = O.RECEPCAO
@@ -107,10 +109,7 @@ AND INSTR(A.AUTORIZACAO_SNT, O.TIPO) > 0
 AND C.DATA_HORARIO_INICIO < A.VALIDADE_AUTORIZACAO
 WHERE A.HOSPITAL IS NULL;
 
+SELECT * FROM AUTORIZACAO_HOSPITAL;
+
 --Nota: pode acontecer que um hospital realize uma cirurgia não autorizada, mas renove sua autorização depois
---Nesse caso, a informação de que a cirurgia foi realizada será perdida da base de dados
-
-
-    
-
-
+--Nesse caso, a informação de que a cirurgia foi realizada indevidamente será perdida da base de dados
