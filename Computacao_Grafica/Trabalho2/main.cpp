@@ -42,9 +42,9 @@ int largura_atual = WINDOW_W;
 int altura_atual = WINDOW_H;
 
 // fatores de iluminação
-float ka = 0.5f;
-float kd = 0.8f;
-float ks = 1.0f;
+float ka = 0.2f; //baixo:mostra mais as sombras
+float kd = 0.8f; //a cor ressalta
+float ks = 1.0f; //mutio brilho
 // Transformações Geomtericas NO OBJETO 3D
 float tx = 0.0, ty = 0.0, tz = 0.0;
 float rxo = 0.0, ryo = 0.0, rzo = 0.0;
@@ -424,8 +424,8 @@ void Reshape(int w, int h)
 
 void configura_phong()
 {
-    Color cor_atual = {1.0f, 0.0f, 0.0f};
-    Color cor_amb = {0.0f, 0.0f, 0.0f};    // Luz Ambiente (preto)
+    Color cor_atual = {0.0f, 0.8f, 1.0f};
+    Color cor_amb = {1.0f, 1.0f, 1.0f};    // Luz Ambiente (preto)
     Color cor_difusa = {1.0f, 1.0f, 1.0f}; // Luz Difusa (Branca)
     Color cor_espc = {1.0f, 1.0f, 1.0f};   // Luz Especular (Brilho Branco)
 
@@ -440,7 +440,7 @@ void configura_phong()
     // conversao de luzes
     glm::vec3 luz_mundo = glm::vec3(15.0f, 10.0f, 10.0f);
     glm::vec4 luz_view = view * glm::vec4(luz_mundo, 1.0f);
-    float luz_view_pos[3] = {0.0f, 0.0f, 0.0f}; //POSICAO DA FONTE DE LUZ
+    float luz_view_pos[3] = {0.0f, 0.0f, 0.0f}; //POSICAO DA FONTE DE LUZ - vindo da direira-cima
     //  Phong comeca com luz em view-space e camera na origem
     float camera_view_pos[3] = {0.0f, 0.0f, 0.0f};
 
@@ -464,22 +464,33 @@ void configura_phong()
     // transforma para a atela
     auto processa = [&](auto &malha, auto &saida, glm::mat4 matriz_indi)
     {
+        glm::mat4 model_view = view * matriz_indi;
+
+        //calcula as norais levando em conta rotaçao
+        glm::mat3 matriz_nromais = glm::transpose(glm::inverse(glm::mat3(model_view)));
         for (auto &face : malha)
         {
             vector<VerticesPhong> aux;
             for (auto &v : face)
             {
                 // calcula a posicao da camera
-                glm::vec4 p_view = view * matriz_indi * glm::vec4(v.x, v.y, v.z, 1.0f);
+                glm::vec4 p_view = model_view * glm::vec4(v.x, v.y, v.z, 1.0f);
+                //calcula as normais
+                glm::vec3 n_origem = glm::vec3(v.nx,v.ny,v.nz);
+                glm::vec3 n_view = glm::normalize(matriz_nromais * n_origem);
+
                 // ássa para a tela
                 VerticesPhong v_ndc = (camera.transf_coord_tela(v, largura_atual, altura_atual, matriz_indi));
                 VerticesPhong v_pixel = camera.toPixel(v_ndc, largura_atual, altura_atual);
 
-                // guarda a posicap view
+                // guarda a posicap view e normais
                 v_pixel.vx = p_view.x;
                 v_pixel.vy = p_view.y;
                 v_pixel.vz = p_view.z;
 
+                 v_pixel.nx = n_view.x;
+                v_pixel.ny = n_view.y;
+                v_pixel.nz = n_view.z;
                 // cout << "Y tela: " << v_pixel.y << endl;
                 aux.push_back(v_pixel);
             }
@@ -494,7 +505,7 @@ void configura_phong()
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    glOrtho(0.0, largura_atual, 0.0, altura_atual, -1.0, 1.0);
+    glOrtho(0.0, largura_atual, 0.0, altura_atual, -100.0, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
@@ -502,6 +513,9 @@ void configura_phong()
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
+    glEnable(GL_CULL_FACE); //nao dessenha o interior
+    glCullFace(GL_BACK); //descarta costas
+    //glFrontFace(GL_CCW); //hantihorario como padrao
     auto rasteriza = [&](auto &lista)
     {
         for (auto &face : lista)
@@ -523,6 +537,7 @@ void configura_phong()
     rasteriza(nw_coords_pi);
     rasteriza(nw_coord_esf);
 
+    glDisable(GL_CULL_FACE);
     // Restaura matrizes
     glPopMatrix();
     glMatrixMode(GL_PROJECTION);

@@ -179,6 +179,7 @@ void Phong::scan_line(ET_phong *listaET, Color cor, float ka, float kd, float ks
     glPointSize(1.0f);
 
     // inicializa o desenho
+    glPointSize(2.5f);
     glBegin(GL_POINTS);
     vector<DadosET_phong> listaAET;
     for (int i = 0; i < listaET->nroNiveis; i++)
@@ -265,15 +266,15 @@ void Phong::scan_line(ET_phong *listaET, Color cor, float ka, float kd, float ks
                 glm::vec3 luz_norm = glm::normalize(luz);
 
                 // vetor visao/cam
-                float vx = 0.0f - acu_vx;
-                float vy = 0.0f - acu_vy;
-                float vz = 0.0f - acu_vz;
+                float vx = pos_cam.x - acu_vx;
+                float vy = pos_cam.y - acu_vy;
+                float vz = pos_cam.z - acu_vz;
 
                 glm::vec3 cam = {vx, vy, vz};
                 glm::vec3 cam_norm = glm::normalize(cam);
 
                 // produto escalar
-                float prod = abs(glm::dot(normalizado, luz_norm));
+                float prod = (glm::dot(normalizado, luz_norm));
 
                 // Variáveis de intensidade
                 float fatorDifuso = 0.0f;
@@ -290,7 +291,7 @@ void Phong::scan_line(ET_phong *listaET, Color cor, float ka, float kd, float ks
                     float RprodV = glm::dot(reflexo, cam_norm);
                     if (RprodV > 0.0f)
                     {
-                        fatorEspecular = pow(RprodV, 4.0f); // define brilho
+                        fatorEspecular = pow(RprodV, 60.0f); // define brilho
                     }
                 }
                 // euqações de luz
@@ -318,6 +319,7 @@ void Phong::scan_line(ET_phong *listaET, Color cor, float ka, float kd, float ks
 
                 // Desenha o Pixel
                 glColor3f(rfinal, gfinal, bfinal);
+                //glColor3f(abs(normalizado.x), abs(normalizado.y), abs(normalizado.z));
                 glVertex3f(x, yNivel, acu_Z);
 
                 // atualiza os valores
