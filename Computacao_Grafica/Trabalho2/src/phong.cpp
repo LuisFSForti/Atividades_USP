@@ -266,9 +266,9 @@ void Phong::scan_line(ET_phong *listaET, Color cor, float ka, float kd, float ks
                 glm::vec3 luz_norm = glm::normalize(luz);
 
                 // vetor visao/cam
-                float vx = pos_cam.x - acu_vx;
-                float vy = pos_cam.y - acu_vy;
-                float vz = pos_cam.z - acu_vz;
+                float vx = 0 - acu_vx;
+                float vy = 0 - acu_vy;
+                float vz = 0 - acu_vz;
 
                 glm::vec3 cam = {vx, vy, vz};
                 glm::vec3 cam_norm = glm::normalize(cam);

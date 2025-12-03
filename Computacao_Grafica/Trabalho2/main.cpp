@@ -42,13 +42,13 @@ int largura_atual = WINDOW_W;
 int altura_atual = WINDOW_H;
 
 // fatores de iluminação
-float ka = 0.2f; //baixo:mostra mais as sombras
+float ka = 0.5f; //baixo:mostra mais as sombras
 float kd = 0.8f; //a cor ressalta
 float ks = 1.0f; //mutio brilho
 // Transformações Geomtericas NO OBJETO 3D
 float tx = 0.0, ty = 0.0, tz = 0.0;
 float rxo = 0.0, ryo = 0.0, rzo = 0.0;
-float scaleo = 1.0;
+float scaleo = 0.1;
 
 // Lista dinâmica - clique do usuário
 vector<Ponto> g_vertices;
@@ -425,7 +425,7 @@ void Reshape(int w, int h)
 void configura_phong()
 {
     Color cor_atual = {1.0f, 1.0f, 1.0f};
-    Color cor_amb = {0.2f, 0.2f, 0.2f};    // Luz Ambiente (preto)
+    Color cor_amb = {0.5f, 0.5f, 0.5f};    // Luz Ambiente (preto)
     Color cor_difusa = {1.0f, 1.0f, 1.0f}; // Luz Difusa (Branca)
     Color cor_espc = {1.0f, 1.0f, 1.0f};   // Luz Especular (Brilho Branco)
 
@@ -440,7 +440,7 @@ void configura_phong()
     // conversao de luzes
     glm::vec3 luz_mundo = glm::vec3(15.0f, 10.0f, 10.0f);
     glm::vec4 luz_view = view * glm::vec4(luz_mundo, 1.0f);
-    float luz_view_pos[3] = {0.0f, 0.0f, 0.0f}; //POSICAO DA FONTE DE LUZ - vindo da direira-cima
+    float luz_view_pos[3] = {0.0f, 0.0f, 0.0f}; //POSICAO DA FONTE DE LUZ - na câmera
     //  Phong comeca com luz em view-space e camera na origem
     float camera_view_pos[3] = {0.0f, 0.0f, 0.0f};
 
