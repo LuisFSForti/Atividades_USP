@@ -6,8 +6,7 @@ g++ main.cpp piramide.cpp esfera.cpp cubo.cpp camera.cpp iluminacao.cpp glad.c -
 
 OU
 
-g++ *.cpp glad.c -o app -I include -lGL -lglut -lGLU -ldl
-g++ main.cpp src/*.cpp src/glad.c -o build/app2 -I include -lGL -lglut -lGLU -ldl
+g++ main.cpp src/*.cpp src/glad.c -o build/app -I include -lGL -lglut -lGLU -ldl
 
 Execução:
 ./app

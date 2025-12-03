@@ -424,8 +424,8 @@ void Reshape(int w, int h)
 
 void configura_phong()
 {
-    Color cor_atual = {0.0f, 0.8f, 1.0f};
-    Color cor_amb = {1.0f, 1.0f, 1.0f};    // Luz Ambiente (preto)
+    Color cor_atual = {1.0f, 1.0f, 1.0f};
+    Color cor_amb = {0.2f, 0.2f, 0.2f};    // Luz Ambiente (preto)
     Color cor_difusa = {1.0f, 1.0f, 1.0f}; // Luz Difusa (Branca)
     Color cor_espc = {1.0f, 1.0f, 1.0f};   // Luz Especular (Brilho Branco)
 
@@ -446,7 +446,7 @@ void configura_phong()
 
     phong_cor.init(luz_view_pos, nullptr, camera_view_pos);
 
-    // trasnformacoes do objeto
+    // Transformações dos objeto
     glm::mat4 model_matrix = glm::mat4(1.0f);
     model_matrix = glm::translate(model_matrix, glm::vec3(tx, ty, tz));
     model_matrix = glm::rotate(model_matrix, glm::radians(rxo), glm::vec3(1, 0, 0));
@@ -497,6 +497,7 @@ void configura_phong()
             saida.push_back(move(aux));
         }
     };
+    
     processa(malha_cubo, nw_coord_cubo, m_cubo);
     processa(malha_piramide, nw_coords_pi, m_piramide);
     processa(malha_esfera, nw_coord_esf, m_esf);
