@@ -1,5 +1,3 @@
-//Luís Filipe Silva Forti - 14592348
-
 #include <iostream>
 #include <string>
 #include <unordered_map>
