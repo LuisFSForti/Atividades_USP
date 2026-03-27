@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "author": "Luis Filipe Silva Forti",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -10.74,
+      "left": -108.7,
+      "rotate": 270,
+      "attrs": {}
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 55.6, "left": 643.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo2", "top": -88.4, "left": 480, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo3", "top": 199.6, "left": 499.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo4", "top": 276.4, "left": 211.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo5", "top": 132.4, "left": 211.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo6", "top": -11.6, "left": 211.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo7", "top": -155.6, "left": 211.2, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": 374.4,
+      "left": 249.6,
+      "attrs": { "text": "Aileron Esquerdo" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text2",
+      "top": -67.2,
+      "left": 259.2,
+      "attrs": { "text": "Aileron Direito" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": 220.8,
+      "left": 268.8,
+      "attrs": { "text": "Flap Esquerdo" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text4",
+      "top": 76.8,
+      "left": 278.4,
+      "attrs": { "text": "Flap Direito" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text5",
+      "top": 297.6,
+      "left": 518.4,
+      "attrs": { "text": "Profundor Esquerdo" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text6",
+      "top": 0,
+      "left": 518.4,
+      "attrs": { "text": "Profundor Direito" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text7",
+      "top": 144,
+      "left": 729.6,
+      "attrs": { "text": "Leme" }
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick1",
+      "top": -259.8,
+      "left": -263.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -262.4,
+      "left": -90.4,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": -114.97, "left": -345.53, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.2", "servo6:GND", "black", [ "v0" ] ],
+    [ "esp:GND.2", "servo7:GND", "black", [ "v0" ] ],
+    [ "esp:GND.2", "servo2:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "servo4:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "servo5:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "servo3:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "servo1:GND", "black", [ "v9.45", "h134.4", "v-57.6" ] ],
+    [ "esp:5V", "servo4:V+", "red", [ "v0" ] ],
+    [ "esp:5V", "servo5:V+", "red", [ "v0" ] ],
+    [ "esp:5V", "servo1:V+", "red", [ "v28.65", "h96", "v-76.8" ] ],
+    [ "esp:5V", "servo3:V+", "red", [ "v0" ] ],
+    [ "esp:5V", "servo6:V+", "red", [ "v19.05", "h38.4", "v-115.3" ] ],
+    [ "esp:5V", "servo7:V+", "red", [ "v19.05", "h38.4", "v-259.3" ] ],
+    [ "esp:5V", "servo2:V+", "red", [ "v19.05", "h38.4", "v-192.1" ] ],
+    [ "esp:14", "servo4:PWM", "gold", [ "v0" ] ],
+    [ "esp:27", "servo3:PWM", "#8f4814", [ "v0" ] ],
+    [ "esp:26", "servo5:PWM", "green", [ "v0" ] ],
+    [ "esp:25", "servo1:PWM", "blue", [ "v28.65", "h201.6", "v-48.2" ] ],
+    [ "esp:4", "servo6:PWM", "green", [ "v-19.2", "h153.6", "v28.6" ] ],
+    [ "esp:16", "servo2:PWM", "#8f4814", [ "v0" ] ],
+    [ "esp:17", "servo7:PWM", "gold", [ "v0" ] ],
+    [ "joystick1:VCC", "esp:5V", "red", [ "v326.4", "h268.8" ] ],
+    [ "joystick1:GND", "esp:GND.2", "black", [ "v9.6", "h48" ] ],
+    [ "esp:34", "joystick1:VERT", "#8f4814", [ "v19.05", "h-115.2" ] ],
+    [ "esp:35", "joystick1:HORZ", "gold", [ "v9.45", "h-115.2" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-38.4", "v105.7", "h201.6", "v278.4", "h-38.4" ] ],
+    [ "esp:22", "lcd1:SCL", "magenta", [ "v0" ] ],
+    [ "esp:21", "lcd1:SDA", "violet", [ "v-19.2", "h-19.2", "v-240.2" ] ],
+    [ "sd1:VCC", "esp:5V", "red", [ "h38.4", "v249.74", "h268.8" ] ],
+    [ "sd1:GND", "esp:GND.2", "black", [ "h134.4", "v134.51" ] ],
+    [ "esp:23", "sd1:DI", "orange", [ "v0" ] ],
+    [ "esp:19", "sd1:DO", "cyan", [ "v0" ] ],
+    [ "esp:18", "sd1:SCK", "green", [ "v0" ] ],
+    [ "esp:5", "sd1:CS", "white", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
