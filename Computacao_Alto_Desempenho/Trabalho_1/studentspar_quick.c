@@ -1,10 +1,9 @@
-//gcc -fopenmp studentsseq_matriz.c -o studentsseq_matriz -lm
+//gcc -fopenmp studentspar.c -o studentspar -lm
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-//Apenas para marcar o tempo pela mesma função que o sequencial
 #include <omp.h>
 
 #define TRUE 1
@@ -61,13 +60,19 @@ void OrdenarArray(float* array, int nroItens)
     qsort(array, nroItens, sizeof(*array), FuncaoComparacao);
 }
 
-float MediaDoVetor(float* array, int nroItens)
+//Restrict -> nenhum outro local tem acesso ao mesmo ponteiro
+//Então o compilador pode otimizar mais
+float MediaDoVetor(float* restrict array, int nroItens)
 {
     float media = 0;
+
+    //Instrui que pode usar operações de simd
+    #pragma omp simd reduction(+:media)
     for(int i = 0; i < nroItens; ++i)
     {
         media += array[i];
     }
+
     return media/nroItens;
 }
 
@@ -156,15 +161,27 @@ void CalcularMediasPorCidade(int nroRegioes, int nroCidades, int nroAlunos, int 
     mediasAlunosCidade->nroLinhas = nroRegioes * nroCidades;
     mediasAlunosCidade->nroColunas = nroAlunos;
     mediasAlunosCidade->tabela = malloc(mediasAlunosCidade->nroLinhas * sizeof(*mediasAlunosCidade->tabela));
+
+    //https://stackoverflow.com/questions/10706466/how-does-malloc-work-in-a-multithreaded-environment
+    //malloc impõe mutex, então é favorável chamá-los fora da seção paralela
     for (int i = 0; i < mediasAlunosCidade->nroLinhas; ++i)
-    {
         mediasAlunosCidade->tabela[i] = malloc(mediasAlunosCidade->nroColunas * sizeof(*mediasAlunosCidade->tabela[i]));
-        
-        for (int j = 0; j < mediasAlunosCidade->nroColunas; ++j)
-        {
-            mediasAlunosCidade->tabela[i][j] = MediaDoVetor(notasAlunos.tabela[i*nroAlunos + j], nroNotas);
-        }
+
+    //Transformando o loop aninhando em um único grande loop garantimos que a paralelização ocorrerá o melhor possível
+    //Usando o aninhamento dos loops, seriam necessários dois #pragma for e uma série de análises para quantas threads cada um usaria
+    //Juntando num único for podemos operar diretamente no total, sem dificuldades
+    double calcularMediasInicio = omp_get_wtime();
+    int total = mediasAlunosCidade->nroLinhas * mediasAlunosCidade->nroColunas;
+    #pragma omp parallel for schedule(static)
+    for (int idx = 0; idx < total; ++idx)
+    {
+        //A função MediaDoVetor é pesada o suficiente para estas operações extras serem negligenciáveis
+        int i = idx / mediasAlunosCidade->nroColunas;
+        int j = idx % mediasAlunosCidade->nroColunas;
+
+        mediasAlunosCidade->tabela[i][j] = MediaDoVetor(notasAlunos.tabela[i*nroAlunos + j], nroNotas);
     }
+    printf("Calcular medias: %f\n", omp_get_wtime() - calcularMediasInicio);
 }
 
 void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, TabelasDados mediasAlunosCidade, 
@@ -184,33 +201,70 @@ void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, T
     mediasBrasil.nroColunas = nroRegioes * nroCidades * nroAlunos;
     mediasBrasil.tabela = malloc(mediasBrasil.nroLinhas * sizeof(*mediasBrasil.tabela));
 
-    //============== Esta seção copia os dados para as outras tabelas, já ordenando-os ==============
+    //============== Esta seção copia os dados para as outras tabelas ==============
+    //memcpy é uma função muito otimizada pelo processador. Ela nativamente usa mecanismos SIMD e afins
+    //Paralelizar esta seção é prejudicial, pois cria overhead pra ciração e sincronização das threads
 
     //todasNotasBrasil.tabela -> todas as notas médias num único array
     //Como só tem 1 linha, instancia na posição 0
     //Poderia usar apenas um array, mas desta forma mantém o padrão de leitura por pouco prejuízo
-    mediasBrasil.tabela[0] = malloc(mediasBrasil.nroColunas * sizeof(*mediasBrasil.tabela[0]));                                    
+    mediasBrasil.tabela[0] = malloc(mediasBrasil.nroColunas * sizeof(*mediasBrasil.tabela[0]));                       
     for (int i = 0; i < nroRegioes; ++i)
     {
-        //todasNotasPorRegiao.tabela -> separa todas as notas por região
         mediasPorRegiao.tabela[i] = malloc(mediasPorRegiao.nroColunas * sizeof(*mediasPorRegiao.tabela[i]));
         for (int j = 0; j < nroCidades; ++j)
         {
             memcpy(&mediasPorRegiao.tabela[i][j * nroAlunos],
-                        mediasAlunosCidade.tabela[i * nroCidades + j], 
-                        mediasAlunosCidade.nroColunas * sizeof(**mediasAlunosCidade.tabela));
+                mediasAlunosCidade.tabela[i * nroCidades + j],
+                mediasAlunosCidade.nroColunas * sizeof(**mediasAlunosCidade.tabela));
 
             memcpy(&mediasBrasil.tabela[0][i * nroCidades * nroAlunos + j * nroAlunos],
-                        mediasAlunosCidade.tabela[i * nroCidades + j],
-                        mediasAlunosCidade.nroColunas * sizeof(**mediasAlunosCidade.tabela));
-
-            OrdenarArray(mediasAlunosCidade.tabela[i * nroCidades + j], mediasAlunosCidade.nroColunas);
+                mediasAlunosCidade.tabela[i * nroCidades + j],
+                mediasAlunosCidade.nroColunas * sizeof(**mediasAlunosCidade.tabela));
         }
-        OrdenarArray(mediasPorRegiao.tabela[i], mediasPorRegiao.nroColunas);
     }
-    OrdenarArray(mediasBrasil.tabela[0], mediasBrasil.nroColunas);
+
+    //============== Esta seção ordena os dados para as outras tabelas ==============
+    //A função OrdenarArray() usa qsort(), a implementação de quicksort do C
+    //Quicksort é O(n log(n)). Então a ordem de maior custo SEMPRE vai ser -> mediasBrasil, mediasPorRegiao e mediasAlunosCidade
+    //Então o mediasBrasil sempre será o mais custoso, além de não ser paralelizável (pois é um único array)
+    //Em suma, é vantajoso dar para o mediasBrasil sua própria thread o mais rápido possível, que sempre será o gargalo
+
+    #pragma omp parallel
+    {
+        #pragma omp single
+        {
+            #pragma omp task
+            {
+                OrdenarArray(mediasBrasil.tabela[0], mediasBrasil.nroColunas);
+            }
+            #pragma omp task
+            {
+                for (int i = 0; i < nroRegioes; ++i)
+                {
+                    #pragma omp task
+                    OrdenarArray(mediasPorRegiao.tabela[i], mediasPorRegiao.nroColunas);
+                }
+            }
+            #pragma omp task
+            {
+                for (int i = 0; i < nroRegioes; ++i)
+                {
+                    //A task fica dentro do loop, deixando loops para ela cuidar
+                    //Assim não cria tasks de granunalidade fina demais, que teriam muito overhead
+                    #pragma omp task
+                    for (int j = 0; j < nroCidades; ++j)
+                    {
+                        OrdenarArray(mediasAlunosCidade.tabela[i * nroCidades + j], mediasAlunosCidade.nroColunas);
+                    }
+                }
+            }
+        }
+    }
 
     //============== Este trecho instancia as tabelas ============== 
+
+    //Este trecho do código é tão simples que paralelizá-lo ia aumentar o tempo por overhead
 
     notasPorCidade->nroLinhas = mediasAlunosCidade.nroLinhas;
     notasPorCidade->nroColunas = NRO_COLUNAS_TABELAS_NOTAS;
@@ -259,6 +313,7 @@ int main()
     scanf("%d %d %d %d %d %d", &nroRegioes, &nroCidades, &nroAlunos, &nroNotas, &limiteThreads, &seed);
 
     srand(seed);
+    omp_set_num_threads(limiteThreads);
     
     TabelasDados notasAlunos, mediasAlunosCidade, notasPorCidade, notasPorRegiao, notasBrasil, notasPremiacao;
 
@@ -288,10 +343,10 @@ int main()
 
     printf("Total: %f\n", tempoFim - tempoInicio);
 
-    ImprimirTabela(notasPorCidade);
+    /*ImprimirTabela(notasPorCidade);
     ImprimirTabela(notasPorRegiao);
     ImprimirTabela(notasBrasil);
-    ImprimirTabela(notasPremiacao);
+    ImprimirTabela(notasPremiacao);*/
 
     LiberarTabela(notasAlunos);
     LiberarTabela(mediasAlunosCidade);
