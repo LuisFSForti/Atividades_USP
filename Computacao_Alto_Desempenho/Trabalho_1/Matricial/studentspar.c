@@ -1,10 +1,9 @@
-//gcc -O3 -fopenmp studentsseq.c -o studentsseq -lm
+//gcc -O3 -fopenmp studentspar.c -o studentspar -lm
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-//Apenas para marcar o tempo pela mesma função que o paralelo
 #include <omp.h>
 
 #define TRUE 1
@@ -36,7 +35,7 @@ void ImprimirTabela(TabelasDados tabela)
         }
         printf("\n");
     }
-    printf("\n\n\n");
+    printf("\n");
 }
 
 void LiberarTabela(TabelasDados tabela)
@@ -162,6 +161,7 @@ void MergeSortBlocos(float **blocos, int tamanhoBloco, int nroBlocos, float *sai
     {
         //guided pois os blocos podem ter tamanhos diferentes
         //nroBlocosAtuais/2 -> arredonda para baixo, então descondidera o último se nroBlocosAtuais for ímpar
+        #pragma omp parallel for schedule(guided)
         for (int i = 0; i < nroBlocosAtuais/2; ++i)
         {
             //idx = indíce do bloco do merge. Não é em termos de offset
@@ -176,8 +176,6 @@ void MergeSortBlocos(float **blocos, int tamanhoBloco, int nroBlocos, float *sai
             //Combina os dois blocos de merge
             CombinarBlocos(blocosAtuais, tam1, tam2, offset1, offset2, juncoes, tamanhoBloco);
 
-            //Copia a saída na posição dos dois blocos de merge, formando um único
-            //Como eles são adjacentes (idx e idx+1), então é só ir do começo de um até o fim do outro
             for (int j = offset1; j < offset2 + tam2; ++j)
             {
                 memcpy(blocosAtuais[j], juncoes[j], tamanhoBloco * sizeof(float));
@@ -221,10 +219,14 @@ void MergeSortBlocos(float **blocos, int tamanhoBloco, int nroBlocos, float *sai
 float MediaDoVetor(float* restrict array, int nroItens)
 {
     float media = 0;
+
+    //Instrui que pode usar operações de simd
+    #pragma omp simd reduction(+:media)
     for(int i = 0; i < nroItens; ++i)
     {
         media += array[i];
     }
+
     return media/nroItens;
 }
 
@@ -254,6 +256,8 @@ float DesvioPadraoDoVetor(float* restrict array, int nroItens, float media)
 {
     float soma = 0, aux;
 
+    //Instrui que pode usar operações de simd
+    #pragma omp simd reduction(+:soma) private(aux)
     for (int i = 0; i < nroItens; i++) {
         aux = array[i] - media;
         soma += aux * aux;
@@ -318,8 +322,6 @@ void CalcularMediasPorCidade(int nroRegioes, int nroCidades, int nroAlunos, int 
     mediasAlunosCidade->nroColunas = nroAlunos;
     mediasAlunosCidade->tabela = malloc(mediasAlunosCidade->nroLinhas * sizeof(*mediasAlunosCidade->tabela));
 
-    //O trecho seguinte foi adaptado para o código com paralelismo. Para fins de comparação da eficiência, ele foi copiado para o sequencial.
-
     //https://stackoverflow.com/questions/10706466/how-does-malloc-work-in-a-multithreaded-environment
     //malloc impõe mutex, então é favorável chamá-los fora da seção paralela
     for (int i = 0; i < mediasAlunosCidade->nroLinhas; ++i)
@@ -327,15 +329,25 @@ void CalcularMediasPorCidade(int nroRegioes, int nroCidades, int nroAlunos, int 
 
     //Transformar o loop aninhado em um único loop melhora o balanceamento de carga e simplifica a paralelização
     //Poderia usar collapse(2), mas deste jeito dá controle explícito sobre o padrão de acesso à memória
-    double calcularMediasInicio = omp_get_wtime();
-    int total = mediasAlunosCidade->nroLinhas * mediasAlunosCidade->nroColunas;
+    /*int total = mediasAlunosCidade->nroLinhas * mediasAlunosCidade->nroColunas;
+    #pragma omp parallel for schedule(static)
     for (int idx = 0; idx < total; ++idx)
     {
         //A função MediaDoVetor é pesada o suficiente para estas operações extras serem negligenciáveis
         int i = idx / mediasAlunosCidade->nroColunas;
         int j = idx % mediasAlunosCidade->nroColunas;
 
-        mediasAlunosCidade->tabela[i][j] = MediaDoVetor(notasAlunos.tabela[i*nroAlunos + j], nroNotas);
+        mediasAlunosCidade->tabela[i*mediasAlunosCidade->tamanhoBlocos + j] = 
+                            MediaDoVetor(notasAlunos.tabela + (i*nroAlunos + j)*notasAlunos.tamanhoBlocos, nroNotas);
+    }*/
+    #pragma omp parallel for schedule(static) collapse(2)
+    for (int i = 0; i < mediasAlunosCidade->nroLinhas; ++i)
+    {
+        for (int j = 0; j < mediasAlunosCidade->nroColunas; ++j)
+        {
+            mediasAlunosCidade->tabela[i][j] = 
+                            MediaDoVetor(notasAlunos.tabela[i*nroAlunos + j], nroNotas);
+        }
     }
 }
 
@@ -361,20 +373,25 @@ void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, T
 
     //============== Esta seção copia os dados para as outras tabelas e as ordena ==============
     
-    //Ordena os blocos das cidades
-    //Isso vai ser útil para ordenar os restantes, pois permite usar um merge sort adaptado, que é mais otimizado que o quicksort
-    for (int i = 0; i < nroRegioes * nroCidades; ++i)
+    #pragma omp parallel
     {
-        OrdenarArray(mediasAlunosCidade.tabela[i], mediasAlunosCidade.nroColunas);
-    }
+        //Ordena os blocos das cidades
+        //Isso vai ser útil para ordenar os restantes, pois permite usar um merge sort adaptado, que é mais otimizado que o quicksort
+        #pragma omp for schedule(static)
+        for (int i = 0; i < nroRegioes * nroCidades; ++i)
+        {
+            OrdenarArray(mediasAlunosCidade.tabela[i], mediasAlunosCidade.nroColunas);
+        }
 
-    //Com as cidades ordenadas, dá pra usar um merge sort nas regiões
-    //O merge neste caso está programado para lidar exatamente com os blocos da cidade,
-    //então é o mais otimizado possível
+        //Com as cidades ordenadas, dá pra usar um merge sort nas regiões
+        //O merge neste caso está programado para lidar exatamente com os blocos da cidade,
+        //então é o mais otimizado possível
 
-    for (int i = 0; i < nroRegioes; i++)
-    {
-        MergeSortBlocos(&mediasAlunosCidade.tabela[i * nroCidades], nroAlunos, nroCidades, mediasPorRegiao.tabela[i]);
+        #pragma omp for schedule(static)
+        for (int i = 0; i < nroRegioes; i++)
+        {
+            MergeSortBlocos(&mediasAlunosCidade.tabela[i * nroCidades], nroAlunos, nroCidades, mediasPorRegiao.tabela[i]);
+        }
     }
 
     //Com as regiões ordenadas, dá pra usar um merge sort no Brasil
@@ -402,6 +419,8 @@ void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, T
     notasPremiacao->tabela = malloc(notasPremiacao->nroLinhas * sizeof(*notasPremiacao->tabela));
 
     //============== Este trecho organiza as tabelas ==============
+
+    //Este trecho do código é tão simples que paralelizá-lo ia aumentar o tempo por overhead
 
     int melhorRegiao = 0, melhorCidade = 0;
 
@@ -431,6 +450,9 @@ int main()
     scanf("%d %d %d %d %d %d", &nroRegioes, &nroCidades, &nroAlunos, &nroNotas, &limiteThreads, &seed);
 
     srand(seed);
+    //Garante que não terá aninhamento de threads
+    omp_set_nested(0);
+    omp_set_num_threads(limiteThreads);
     
     TabelasDados notasAlunos, mediasAlunosCidade, notasPorCidade, notasPorRegiao, notasBrasil, notasPremiacao;
 

@@ -5,11 +5,11 @@
             "label": "C/C++: gcc build active file",
             "command": "/usr/bin/gcc",
             "args": [
-                "-fdiagnostics-color=always",
+                //"-fdiagnostics-color=always",
                 "-g",
                 "-fopenmp",
                 "-O3",
-                "-fopt-info-vec-optimized",
+                "-march=native",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
