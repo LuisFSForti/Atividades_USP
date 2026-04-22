@@ -45,7 +45,7 @@ int TamanhoBlocoPreencherLinha(int nroColunas, int tamanhoDado)
     return (int)((nroColunas + dadosPorLinha - 1)/dadosPorLinha) * dadosPorLinha;
 }
 
-void ImprimirTabela(TabelasDados tabela)
+void ImprimirTabelaGenerica(TabelasDados tabela)
 {
     for (int i = 0; i < tabela.nroLinhas; ++i)
     {
@@ -55,6 +55,69 @@ void ImprimirTabela(TabelasDados tabela)
         }
         printf("\n");
     }
+    printf("\n");
+}
+
+void ImprimirTabelaCidade(TabelasDados tabela, int nroCidadesPorRegiao)
+{
+    int regiao = 0, cidade = 0;
+    printf("Cidades\t\tMin Nota\tMax Nota\tMediana\t\tMedia\t\tDsvPdr\n");
+    for (int i = 0; i < tabela.nroLinhas; ++i)
+    {
+        printf("R=%d, C=%d", regiao, cidade);
+        for (int j = 0; j < tabela.nroColunas; ++j)
+        {
+            printf("\t%.1f\t", tabela.tabela[i*tabela.tamanhoBlocos + j]);
+        }
+        printf("\n");
+
+        cidade++;
+        if(cidade >= nroCidadesPorRegiao)
+        {
+            cidade = 0;
+            regiao++;
+        }
+    }
+    printf("\n");
+}
+
+void ImprimirTabelaRegiao(TabelasDados tabela)
+{
+    printf("Regioes\t\tMin Nota\tMax Nota\tMediana\t\tMedia\t\tDsvPdr\n");
+    for (int i = 0; i < tabela.nroLinhas; ++i)
+    {
+        printf("R=%d\t", i);
+        for (int j = 0; j < tabela.nroColunas; ++j)
+        {
+            printf("\t%.1f\t", tabela.tabela[i*tabela.tamanhoBlocos + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void ImprimirTabelaBrasil(TabelasDados tabela)
+{
+    printf("Brasil\t\tMin Nota\tMax Nota\tMediana\t\tMedia\t\tDsvPdr\n");
+    for (int i = 0; i < tabela.nroLinhas; ++i)
+    {
+        printf("\t");
+        for (int j = 0; j < tabela.nroColunas; ++j)
+        {
+            printf("\t%.1f\t", tabela.tabela[i*tabela.tamanhoBlocos + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void ImprimirTabelaPremiacao(TabelasDados tabela, int nroCidadesPorRegiao)
+{
+    int regiaoMelhorCidade = tabela.tabela[1*tabela.tamanhoBlocos + 0]/nroCidadesPorRegiao;
+    int cidadeMelhorCidade = (int)tabela.tabela[1*tabela.tamanhoBlocos + 0] % nroCidadesPorRegiao;
+    printf("Premiacao\tReg/Cid\tMedia Arit\n");
+    printf("Melhor regiao:\tR%d\t%.1f\n", (int)tabela.tabela[0*tabela.tamanhoBlocos + 0], tabela.tabela[0*tabela.tamanhoBlocos + 1]);
+    printf("Melhor cidade:\tR%d-C%d\t%.1f\n", regiaoMelhorCidade, cidadeMelhorCidade, tabela.tabela[1*tabela.tamanhoBlocos + 1]);
     printf("\n");
 }
 
@@ -304,7 +367,7 @@ int MontarTabelaImpressao(TabelasDados *destino, TabelasDados dados, int devePro
 
         if (deveProcurarMax == TRUE)
         {
-            if (destino->tabela[blocoAtualDestino + COLUNA_MAX] > destino->tabela[max + COLUNA_MAX])
+            if (destino->tabela[blocoAtualDestino + COLUNA_MEDIA] > destino->tabela[max + COLUNA_MEDIA])
                 max = blocoAtualDestino;
         }
     }
@@ -443,11 +506,11 @@ void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, T
     
     notasPremiacao->tabela[0 * notasPremiacao->tamanhoBlocos + 0] = melhorRegiao;
     notasPremiacao->tabela[0 * notasPremiacao->tamanhoBlocos + 1] =
-        notasPorRegiao->tabela[melhorRegiao * notasPorRegiao->tamanhoBlocos + COLUNA_MAX];
+        notasPorRegiao->tabela[melhorRegiao * notasPorRegiao->tamanhoBlocos + COLUNA_MEDIA];
 
     notasPremiacao->tabela[1 * notasPremiacao->tamanhoBlocos + 0] = melhorCidade;
     notasPremiacao->tabela[1 * notasPremiacao->tamanhoBlocos + 1] =
-        notasPorCidade->tabela[melhorCidade * notasPorCidade->tamanhoBlocos + COLUNA_MAX];
+        notasPorCidade->tabela[melhorCidade * notasPorCidade->tamanhoBlocos + COLUNA_MEDIA];
 
     //============== Este trecho libera as tabelas auxiliares ==============
 
@@ -458,15 +521,23 @@ void GerarTabelas(int nroRegioes, int nroCidades, int nroAlunos, int nroNotas, T
 int main()
 {
     double tempoInicio, tempoFim;
+    char nomeArquivo[100];
+    FILE *arq;
     int nroRegioes, nroCidades, nroAlunos, nroNotas, limiteThreads, seed;
     TabelasDados notasAlunos, mediasAlunosCidade, notasPorCidade, notasPorRegiao, notasBrasil, notasPremiacao;
 
-    scanf("%d %d %d %d %d %d", &nroRegioes, &nroCidades, &nroAlunos, &nroNotas, &limiteThreads, &seed);
+    printf("Digite o nome do arquivo de leitura: ");
+    scanf("%s", nomeArquivo);
+    printf("\n");
+
+    arq = fopen(nomeArquivo, "r");
+    fscanf(arq, "%d %d %d %d %d %d", &nroRegioes, &nroCidades, &nroAlunos, &nroNotas, &limiteThreads, &seed);
+    fclose(arq);
 
     srand(seed);
     //Garante que não terá aninhamento de threads
     omp_set_nested(0);
-    //omp_set_num_threads(limiteThreads);
+    omp_set_num_threads(limiteThreads);
 
     QTD_BYTES_LINHA = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
     // Fallback de segurança caso o sistema não consiga informar
@@ -474,56 +545,44 @@ int main()
         QTD_BYTES_LINHA = 64; 
     }
 
-    printf("Tamanho da linha de cache do L1: %ld\n", QTD_BYTES_LINHA);
-
     double tempoInicioGerar = omp_get_wtime();
     GerarNotas(nroRegioes, nroCidades, nroAlunos, nroNotas, &notasAlunos);
     double tempoFimGerar = omp_get_wtime();
-    printf("Geracao: %f\n", tempoFimGerar - tempoInicioGerar);
 
     //Início da seção paralelizável
 
-    int w[4] = {1, 4, 8, 16};
+    tempoInicio = omp_get_wtime();
 
-    for (int j = 0; j < 4; j++)
-    {
-        omp_set_num_threads(w[j]);
-        printf("------------- w = %d ------------\n", w[j]);
-        for (int i = 0; i < 30; i++)
-        {
-            tempoInicio = omp_get_wtime();
+    double tempoInicioMedia = omp_get_wtime();
+    CalcularMediasPorCidade(nroRegioes, nroCidades, nroAlunos, nroNotas, notasAlunos, &mediasAlunosCidade);
+    double tempoFimMedia = omp_get_wtime();
 
-            double tempoInicioMedia = omp_get_wtime();
-            CalcularMediasPorCidade(nroRegioes, nroCidades, nroAlunos, nroNotas, notasAlunos, &mediasAlunosCidade);
-            double tempoFimMedia = omp_get_wtime();
+    double tempoInicioOrdenar = omp_get_wtime();
+    GerarTabelas(nroRegioes, nroCidades, nroAlunos, nroNotas, mediasAlunosCidade,
+                    &notasPorCidade, &notasPorRegiao, &notasBrasil, &notasPremiacao);
+    double tempoFimOrdenar = omp_get_wtime();
 
-            double tempoInicioOrdenar = omp_get_wtime();
-            GerarTabelas(nroRegioes, nroCidades, nroAlunos, nroNotas, mediasAlunosCidade,
-                            &notasPorCidade, &notasPorRegiao, &notasBrasil, &notasPremiacao);
-            double tempoFimOrdenar = omp_get_wtime();
-
-            tempoFim = omp_get_wtime();
-
-            printf("Media: %f\n", tempoFimMedia - tempoInicioMedia);
-            printf("Ordenar: %f\n", tempoFimOrdenar - tempoInicioOrdenar);
-            printf("Total: %f\n", tempoFim - tempoInicio);
-
-            LiberarTabela(mediasAlunosCidade);
-            LiberarTabela(notasPorCidade);
-            LiberarTabela(notasPorRegiao);
-            LiberarTabela(notasBrasil);
-            LiberarTabela(notasPremiacao);
-        }
-    }
+    tempoFim = omp_get_wtime();
 
     //Fim da seção paralelizável
 
-    /*ImprimirTabela(notasPorCidade);
-    ImprimirTabela(notasPorRegiao);
-    ImprimirTabela(notasBrasil);
-    ImprimirTabela(notasPremiacao);*/
+    ImprimirTabelaCidade(notasPorCidade, nroCidades);
+    ImprimirTabelaRegiao(notasPorRegiao);
+    ImprimirTabelaBrasil(notasBrasil);
+    ImprimirTabelaPremiacao(notasPremiacao, nroCidades);
+
+    printf("\nTamanho da linha de cache do L1: %ld\n", QTD_BYTES_LINHA);
+    printf("Geracao das notas: %fs\n", tempoFimGerar - tempoInicioGerar);
+    printf("Calcular medias: %fs\n", tempoFimMedia - tempoInicioMedia);
+    printf("Ordenar valores: %fs\n", tempoFimOrdenar - tempoInicioOrdenar);
+    printf("Tempo total: %fs\n", tempoFim - tempoInicio);
 
     LiberarTabela(notasAlunos);
+    LiberarTabela(mediasAlunosCidade);
+    LiberarTabela(notasPorCidade);
+    LiberarTabela(notasPorRegiao);
+    LiberarTabela(notasBrasil);
+    LiberarTabela(notasPremiacao);
 
     return 0;
 }
