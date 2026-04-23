@@ -1,3 +1,10 @@
+//Bruno Calabria Cortez Navas
+//Eduardo Brioso Luceiro
+//Gustavo Curado Ribeiro
+//Heloísa Pazeti
+//Luís Filipe da Silva Forti
+//Miguel Rodrigues Fonseca
+
 //gcc -fopenmp -O3 -march=native studentspar.c -o studentspar -lm
 
 #include <stdio.h>
@@ -571,11 +578,11 @@ int main()
     ImprimirTabelaBrasil(notasBrasil);
     ImprimirTabelaPremiacao(notasPremiacao, nroCidades);
 
-    printf("\nTamanho da linha de cache do L1: %ld\n", QTD_BYTES_LINHA);
-    printf("Geracao das notas: %fs\n", tempoFimGerar - tempoInicioGerar);
-    printf("Calcular medias: %fs\n", tempoFimMedia - tempoInicioMedia);
-    printf("Ordenar valores: %fs\n", tempoFimOrdenar - tempoInicioOrdenar);
-    printf("Tempo total: %fs\n", tempoFim - tempoInicio);
+    //printf("\nTamanho da linha de cache do L1: %ld\n", QTD_BYTES_LINHA);
+    //printf("Geracao das notas: %fs\n", tempoFimGerar - tempoInicioGerar);
+    //printf("Calcular medias: %fs\n", tempoFimMedia - tempoInicioMedia);
+    //printf("Ordenar valores: %fs\n", tempoFimOrdenar - tempoInicioOrdenar);
+    printf("Tempo total: %.6fs\n", tempoFim - tempoInicio);
 
     LiberarTabela(notasAlunos);
     LiberarTabela(mediasAlunosCidade);
